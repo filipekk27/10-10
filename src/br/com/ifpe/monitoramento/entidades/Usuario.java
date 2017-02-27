@@ -48,6 +48,9 @@ public class Usuario {
 	@NotNull(message = "Selecione um cargo.")
 	private Cargo cargo;
 
+	@NotNull(message = "Selecione uma UG.")
+	private UnidadeGestora uGestora;
+
 	private Situacao situacao;
 
 	public Integer getId() {
@@ -128,6 +131,14 @@ public class Usuario {
 
 	public void setSituacao(Situacao situacao) {
 		this.situacao = situacao;
+	}
+
+	public UnidadeGestora getuGestora() {
+		return uGestora;
+	}
+
+	public void setuGestora(UnidadeGestora uGestora) {
+		this.uGestora = uGestora;
 	}
 
 }

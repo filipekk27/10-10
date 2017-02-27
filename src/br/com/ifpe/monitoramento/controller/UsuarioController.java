@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.ifpe.monitoramento.dao.CargoDao;
 import br.com.ifpe.monitoramento.dao.KeyDuplicateException;
+import br.com.ifpe.monitoramento.dao.UnidadeGestoraDao;
 import br.com.ifpe.monitoramento.dao.UsuarioDao;
 import br.com.ifpe.monitoramento.entidades.Usuario;
 
@@ -16,9 +17,11 @@ import br.com.ifpe.monitoramento.entidades.Usuario;
 public class UsuarioController {
      
 	@RequestMapping("/formCadastro")
-	public String formCadastro(Model model , String nome , String id){
+	public String formCadastro(Model model , String nome , String id , String codigo){
 		CargoDao dao = new CargoDao();
 		model.addAttribute("listarCargoUsuario", dao.listarCargo(nome,id));
+		UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
+		model.addAttribute("listarUGestora", dao2.listarUG(nome, codigo));
 		return "usuario/FormCadastroUsuario";
 	}
 	

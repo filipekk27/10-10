@@ -78,6 +78,26 @@
 					</c:forEach>
 				</select>
 			</div>
+			<br>
+			<div class="form-group">
+				<form:errors path="usuario.uGestora" cssStyle="color:red" />
+				<br /> <label for="UG">Unidade Gestora</label><br> <select
+					name="uGestora" required="true">
+					<option value="">Selecione a UG</option>
+					<c:forEach items="${listarUGestora}" var="ug">
+						<option value="${ug.codigo}">${ug.nome}</option>
+					</c:forEach>
+				</select>
+			</div>
+			<br>
+			<div class="form-group">
+				<form:errors path="usuario.situacao" cssStyle="color:red" />
+				 <label for="Status">On</label> <input type="radio"
+					class="form-control" name="Situacao" value="ATIVO"><br>
+					
+				<label for="Status">Off</label> <input type="radio"
+					class="form-control" name="Situacao" value="INATIVO"><br>
+			</div>
 			<br> <br>
 			<button type="submit" class="btn btn-primary">Cadastrar</button>
 		</form>
