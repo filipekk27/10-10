@@ -17,7 +17,7 @@ import org.springframework.format.annotation.NumberFormat;
  *
  */
 public class UnidadeGestora {
-	
+
 	@NotBlank(message = "O nome nao pode ser vazio.")
 	@Size(min = 8, max = 100, message = "O nome deve ter de : {min} a {max} Letras")
 	@Pattern(regexp = "[a-zA-Z ]*", message = "Nome tem apenas letras sem acento ou caracteres !")
@@ -30,6 +30,7 @@ public class UnidadeGestora {
 	private Integer codigo;
 
 	private Date data;
+	private Situacao situacao;
 
 	public String getNome() {
 		return nome;
@@ -53,6 +54,14 @@ public class UnidadeGestora {
 
 	public void setData(Date data) {
 		this.data = data;
+	}
+
+	public Situacao getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Situacao situacao) {
+		this.situacao = situacao;
 	}
 
 }

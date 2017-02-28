@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
+import br.com.ifpe.monitoramento.entidades.Situacao;
 import br.com.ifpe.monitoramento.entidades.UnidadeGestora;
 import br.com.ifpe.monitoramento.util.ConnectionFactory;
 
@@ -80,6 +81,10 @@ public class UnidadeGestoraDao {
 				ug.setNome(rs.getString("nome_unidade"));
 				ug.setCodigo(rs.getInt("codigo_unidade"));
 				ug.setData(rs.getDate("data_cadastro"));
+				
+				Situacao st = Situacao.valueOf(rs.getString("Status"));
+				ug.setSituacao(st);
+				
 				listarUG.add(ug);
 			}
 			rs.close();
@@ -92,7 +97,7 @@ public class UnidadeGestoraDao {
 		}
 	}
 
-	public void removerUG(int id) {
+	/*public void removerUG(int id) {
 
 		try {
 			String sql = "DELETE FROM unidade_gestora WHERE codigo_unidade = ?";
@@ -103,7 +108,7 @@ public class UnidadeGestoraDao {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-	}
+	}*/
 
 	public UnidadeGestora exibirUG(int codigo) {
 
@@ -137,10 +142,11 @@ public class UnidadeGestoraDao {
 
 		try {
 
-			String sql = "UPDATE unidade_gestora SET nome_unidade=? WHERE codigo_unidade=?";
+			String sql = "UPDATE unidade_gestora SET nome_unidade=? ,STATUS = ? WHERE codigo_unidade=?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, ug.getNome());
-			stmt.setInt(2, ug.getCodigo());
+			stmt.setString(2, ug.getSituacao().name());
+			stmt.setInt(3, ug.getCodigo());
 			stmt.execute();
 			connection.close();
 

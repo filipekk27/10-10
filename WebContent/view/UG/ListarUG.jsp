@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -49,16 +49,20 @@
 			<td>Codigo</td>
 			<td>Nome</td>
 			<td>Data Cadastro</td>
+			<td>Status</td>
 			<td>Ações</td>
 
 
 			<c:forEach var="UG" items="${ListarUG}">
 				<tr>
-					<td>${UG.codigo}</td>
-					<td>${UG.nome}</td>
-					<td> <fmt:formatDate value="${UG.data}" pattern="dd/MM/yyyy" /> </td>
-					<td><a href="RemoverUG?id=${UG.codigo}">Remover</a> <a
-						href="ExibirAlterarUG?codigo=${UG.codigo}">Alterar</a></td>
+					<c:if test="${UG.situacao=='ATIVO'}">
+						<td>${UG.codigo}</td>
+						<td>${UG.nome}</td>
+						<td><fmt:formatDate value="${UG.data}" pattern="dd/MM/yyyy" />
+						</td>
+						<td>${UG.situacao}</td>
+						<td><a href="ExibirAlterarUG?codigo=${UG.codigo}">Alterar</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 	</table>

@@ -10,6 +10,7 @@ import java.util.List;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import br.com.ifpe.monitoramento.entidades.Cargo;
+import br.com.ifpe.monitoramento.entidades.Situacao;
 import br.com.ifpe.monitoramento.util.ConnectionFactory;
 
 public class CargoDao {
@@ -73,6 +74,8 @@ public class CargoDao {
 				cargo.setId(rs.getInt("id_cargo"));
 				cargo.setNome(rs.getString("nome_cargo"));
 				cargo.setData_cadastro(rs.getDate("data_cadastro"));
+				Situacao st = Situacao.valueOf(rs.getString("Status"));
+				cargo.setSituacao(st);
 				listarCargo.add(cargo);
 			}
 
@@ -86,7 +89,7 @@ public class CargoDao {
 		}
 	}
 
-	public void removerCargo(int id) {
+	/*public void removerCargo(int id) {
 		try {
 			String sql = "DELETE FROM cargo WHERE id_cargo = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -98,7 +101,7 @@ public class CargoDao {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-	}
+	}*/
 
 	public Cargo exibirCargo(Integer id) {
 		try {
@@ -125,10 +128,11 @@ public class CargoDao {
 
 	public void alterarCargo(Cargo cargo) {
 		try {
-			String sql = "UPDATE cargo SET nome_cargo = ? WHERE id_cargo = ?";
+			String sql = "UPDATE cargo SET nome_cargo = ? ,STATUS = ? WHERE id_cargo = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, cargo.getNome());
-			stmt.setInt(2, cargo.getId());
+			stmt.setString(2, cargo.getSituacao().name());
+			stmt.setInt(3, cargo.getId());
 			stmt.execute();
 			connection.close();
 			stmt.close();

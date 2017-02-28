@@ -33,6 +33,14 @@
 				<input type="hidden" class="form-control" name="codigo"
 					value="${ExibirAlterarUG.codigo}" readonly>
 			</div>
+				<div class="form-group">
+				 <label for="Status">On</label> <input type="radio"
+					class="form-control" name="Situacao" value="ATIVO"><br>
+					
+				<label for="Status">Off</label> <input type="radio"
+					class="form-control" name="Situacao" value="INATIVO"><br>
+			</div>
+			<br>
 			<button type="submit" class="btn btn-primary">Alterar</button>
 		</form>
 	</div>

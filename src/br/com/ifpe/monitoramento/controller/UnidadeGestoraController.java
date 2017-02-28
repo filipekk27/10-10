@@ -45,13 +45,13 @@ public class UnidadeGestoraController {
 
 	}
 
-	@RequestMapping("RemoverUG")
+/*	@RequestMapping("RemoverUG")
 	public String removerUG(int id, Model model) {
 		UnidadeGestoraDao dao = new UnidadeGestoraDao();
 		dao.removerUG(id);
 		model.addAttribute("msgsucessoUG", "UG removida com sucesso ! ! !");
 		return "sucesso/sucesso";
-	}
+	}*/
 
 	@RequestMapping("/ExibirAlterarUG")
 	public String exibirAlterarUG(int codigo, Model model) {

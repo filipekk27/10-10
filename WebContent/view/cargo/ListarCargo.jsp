@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estiloConsultar.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/estiloConsultar.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Listar Cargo</title>
 </head>
 <body>
-<c:import url="../topo.jsp" />
-	
+	<c:import url="../topo.jsp" />
+
 	<div id="formulario">
 		<form action="listarCargo" class="form-inline">
 			<h3>Consultar Cargo</h3>
@@ -25,8 +27,7 @@
 				<label for="Nome"> Id </label><br> <input type="text"
 					class="form-control" name="id" placeholder="Id do cargo "><br>
 			</div>
-			<br>
-			<br>
+			<br> <br>
 			<button type="submit" class="btn btn-primary">Consultar</button>
 		</form>
 		<br>
@@ -38,16 +39,20 @@
 			<td>Id</td>
 			<td>Cargo</td>
 			<td>Data Cadastro</td>
+			<td>Status</td>
 			<td>Ações</td>
 
 
 			<c:forEach var="cargo" items="${ListarCargo}">
 				<tr>
-					<td>${cargo.id}</td>
-					<td>${cargo.nome}</td>
-						<td> <fmt:formatDate value="${cargo.data_cadastro}" pattern="dd/MM/yyyy" /> </td>
-					<td><a href="removerCargo?id=${cargo.id}">Remover</a>
-					 <a href="exibirCargo?id=${cargo.id}">Alterar</a></td>
+					<c:if test="${cargo.situacao=='ATIVO'}">
+						<td>${cargo.id}</td>
+						<td>${cargo.nome}</td>
+						<td><fmt:formatDate value="${cargo.data_cadastro}"
+								pattern="dd/MM/yyyy" /></td>
+						<td>${cargo.situacao}</td>
+						<td><a href="exibirCargo?id=${cargo.id}">Alterar</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 	</table>

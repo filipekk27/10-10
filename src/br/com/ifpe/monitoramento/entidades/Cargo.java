@@ -13,12 +13,15 @@ import org.hibernate.validator.constraints.NotBlank;
  *
  */
 public class Cargo {
+
 	@NotBlank(message = "O campo nao pode ser vazio")
 	@Size(min = 3, max = 60, message = "o nome deve ter de : {min} a  {max}")
 	@Pattern(regexp = "[a-zA-Z ]*", message = "Nome tem apenas letras sem acento ou caracteres !")
 	private String nome;
+
 	private Integer id;
 	private Date data_cadastro;
+	private Situacao situacao;
 
 	public String getNome() {
 		return nome;
@@ -42,6 +45,14 @@ public class Cargo {
 
 	public void setData_cadastro(Date data_cadastro) {
 		this.data_cadastro = data_cadastro;
+	}
+
+	public Situacao getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Situacao situacao) {
+		this.situacao = situacao;
 	}
 
 }
