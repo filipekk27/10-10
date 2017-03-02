@@ -2,15 +2,16 @@ package br.com.ifpe.monitoramento.entidades;
 
 public class Cidade {
 
-	private String codigo;
+	private Integer codigo;
+	private Integer cod_cidade;
 	private String nome;
 	private String UF;
 
-	public String getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 
@@ -28,6 +29,14 @@ public class Cidade {
 
 	public void setUF(String uF) {
 		UF = uF;
+	}
+
+	public Integer getCod_cidade() {
+		return cod_cidade;
+	}
+
+	public void setCod_cidade(Integer cod_cidade) {
+		this.cod_cidade = cod_cidade;
 	}
 
 }
