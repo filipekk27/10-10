@@ -31,7 +31,7 @@ public class SugestaoDiariaController {
 		return "sugestao/FormCadastroSD";
 	}
 
-	@RequestMapping("/exibirCidade") // ajax
+	@RequestMapping("/exibirCidade") // cidade origem ajax
 	public @ResponseBody String exibirCidade(@RequestParam Integer cod_cidade, HttpServletResponse response) {
 
 		CidadeDao dao = new CidadeDao();
@@ -42,7 +42,28 @@ public class SugestaoDiariaController {
 		st.append("Cidade origem");
 		st.append("</label>");
 		st.append("<br>");
-		st.append("<select name='cidade' id='cidade'>");
+		st.append("<select name='origem' id='cidade'>");
+		st.append("<option value=''>Selecione a cidade</option>");
+		for (Cidade cidade : listar) {
+			st.append("<option value=" + cidade.getCod_cidade() + ">" + cidade.getNome() + "</option>");
+
+		}
+		st.append("</select>");
+		response.setStatus(200);
+		return st.toString();
+	}
+	@RequestMapping("/exibirCidade2") // Cidade destino ajax
+	public @ResponseBody String exibirCidade2(@RequestParam Integer cod_cidade, HttpServletResponse response) {
+
+		CidadeDao dao = new CidadeDao();
+		List<Cidade> listar = dao.listar2(cod_cidade);
+
+		StringBuilder st = new StringBuilder();
+		st.append("<label>");
+		st.append("Cidade destino");
+		st.append("</label>");
+		st.append("<br>");
+		st.append("<select name='destino' id='cidade'>");
 		st.append("<option value=''>Selecione a cidade</option>");
 		for (Cidade cidade : listar) {
 			st.append("<option value=" + cidade.getCod_cidade() + ">" + cidade.getNome() + "</option>");
@@ -57,7 +78,14 @@ public class SugestaoDiariaController {
 	public String cadastrarSugestão(Model model , SugestaoDiaria sd){
 		SugestaoDiariaDao dao = new SugestaoDiariaDao();
 		dao.cadastrarSD(sd);
-		return "";
+		return "sucesso/sucesso";
+	}
+	
+	@RequestMapping("/listarSugestao")
+	public String listarSugestao(Model model){
+		SugestaoDiariaDao dao = new SugestaoDiariaDao();
+		model.addAttribute("listarSD", dao.listar());
+		return "sugestao/ListarSD";
 	}
 
 }

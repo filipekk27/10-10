@@ -4,9 +4,18 @@ public class SugestaoDiaria {
 	private Cargo cargo;
 	private UnidadeGestora ug;
 	private Cidade cidade;
-	private String destino;
-	private String origem;
-	private String valores;
+	private Integer destino;
+	private Integer origem;
+	private Double valores;
+	private Integer idSD;
+
+	public Integer getIdSD() {
+		return idSD;
+	}
+
+	public void setIdSD(Integer idSD) {
+		this.idSD = idSD;
+	}
 
 	public Cargo getCargo() {
 		return cargo;
@@ -24,36 +33,36 @@ public class SugestaoDiaria {
 		this.ug = ug;
 	}
 
-	public String getDestino() {
-		return destino;
-	}
-
-	public void setDestino(String destino) {
-		this.destino = destino;
-	}
-
-	public String getOrigem() {
-		return origem;
-	}
-
-	public void setOrigem(String origem) {
-		this.origem = origem;
-	}
-
-	public String getValores() {
-		return valores;
-	}
-
-	public void setValores(String valores) {
-		this.valores = valores;
-	}
-
 	public Cidade getCidade() {
 		return cidade;
 	}
 
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
+	}
+
+	public Integer getDestino() {
+		return destino;
+	}
+
+	public void setDestino(Integer destino) {
+		this.destino = destino;
+	}
+
+	public Integer getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(Integer origem) {
+		this.origem = origem;
+	}
+
+	public Double getValores() {
+		return valores;
+	}
+
+	public void setValores(Double valores) {
+		this.valores = valores;
 	}
 
 }

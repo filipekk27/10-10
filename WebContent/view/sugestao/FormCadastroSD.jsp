@@ -11,7 +11,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro Sugestão</title>
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
-<script type="text/javascript" src="ajax.js"></script>
 <script>
 	$(document).ready(function() {
 
@@ -30,7 +29,7 @@
 
 		$("#estado2").change(function() {
 			var uf = $('#estado2').val();
-			$.get("exibirCidade", {
+			$.get("exibirCidade2", {
 				'cod_cidade' : uf
 			}, function(dados) {
 				$('#cidade2').html(dados);
@@ -44,7 +43,7 @@
 	<c:import url="../topo.jsp" />
 	<div id="formulario">
 		<h3>Cadastrar Sugestão diaria</h3>
-		<form action="">
+		<form action="cadastrarSugestao">
 
 			<div class="form-group">
 				<form:errors path="SugestaoDiaria.cargo" cssStyle="color:red" />
@@ -73,7 +72,7 @@
 
 
 			<div class="form-group">
-				<label>Origem</label> <br> <select name="estado" id="estado">
+				<label>Origem</label> <br> <select id="estado">
 					<%--Lista os estados --%>
 					<option value="">Selecione a UF</option>
 					<c:forEach var="uf" items="${ListarEstados}">
@@ -85,12 +84,12 @@
 			</div>
 			<div class="form-group" id="cidade">
 				<%--Listar cidades --%>
-			
+
 			</div>
 
 			<div class="form-group">
 				<%--Lista os estados --%>
-				<label>Destino</label> <br> <select name="estado2" id="estado2">
+				<label>Destino</label> <br> <select id="estado2">
 					<option value="">Selecione a UF</option>
 					<c:forEach var="uf" items="${ListarEstados}">
 
@@ -102,13 +101,11 @@
 
 			</div>
 			<%--Listar cidades --%>
-			<div class="form-group" id="cidade2">
-				
-			</div>
+			<div class="form-group" id="cidade2"></div>
 
 
 			<div class="form-group">
-				<label for="Nome">Valores</label><br> <input type="number"
+				<label for="Nome">Valores</label><br> <input type="text"
 					class="form-control" name="valores" size="10"><br>
 			</div>
 

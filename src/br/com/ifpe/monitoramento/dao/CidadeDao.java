@@ -26,13 +26,13 @@ public class CidadeDao {
 	public List<Cidade> listar() {
 		try {
 			List<Cidade> listarCidade = new ArrayList<Cidade>();
-			String sql = "SELECT * FROM estados";
+			String sql = "SELECT * FROM estado";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			Cidade cidade;
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				cidade = new Cidade();
-				cidade.setUF(rs.getString("sigla"));
+				cidade.setUF(rs.getString("uf"));
 				cidade.setCodigo(rs.getInt("id"));
 				listarCidade.add(cidade);
 			}
@@ -45,7 +45,7 @@ public class CidadeDao {
 	public List<Cidade> listar2(int cod_cidade) {
 		try {
 			List<Cidade> listarCidade = new ArrayList<Cidade>();
-			String sql = "SELECT * FROM cidades WHERE estado_id = ?";
+			String sql = "SELECT * FROM cidade WHERE estado = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, cod_cidade);
 			Cidade cidade;
