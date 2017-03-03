@@ -3,6 +3,7 @@ package br.com.ifpe.monitoramento.entidades;
 public class SugestaoDiaria {
 	private Cargo cargo;
 	private UnidadeGestora ug;
+	private Cidade cidade;
 	private String destino;
 	private String origem;
 	private String valores;
@@ -45,6 +46,14 @@ public class SugestaoDiaria {
 
 	public void setValores(String valores) {
 		this.valores = valores;
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
 	}
 
 }

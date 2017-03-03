@@ -1,37 +1,63 @@
 package br.com.ifpe.monitoramento.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.ifpe.monitoramento.dao.CargoDao;
 import br.com.ifpe.monitoramento.dao.CidadeDao;
+import br.com.ifpe.monitoramento.dao.SugestaoDiariaDao;
 import br.com.ifpe.monitoramento.dao.UnidadeGestoraDao;
+import br.com.ifpe.monitoramento.entidades.Cidade;
+import br.com.ifpe.monitoramento.entidades.SugestaoDiaria;
 
 @Controller
 public class SugestaoDiariaController {
 
-	
 	@RequestMapping("/formCadastroSD")
-	public String formCadastroSD(Model model , String nome , String id , String codigo){
+	public String formCadastroSD(Model model, String nome, String id, String codigo) {
 		CargoDao dao = new CargoDao();
-		model.addAttribute("listarCargoUsuario", dao.listarCargo(nome,id));
+		model.addAttribute("listarCargoUsuario", dao.listarCargo(nome, id));
 		UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
 		model.addAttribute("listarUGestora", dao2.listarUG(nome, codigo));
 		CidadeDao dao3 = new CidadeDao();
 		model.addAttribute("ListarEstados", dao3.listar());
-		return "adm/FormCadastroSD";
+		return "sugestao/FormCadastroSD";
+	}
+
+	@RequestMapping("/exibirCidade") // ajax
+	public @ResponseBody String exibirCidade(@RequestParam Integer cod_cidade, HttpServletResponse response) {
+
+		CidadeDao dao = new CidadeDao();
+		List<Cidade> listar = dao.listar2(cod_cidade);
+
+		StringBuilder st = new StringBuilder();
+		st.append("<label>");
+		st.append("Cidade origem");
+		st.append("</label>");
+		st.append("<br>");
+		st.append("<select name='cidade' id='cidade'>");
+		st.append("<option value=''>Selecione a cidade</option>");
+		for (Cidade cidade : listar) {
+			st.append("<option value=" + cidade.getCod_cidade() + ">" + cidade.getNome() + "</option>");
+
+		}
+		st.append("</select>");
+		response.setStatus(200);
+		return st.toString();
 	}
 	
-	@RequestMapping("/exibirCidade")
-	public String exibirCidade(Model model , String nome , String id , String codigo , Integer cod_cidade){
-		CargoDao dao = new CargoDao();
-		model.addAttribute("listarCargoUsuario", dao.listarCargo(nome,id));
-		UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
-		model.addAttribute("listarUGestora", dao2.listarUG(nome, codigo));
-		CidadeDao dao3 = new CidadeDao();
-		model.addAttribute("ListarEstados", dao3.listar());
-		model.addAttribute("exibirCidade", dao3.listar2(cod_cidade));
-		return "adm/FormCadastroSD";
+	@RequestMapping("/cadastrarSugestao")
+	public String cadastrarSugestão(Model model , SugestaoDiaria sd){
+		SugestaoDiariaDao dao = new SugestaoDiariaDao();
+		dao.cadastrarSD(sd);
+		return "";
 	}
+
 }

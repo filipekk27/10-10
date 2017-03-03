@@ -45,14 +45,14 @@
 
 			<c:forEach var="cargo" items="${ListarCargo}">
 				<tr>
-					<c:if test="${cargo.situacao=='ATIVO'}">
-						<td>${cargo.id}</td>
-						<td>${cargo.nome}</td>
-						<td><fmt:formatDate value="${cargo.data_cadastro}"
-								pattern="dd/MM/yyyy" /></td>
-						<td>${cargo.situacao}</td>
-						<td><a href="exibirCargo?id=${cargo.id}">Alterar</a></td>
-					</c:if>
+
+					<td>${cargo.id}</td>
+					<td>${cargo.nome}</td>
+					<td><fmt:formatDate value="${cargo.data_cadastro}"
+							pattern="dd/MM/yyyy" /></td>
+					<td>${cargo.situacao}</td>
+					<td><a href="exibirCargo?id=${cargo.id}">Alterar</a></td>
+
 				</tr>
 			</c:forEach>
 	</table>

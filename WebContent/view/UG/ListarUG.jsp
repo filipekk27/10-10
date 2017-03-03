@@ -55,14 +55,14 @@
 
 			<c:forEach var="UG" items="${ListarUG}">
 				<tr>
-					<c:if test="${UG.situacao=='ATIVO'}">
-						<td>${UG.codigo}</td>
-						<td>${UG.nome}</td>
-						<td><fmt:formatDate value="${UG.data}" pattern="dd/MM/yyyy" />
-						</td>
-						<td>${UG.situacao}</td>
-						<td><a href="ExibirAlterarUG?codigo=${UG.codigo}">Alterar</a></td>
-					</c:if>
+
+					<td>${UG.codigo}</td>
+					<td>${UG.nome}</td>
+					<td><fmt:formatDate value="${UG.data}" pattern="dd/MM/yyyy" />
+					</td>
+					<td>${UG.situacao}</td>
+					<td><a href="ExibirAlterarUG?codigo=${UG.codigo}">Alterar</a></td>
+
 				</tr>
 			</c:forEach>
 	</table>

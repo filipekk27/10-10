@@ -47,24 +47,22 @@
 
 			<c:forEach var="user" items="${ListarUsuario}">
 				<tr>
-					<c:if test="${user.situacao=='ATIVO'}">
-						<td>${user.id}</td>
-						<td>${user.nome}</td>
-						<td>${user.cargo.nome}</td>
-						<td>${user.uGestora.nome}</td>
-						<td>${user.cpf}</td>
-						<td>${user.email}</td>
-						<td>${user.endereco}</td>
-						<td><fmt:formatDate value="${user.dataCadastro}"
-								pattern="dd/MM/yyyy" /></td>
-						<td><fmt:formatDate value="${user.dataNascimento}"
-								pattern="dd/MM/yyyy" /></td>
-						<td>${user.senha}</td>
-						<td>${user.situacao}</td>
-						<td>
-						<a href="exibirAlterarUsuario?id=${user.id}">Alterar</a>
-						</td>
-					</c:if>
+
+					<td>${user.id}</td>
+					<td>${user.nome}</td>
+					<td>${user.cargo.nome}</td>
+					<td>${user.uGestora.nome}</td>
+					<td>${user.cpf}</td>
+					<td>${user.email}</td>
+					<td>${user.endereco}</td>
+					<td><fmt:formatDate value="${user.dataCadastro}"
+							pattern="dd/MM/yyyy" /></td>
+					<td><fmt:formatDate value="${user.dataNascimento}"
+							pattern="dd/MM/yyyy" /></td>
+					<td>${user.senha}</td>
+					<td>${user.situacao}</td>
+					<td><a href="exibirAlterarUsuario?id=${user.id}">Alterar</a></td>
+
 				</tr>
 
 			</c:forEach>

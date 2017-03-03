@@ -10,14 +10,33 @@
 	href="${pageContext.request.contextPath}/css/estiloAlterar.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro Sugestão</title>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="ajax.js"></script>
+<script>
+	$(document).ready(function() {
 
-    jQuery("#estados").change(function(){
-       var estados = jQuery(this).val();
-       window.location.href = estados;
-    });
+		$("#estado").change(function() {
+			var uf = $('#estado').val();
+			$.get("exibirCidade", {
+				'cod_cidade' : uf
+			}, function(dados) {
+				$('#cidade').html(dados);
+			});
+		});
+	});
+</script>
+<script>
+	$(document).ready(function() {
 
+		$("#estado2").change(function() {
+			var uf = $('#estado2').val();
+			$.get("exibirCidade", {
+				'cod_cidade' : uf
+			}, function(dados) {
+				$('#cidade2').html(dados);
+			});
+		});
+	});
 </script>
 
 </head>
@@ -54,7 +73,8 @@
 
 
 			<div class="form-group">
-				<label>Origem</label> <br> <select name="estados">
+				<label>Origem</label> <br> <select name="estado" id="estado">
+					<%--Lista os estados --%>
 					<option value="">Selecione a UF</option>
 					<c:forEach var="uf" items="${ListarEstados}">
 
@@ -63,39 +83,27 @@
 					</c:forEach>
 				</select>
 			</div>
-			<div class="form-group">
-				<label>Cidade Origem</label> <br> <select name="cidade">
-					<option value="">Selecione a cidade</option>
-					<c:forEach var="cd" items="${exibirCidade}">
-
-						<option value="${cd.cod_cidade}">${cd.nome}</option>
-
-					</c:forEach>
-				</select>
+			<div class="form-group" id="cidade">
+				<%--Listar cidades --%>
+			
 			</div>
 
 			<div class="form-group">
-				<label>Destino</label> <br> <select name="estados">
+				<%--Lista os estados --%>
+				<label>Destino</label> <br> <select name="estado2" id="estado2">
 					<option value="">Selecione a UF</option>
 					<c:forEach var="uf" items="${ListarEstados}">
 
-						<option value="${uf.codigo}"
-							onselect="exibirCidade?cod_cidade=${uf.codigo}">${uf.UF}</option>
+						<option value="${uf.codigo}">${uf.UF}</option>
 
 
 					</c:forEach>
 				</select>
 
 			</div>
-			<div class="form-group">
-				<label>Cidade Destino</label> <br> <select name="cidade">
-					<option value="">Selecione a cidade</option>
-					<c:forEach var="cd" items="${exibirCidade}">
-
-						<option value="${cd.cod_cidade}">${cd.nome}</option>
-
-					</c:forEach>
-				</select>
+			<%--Listar cidades --%>
+			<div class="form-group" id="cidade2">
+				
 			</div>
 
 
