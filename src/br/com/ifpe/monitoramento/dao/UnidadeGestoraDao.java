@@ -81,10 +81,10 @@ public class UnidadeGestoraDao {
 				ug.setNome(rs.getString("nome_unidade"));
 				ug.setCodigo(rs.getInt("codigo_unidade"));
 				ug.setData(rs.getDate("data_cadastro"));
-				
+
 				Situacao st = Situacao.valueOf(rs.getString("Status"));
 				ug.setSituacao(st);
-				
+
 				listarUG.add(ug);
 			}
 			rs.close();
@@ -96,19 +96,6 @@ public class UnidadeGestoraDao {
 			throw new RuntimeException(e);
 		}
 	}
-
-	/*public void removerUG(int id) {
-
-		try {
-			String sql = "DELETE FROM unidade_gestora WHERE codigo_unidade = ?";
-			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setInt(1, id);
-			stmt.execute();
-			connection.close();
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}*/
 
 	public UnidadeGestora exibirUG(int codigo) {
 
@@ -125,6 +112,8 @@ public class UnidadeGestoraDao {
 				ug.setCodigo(rs.getInt("codigo_unidade"));
 				ug.setNome(rs.getString("nome_unidade"));
 
+				Situacao st = Situacao.valueOf(rs.getString("Status"));
+				ug.setSituacao(st);
 			}
 
 			rs.close();

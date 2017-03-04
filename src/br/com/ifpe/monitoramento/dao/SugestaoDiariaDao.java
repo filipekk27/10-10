@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ifpe.monitoramento.entidades.Cargo;
+import br.com.ifpe.monitoramento.entidades.Cidade;
 import br.com.ifpe.monitoramento.entidades.SugestaoDiaria;
 import br.com.ifpe.monitoramento.entidades.UnidadeGestora;
 import br.com.ifpe.monitoramento.util.ConnectionFactory;
@@ -64,6 +65,11 @@ public class SugestaoDiariaDao {
 				UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
 				UnidadeGestora ug = dao2.exibirUG(rs.getInt("IdUg"));
 				sd.setUg(ug);
+
+				CidadeDao dao3 = new CidadeDao();
+				Cidade origem = dao3.buscarCidade(rs.getInt("idCidadeOrigem"));
+				sd.setCidade(origem);
+
 				listar.add(sd);
 
 			}

@@ -15,19 +15,19 @@ import br.com.ifpe.monitoramento.entidades.Usuario;
 
 @Controller
 public class UsuarioController {
-     
+
 	@RequestMapping("/formCadastro")
-	public String formCadastro(Model model , String nome , String id , String codigo){
+	public String formCadastro(Model model, String nome, String id, String codigo) {
 		CargoDao dao = new CargoDao();
-		model.addAttribute("listarCargoUsuario", dao.listarCargo(nome,id));
+		model.addAttribute("listarCargoUsuario", dao.listarCargo(nome, id));
 		UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
 		model.addAttribute("listarUGestora", dao2.listarUG(nome, codigo));
 		return "usuario/FormCadastroUsuario";
 	}
-	
+
 	@RequestMapping("/cadastrarUsuario")
-	public String cadastrarUsuario(@Valid Usuario user ,BindingResult rs , Model model){
-		if(rs.hasFieldErrors()){
+	public String cadastrarUsuario(@Valid Usuario user, BindingResult rs, Model model) {
+		if (rs.hasFieldErrors()) {
 			return "forward:formCadastro";
 		}
 		UsuarioDao dao = new UsuarioDao();
@@ -39,13 +39,35 @@ public class UsuarioController {
 			model.addAttribute("msgErrorPkUser", "Cpf ou Email ja existe ! ! !");
 			return "usuario/FormCadastroUsuario";
 		}
-	
+
 	}
-	
+
 	@RequestMapping("/listarUsuario")
-	public String exibirIncluirCargo(Usuario user , Model model){
+	public String exibirIncluirCargo(Usuario user, Model model) {
 		UsuarioDao dao = new UsuarioDao();
 		model.addAttribute("ListarUsuario", dao.listarUsuario());
 		return "usuario/ListarUsuario";
+	}
+
+	@RequestMapping("/exibirUsuario")
+	public String exibirUsuario(Integer idUser, String id, String nome, String codigo,Model model) {
+		UsuarioDao dao0 = new UsuarioDao();
+		model.addAttribute("exibirUsuario", dao0.exibir(idUser));
+		CargoDao dao = new CargoDao();
+		model.addAttribute("listarCargoUsuario", dao.listarCargo(nome, id));
+		UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
+		model.addAttribute("listarUGestora", dao2.listarUG(nome, codigo));
+		return "usuario/ExibirAlterar";
+	}
+
+	@RequestMapping("/AlterarUsuario")
+	public String alterarUsuario(@Valid Usuario user , BindingResult rs , Model model) {
+		if(rs.hasFieldErrors("nome")||rs.hasFieldErrors("endereco")||rs.hasFieldErrors("dataNascimento")){
+			return "forward:exibirUsuario";
+		}
+		UsuarioDao dao = new UsuarioDao();
+		dao.AlterarUsuario(user);
+		model.addAttribute("msgSucesso", "Sucesso ! ! ");
+		return "sucesso/sucesso";
 	}
 }

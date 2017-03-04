@@ -31,13 +31,32 @@
 				<input type="hidden" class="form-control" name="id"
 					value="${ExibirAlterarCargo.id}" readonly>
 			</div>
-			
+
 			<div class="form-group">
-				 <label for="Status">On</label> <input type="radio"
-					class="form-control" name="Situacao" value="ATIVO"><br>
-					
-				<label for="Status">Off</label> <input type="radio"
-					class="form-control" name="Situacao" value="INATIVO"><br>
+				<label for="Status">On</label>
+				<c:choose>
+					<c:when test="${ExibirAlterarCargo.situacao=='ATIVO'}">
+						<input type="radio" class="form-control" name="Situacao"
+							value="ATIVO" checked="true">
+						<br>
+					</c:when>
+					<c:otherwise>
+						<input type="radio" class="form-control" name="Situacao"
+							value="ATIVO">
+					</c:otherwise>
+				</c:choose>
+				<label for="Status">Off</label>
+				<c:choose>
+					<c:when test="${ExibirAlterarCargo.situacao=='INATIVO'}">
+						<input type="radio" class="form-control" name="Situacao"
+							value="INATIVO" checked="true">
+						<br>
+					</c:when>
+					<c:otherwise>
+						<input type="radio" class="form-control" name="Situacao"
+							value="INATIVO">
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<br>
 			<button type="submit" class="btn btn-primary">Alterar</button>

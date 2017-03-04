@@ -42,7 +42,7 @@ public class SugestaoDiariaController {
 		st.append("Cidade origem");
 		st.append("</label>");
 		st.append("<br>");
-		st.append("<select name='origem' id='cidade'>");
+		st.append("<select name='origem' id='cidade' required='true'>");
 		st.append("<option value=''>Selecione a cidade</option>");
 		for (Cidade cidade : listar) {
 			st.append("<option value=" + cidade.getCod_cidade() + ">" + cidade.getNome() + "</option>");
@@ -63,7 +63,7 @@ public class SugestaoDiariaController {
 		st.append("Cidade destino");
 		st.append("</label>");
 		st.append("<br>");
-		st.append("<select name='destino' id='cidade'>");
+		st.append("<select name='destino' id='cidade' required='true'>");
 		st.append("<option value=''>Selecione a cidade</option>");
 		for (Cidade cidade : listar) {
 			st.append("<option value=" + cidade.getCod_cidade() + ">" + cidade.getNome() + "</option>");
@@ -78,6 +78,7 @@ public class SugestaoDiariaController {
 	public String cadastrarSugestão(Model model , SugestaoDiaria sd){
 		SugestaoDiariaDao dao = new SugestaoDiariaDao();
 		dao.cadastrarSD(sd);
+		model.addAttribute("msgSucesso", "Sucesso ! ! ");
 		return "sucesso/sucesso";
 	}
 	

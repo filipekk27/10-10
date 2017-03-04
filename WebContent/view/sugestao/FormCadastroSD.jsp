@@ -52,7 +52,9 @@
 					<option value="">Selecione o cargo</option>
 					<%-- listar cargos no select --%>
 					<c:forEach items="${listarCargoUsuario}" var="cargo">
-						<option value="${cargo.id}">${cargo.nome}</option>
+						<c:if test="${cargo.situacao=='ATIVO'}">
+							<option value="${cargo.id}">${cargo.nome}</option>
+						</c:if>
 					</c:forEach>
 				</select>
 			</div>
@@ -65,14 +67,16 @@
 					<%-- listar ug no select --%>
 					<option value="">Selecione a UG</option>
 					<c:forEach items="${listarUGestora}" var="ug">
-						<option value="${ug.codigo}">${ug.nome}</option>
+						<c:if test="${ug.situacao=='ATIVO' }">
+							<option value="${ug.codigo}">${ug.nome}</option>
+						</c:if>
 					</c:forEach>
 				</select>
 			</div>
 
 
 			<div class="form-group">
-				<label>Origem</label> <br> <select id="estado">
+				<label>Origem</label> <br> <select id="estado" required="true">
 					<%--Lista os estados --%>
 					<option value="">Selecione a UF</option>
 					<c:forEach var="uf" items="${ListarEstados}">
@@ -89,7 +93,8 @@
 
 			<div class="form-group">
 				<%--Lista os estados --%>
-				<label>Destino</label> <br> <select id="estado2">
+				<label>Destino</label> <br> <select id="estado2"
+					required="true">
 					<option value="">Selecione a UF</option>
 					<c:forEach var="uf" items="${ListarEstados}">
 
@@ -105,8 +110,10 @@
 
 
 			<div class="form-group">
-				<label for="Nome">Valores</label><br> <input type="text"
-					class="form-control" name="valores" size="10"><br>
+				<form:errors path="SugestaoDiaria.valores" cssStyle="color:red" />
+				<label for="Nome">Valores</label><br> <input type="number"
+					class="form-control" name="valores" size="10" minlength="6"
+					maxlength="15" required="true" placeholder="00,00"><br>
 			</div>
 
 			<button type="submit" class="btn btn-primary">Sugerir</button>

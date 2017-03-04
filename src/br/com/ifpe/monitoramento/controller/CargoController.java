@@ -44,14 +44,6 @@ public class CargoController {
 		return "cargo/ListarCargo";
 	}
 
-	/*@RequestMapping("/removerCargo")
-	public String removerCargo(int id, Model model) {
-		CargoDao dao = new CargoDao();
-		dao.removerCargo(id);
-		model.addAttribute("msgsucessoCargo", "Cargo removido com sucesso ! ! !");
-		return "sucesso/sucesso";
-	}*/
-
 	@RequestMapping("/exibirCargo")
 	public String exibirCargo(Integer id, Model model) {
 		CargoDao dao = new CargoDao();

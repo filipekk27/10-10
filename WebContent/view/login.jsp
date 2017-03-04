@@ -18,10 +18,11 @@
 					</h1>
 				</div>
 				<ul class="nav nav-tabs">
-					<li><a href="#">Home</a></li>
+					<li><a href="index">Home</a></li>
 					<li><a href="#">Serviços</a></li>
 					<li><a href="#">Contato</a></li>
-				    <li class="active"><a href="#">Entrar</a></li>
+					<li class="active">
+				    <li><a href="FormLogin">Entrar</a></li>
 					
 					
 				

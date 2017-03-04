@@ -40,10 +40,10 @@
 			<c:forEach var="sd" items="${listarSD}">
 				<tr>
 					<td>${sd.idSD}</td>
-					<td>${sd.origem}</td>
+					<td>${sd.cidade.nome}</td>
 					<td>${sd.destino}</td>
-					<td>${sd.ug.codigo}</td>
-					<td>${sd.cargo.id}</td>
+					<td>${sd.ug.nome}</td>
+					<td>${sd.cargo.nome}</td>
 					<td>${sd.valores}</td>
 
 				</tr>

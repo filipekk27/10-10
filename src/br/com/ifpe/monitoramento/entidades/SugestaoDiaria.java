@@ -61,6 +61,14 @@ public class SugestaoDiaria {
 		return valores;
 	}
 
+	public String getNdestino() {
+		return Ndestino;
+	}
+
+	public void setNdestino(String ndestino) {
+		Ndestino = ndestino;
+	}
+
 	public void setValores(Double valores) {
 		this.valores = valores;
 	}

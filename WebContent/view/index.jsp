@@ -23,10 +23,10 @@
 					</h1>
 				</div>
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#">Home</a></li>
+					<li><a href="index">Home</a></li>
 					<li><a href="#">Serviços</a></li>
 					<li><a href="#">Contato</a></li>
-				    <li><a href="#">Entrar</a></li>
+				    <li><a href="FormLogin">Entrar</a></li>
 					
 					
 				

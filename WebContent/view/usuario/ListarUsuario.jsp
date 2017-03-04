@@ -40,7 +40,6 @@
 			<td>Endereco</td>
 			<td>Data Cadastro</td>
 			<td>Data Nascimento</td>
-			<td>Senha</td>
 			<td>Status</td>
 			<td>Ações</td>
 
@@ -59,9 +58,8 @@
 							pattern="dd/MM/yyyy" /></td>
 					<td><fmt:formatDate value="${user.dataNascimento}"
 							pattern="dd/MM/yyyy" /></td>
-					<td>${user.senha}</td>
 					<td>${user.situacao}</td>
-					<td><a href="exibirAlterarUsuario?id=${user.id}">Alterar</a></td>
+					<td><a href="exibirUsuario?idUser=${user.id}">Alterar</a></td>
 
 				</tr>
 

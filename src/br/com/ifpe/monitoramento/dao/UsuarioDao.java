@@ -82,10 +82,10 @@ public class UsuarioDao {
 				user.setDataCadastro(rs.getDate("data_cadastro"));
 				user.setDataNascimento(rs.getDate("data_nascimento"));
 				user.setSenha(rs.getString("senha_usuario"));
-				
+
 				Situacao st = Situacao.valueOf(rs.getString("Status"));
 				user.setSituacao(st);
-				
+
 				listar.add(user);
 			}
 			rs.close();
@@ -94,6 +94,60 @@ public class UsuarioDao {
 			return listar;
 
 		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public Usuario exibir(int idUser) {
+		try {
+			String sql = "SELECT * FROM usuario WHERE id_usuario = ?";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			Usuario user = null;
+			stmt.setInt(1, idUser);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				user = new Usuario();
+                user.setId(rs.getInt("id_usuario"));
+				user.setNome(rs.getString("nome_usuario"));
+
+				CargoDao dao = new CargoDao();
+				Cargo cargo = dao.exibirCargo(rs.getInt("cargo_ocupado"));
+				user.setCargo(cargo);
+
+				UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
+				UnidadeGestora ug = dao2.exibirUG(rs.getInt("ug_pertence"));
+				user.setuGestora(ug);
+
+				user.setEndereco(rs.getString("endereco_usuario"));
+				user.setDataNascimento(rs.getDate("data_nascimento"));
+				user.setSenha(rs.getString("senha_usuario"));
+
+				Situacao st = Situacao.valueOf(rs.getString("Status"));
+				user.setSituacao(st);
+
+			}
+
+			return user;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void AlterarUsuario(Usuario user){
+		try{
+			String sql = "UPDATE usuario SET nome_usuario = ? , cargo_ocupado = ? , ug_pertence = ? , endereco_usuario = ? ,data_nascimento = ? ,Status = ? WHERE id_usuario = ? ";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, user.getNome());
+			stmt.setInt(2, user.getCargo().getId());
+			stmt.setInt(3, user.getuGestora().getCodigo());
+			stmt.setString(4, user.getEndereco());
+			stmt.setDate(5, new java.sql.Date(user.getDataNascimento().getTime()));
+			stmt.setString(6, user.getSituacao().name());
+			stmt.setInt(7, user.getId());
+			stmt.execute();
+			connection.close();
+		}catch(SQLException e){
 			throw new RuntimeException(e);
 		}
 	}

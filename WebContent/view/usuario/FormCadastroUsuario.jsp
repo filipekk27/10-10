@@ -74,7 +74,9 @@
 					name="cargo" required="true">
 					<option value="">Selecione o cargo</option>
 					<c:forEach items="${listarCargoUsuario}" var="cargo">
-						<option value="${cargo.id}">${cargo.nome}</option>
+						<c:if test="${cargo.situacao=='ATIVO'}">
+							<option value="${cargo.id}">${cargo.nome}</option>
+						</c:if>
 					</c:forEach>
 				</select>
 			</div>
@@ -85,16 +87,18 @@
 					name="uGestora" required="true">
 					<option value="">Selecione a UG</option>
 					<c:forEach items="${listarUGestora}" var="ug">
-						<option value="${ug.codigo}">${ug.nome}</option>
+						<c:if test="${ug.situacao=='ATIVO'}">
+							<option value="${ug.codigo}">${ug.nome}</option>
+						</c:if>
 					</c:forEach>
 				</select>
 			</div>
 			<br>
 			<div class="form-group">
 				<form:errors path="usuario.situacao" cssStyle="color:red" />
-				 <label for="Status">On</label> <input type="radio"
+				<label for="Status">On</label> <input type="radio"
 					class="form-control" name="Situacao" value="ATIVO"><br>
-					
+
 				<label for="Status">Off</label> <input type="radio"
 					class="form-control" name="Situacao" value="INATIVO"><br>
 			</div>
