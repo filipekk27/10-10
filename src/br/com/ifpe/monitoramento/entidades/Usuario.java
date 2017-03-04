@@ -16,7 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 public class Usuario {
 
-	private Integer id;
+	private Integer idUser;
 
 	@NotBlank(message = "O campo nao pode ser vazio")
 	@Pattern(regexp = "[0-9]{11}", message = "Cpf invalido")
@@ -53,12 +53,12 @@ public class Usuario {
 
 	private Situacao situacao;
 
-	public Integer getId() {
-		return id;
+	public Integer getIdUser() {
+		return idUser;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdUser(Integer idUser) {
+		this.idUser = idUser;
 	}
 
 	public String getCpf() {

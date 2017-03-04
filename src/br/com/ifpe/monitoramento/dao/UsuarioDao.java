@@ -65,7 +65,7 @@ public class UsuarioDao {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				user = new Usuario();
-				user.setId(rs.getInt("id_usuario"));
+				user.setIdUser(rs.getInt("id_usuario"));
 				user.setNome(rs.getString("nome_usuario"));
 
 				CargoDao dao = new CargoDao();
@@ -107,7 +107,7 @@ public class UsuarioDao {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				user = new Usuario();
-                user.setId(rs.getInt("id_usuario"));
+                user.setIdUser(rs.getInt("id_usuario"));
 				user.setNome(rs.getString("nome_usuario"));
 
 				CargoDao dao = new CargoDao();
@@ -144,7 +144,7 @@ public class UsuarioDao {
 			stmt.setString(4, user.getEndereco());
 			stmt.setDate(5, new java.sql.Date(user.getDataNascimento().getTime()));
 			stmt.setString(6, user.getSituacao().name());
-			stmt.setInt(7, user.getId());
+			stmt.setInt(7, user.getIdUser());
 			stmt.execute();
 			connection.close();
 		}catch(SQLException e){

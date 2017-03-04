@@ -1,12 +1,21 @@
 package br.com.ifpe.monitoramento.entidades;
 
+import javax.validation.constraints.Pattern;
+
+/**
+ * 
+ * @author Hugo Oliveira
+ *
+ */
 public class SugestaoDiaria {
 	private Cargo cargo;
 	private UnidadeGestora ug;
 	private Cidade cidade;
 	private Integer destino;
 	private Integer origem;
-	private Double valores;
+	
+	@Pattern(regexp="[0-9,]{6,2}")
+	private float valores;
 	private Integer idSD;
 
 	public Integer getIdSD() {
@@ -57,19 +66,11 @@ public class SugestaoDiaria {
 		this.origem = origem;
 	}
 
-	public Double getValores() {
+	public float getValores() {
 		return valores;
 	}
 
-	public String getNdestino() {
-		return Ndestino;
-	}
-
-	public void setNdestino(String ndestino) {
-		Ndestino = ndestino;
-	}
-
-	public void setValores(Double valores) {
+	public void setValores(float valores) {
 		this.valores = valores;
 	}
 

@@ -65,8 +65,6 @@
 
 
 	<br>
-	<center>
-		<c:import url="../menu.jsp" />
-	</center>
+	
 </body>
 </html>

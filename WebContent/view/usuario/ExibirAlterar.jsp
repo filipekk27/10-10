@@ -17,8 +17,8 @@
 
 			<h3>Alterar Usuario</h3>
 			<div class="form-group">
-				<input type="hidden" class="form-control" name="id"
-					value="${exibirUsuario.id}">
+				<input type="hidden" class="form-control" name="idUser"
+					value="${exibirUsuario.idUser}">
 			</div>
 			
 			<div class="form-group">
@@ -99,7 +99,7 @@
 
 	<br>
 	<center>
-		<c:import url="../menu.jsp" />
+		
 	</center>
 </body>
 </html>

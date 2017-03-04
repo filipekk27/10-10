@@ -1,5 +1,10 @@
 package br.com.ifpe.monitoramento.entidades;
 
+/**
+ * 
+ * @author Hugo Oliveira
+ *
+ */
 public class Cidade {
 
 	private Integer codigo;

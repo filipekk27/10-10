@@ -3,9 +3,11 @@ package br.com.ifpe.monitoramento.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -75,7 +77,10 @@ public class SugestaoDiariaController {
 	}
 	
 	@RequestMapping("/cadastrarSugestao")
-	public String cadastrarSugestão(Model model , SugestaoDiaria sd){
+	public String cadastrarSugestão(@Valid SugestaoDiaria sd , BindingResult rs, Model model ){
+		if(rs.hasFieldErrors("valores")){
+			return "forward:formCadastroSD";
+		}
 		SugestaoDiariaDao dao = new SugestaoDiariaDao();
 		dao.cadastrarSD(sd);
 		model.addAttribute("msgSucesso", "Sucesso ! ! ");

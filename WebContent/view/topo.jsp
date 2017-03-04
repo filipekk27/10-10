@@ -13,11 +13,49 @@
 <body>
 
 <div class="page-header">
-					<h1>
-						Monitoramento de Gastos<br> <small>Governo do Estado
-							de Pernambuco</small>
-					</h1>
-				</div>
+<h1>
+Monitoramento de Gastos<br> <small>Governo do Estado de Pernambuco</small>
+</h1>
+<nav>
+    <ul>
+        <li><a href="index">Home</a></li>
+        <li><a href="#">Usuário</a>
+            <ul>
+                <li><a href="formCadastro">Cadastrar</a></li>
+                <li><a href="listarUsuario">Buscar</a></li>
+               
+                    <ul>
+                        <li><a href="#">jQuery</a></li>
+                        <li><a href="#">Angular</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Cargo</a>
+            <ul>
+                <li><a href="formCadastroCargo">Cadastrar</a></li>
+                <li><a href="listarCargo">Buscar</a></li>
+            </ul>
+        </li>
+        <li><a href="#">UG</a>
+            <ul>
+                <li><a href="FormCadastroUG">Cadastrar</a></li>
+                <li><a href="ListarUG">Buscar</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Sugestão de Diária</a>
+            <ul>
+                <li><a href="formCadastroSD">Cadastrar</a></li>
+                <li><a href="listarSugestao">Buscar</a></li>
+            </ul>
+        </li>
+        <button type="button" class="btn btn-default navbar-btn">Sair</button>
+       
+    </ul>
+</nav>
+
+
+</div>
 		
 </body>
 </html>

@@ -22,8 +22,10 @@
 					<li><a href="#">Serviços</a></li>
 					<li><a href="#">Contato</a></li>
 					<li class="active">
-				    <li><a href="FormLogin">Entrar</a></li>
-					
+				    
+					<li class="active">
+					<a href="FormLogin">Entrar</a>
+				</li>
 					
 				
 				</ul>

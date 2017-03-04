@@ -23,7 +23,9 @@
 					</h1>
 				</div>
 				<ul class="nav nav-tabs">
-					<li><a href="index">Home</a></li>
+				<li class="active">
+					<a href="index">Home</a>
+				</li>
 					<li><a href="#">Serviços</a></li>
 					<li><a href="#">Contato</a></li>
 				    <li><a href="FormLogin">Entrar</a></li>

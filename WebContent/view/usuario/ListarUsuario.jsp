@@ -47,7 +47,7 @@
 			<c:forEach var="user" items="${ListarUsuario}">
 				<tr>
 
-					<td>${user.id}</td>
+					<td>${user.idUser}</td>
 					<td>${user.nome}</td>
 					<td>${user.cargo.nome}</td>
 					<td>${user.uGestora.nome}</td>
@@ -59,14 +59,14 @@
 					<td><fmt:formatDate value="${user.dataNascimento}"
 							pattern="dd/MM/yyyy" /></td>
 					<td>${user.situacao}</td>
-					<td><a href="exibirUsuario?idUser=${user.id}">Alterar</a></td>
+					<td><a href="exibirUsuario?idUser=${user.idUser}">Alterar</a></td>
 
 				</tr>
 
 			</c:forEach>
 	</table>
 	<center>
-		<c:import url="../menu.jsp" />
+		
 	</center>
 </body>
 </html>

@@ -63,6 +63,7 @@ public class CidadeDao {
 			throw new RuntimeException(e);
 		}
 	}
+
 	public Cidade buscarCidade(int idCidade) {
 		try {
 			String sql = "SELECT * FROM cidade WHERE id = ?";
@@ -74,7 +75,7 @@ public class CidadeDao {
 				cidade = new Cidade();
 				cidade.setNome(rs.getString("nome"));
 				cidade.setCod_cidade(rs.getInt("id"));
-				
+
 			}
 
 			return cidade;
@@ -82,23 +83,5 @@ public class CidadeDao {
 			throw new RuntimeException(e);
 		}
 	}
-	public Cidade buscarCidade2(int idCidade) {
-		try {
-			String sql = "SELECT * FROM cidade WHERE id = ?";
-			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setInt(1, idCidade);
-			Cidade cidade = null;
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				cidade = new Cidade();
-				cidade.setNome2(rs.getString("nome"));
-				cidade.setCod_cidade(rs.getInt("id"));
-				
-			}
 
-			return cidade;
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
 }

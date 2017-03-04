@@ -26,7 +26,7 @@
 				<div id="constrain_error">${msgErrorPkUser}</div>
 				<label for="Cpf">CPF</label><br> <input type="text"
 					class="form-control" name="cpf" placeholder="Apenas Numeros"
-					size="11" Maxlength="11" Minlength="11" required><br>
+					size="11" Maxlength="11" Minlength="11" ><br>
 			</div>
 
 			<div class="form-group">
@@ -106,6 +106,6 @@
 			<button type="submit" class="btn btn-primary">Cadastrar</button>
 		</form>
 	</div>
-	<c:import url="../menu.jsp" />
+	
 </body>
 </html>
