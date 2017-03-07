@@ -34,7 +34,7 @@ public class SugestaoDiariaDao {
 			stmt.setInt(1, sd.getOrigem());
 			stmt.setInt(2, sd.getDestino());
 			stmt.setInt(3, sd.getUg().getCodigo());
-			stmt.setFloat(4, sd.getValores());
+			stmt.setString(4, sd.getValores());
 			stmt.setInt(5, sd.getCargo().getId());
 			stmt.execute();
 			connection.close();
@@ -56,7 +56,7 @@ public class SugestaoDiariaDao {
 				sd.setIdSD(rs.getInt("IdSugestao"));
 				sd.setOrigem(rs.getInt("IdCidadeOrigem"));
 				sd.setDestino(rs.getInt("IdCidadeDestino"));
-				sd.setValores(rs.getFloat("Valor"));
+				sd.setValores(rs.getString("Valor"));
 
 				CargoDao dao = new CargoDao();
 				Cargo cargo = dao.exibirCargo(rs.getInt("IdCargo"));

@@ -1,5 +1,6 @@
 package br.com.ifpe.monitoramento.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -50,7 +51,7 @@ public class UsuarioController {
 	}
 
 	@RequestMapping("/exibirUsuario")
-	public String exibirUsuario(Integer idUser, String id, String nome, String codigo,Model model) {
+	public String exibirUsuario(Integer idUser, String id, String nome, String codigo, Model model) {
 		UsuarioDao dao0 = new UsuarioDao();
 		model.addAttribute("exibirUsuario", dao0.exibir(idUser));
 		CargoDao dao = new CargoDao();
@@ -61,13 +62,31 @@ public class UsuarioController {
 	}
 
 	@RequestMapping("/AlterarUsuario")
-	public String alterarUsuario(@Valid Usuario user , BindingResult rs , Model model) {
-		if(rs.hasFieldErrors("nome")||rs.hasFieldErrors("endereco")||rs.hasFieldErrors("dataNascimento")){
+	public String alterarUsuario(@Valid Usuario user, BindingResult rs, Model model) {
+		if (rs.hasFieldErrors("nome") || rs.hasFieldErrors("endereco") || rs.hasFieldErrors("dataNascimento")) {
 			return "forward:exibirUsuario";
 		}
 		UsuarioDao dao = new UsuarioDao();
 		dao.AlterarUsuario(user);
 		model.addAttribute("msgSucesso", "Sucesso ! ! ");
 		return "sucesso/sucesso";
+	}
+
+	@RequestMapping("/efetuarLogin")
+	public String efetuarLogin(Usuario user, HttpSession session, Model model) {
+		UsuarioDao dao = new UsuarioDao();
+		Usuario login = dao.login(user);
+		if (login != null) {
+			session.setAttribute("usuarioLogado", login);
+			return "index";
+		}
+		model.addAttribute("falhaLogar", "Não foi encontrado um usuário com o login e senha informados.");
+		return "login";
+	}
+
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "index";
 	}
 }

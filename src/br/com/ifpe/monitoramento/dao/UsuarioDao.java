@@ -107,7 +107,7 @@ public class UsuarioDao {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				user = new Usuario();
-                user.setIdUser(rs.getInt("id_usuario"));
+				user.setIdUser(rs.getInt("id_usuario"));
 				user.setNome(rs.getString("nome_usuario"));
 
 				CargoDao dao = new CargoDao();
@@ -133,9 +133,9 @@ public class UsuarioDao {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	public void AlterarUsuario(Usuario user){
-		try{
+
+	public void AlterarUsuario(Usuario user) {
+		try {
 			String sql = "UPDATE usuario SET nome_usuario = ? , cargo_ocupado = ? , ug_pertence = ? , endereco_usuario = ? ,data_nascimento = ? ,Status = ? WHERE id_usuario = ? ";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, user.getNome());
@@ -147,7 +147,45 @@ public class UsuarioDao {
 			stmt.setInt(7, user.getIdUser());
 			stmt.execute();
 			connection.close();
-		}catch(SQLException e){
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public Usuario login(Usuario user) {
+		try {
+			String sql = "SELECT * FROM usuario WHERE cpf_usuario = ? AND senha_usuario = ?";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			Usuario login = null;
+			stmt.setString(1, user.getCpf());
+			stmt.setString(2, user.getSenha());
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				login = new Usuario();
+				login.setIdUser(rs.getInt("id_usuario"));
+				login.setNome(rs.getString("nome_usuario"));
+
+				CargoDao dao = new CargoDao();
+				Cargo cargo = dao.exibirCargo(rs.getInt("cargo_ocupado"));
+				login.setCargo(cargo);
+
+				UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
+				UnidadeGestora ug = dao2.exibirUG(rs.getInt("ug_pertence"));
+				login.setuGestora(ug);
+
+				login.setEndereco(rs.getString("endereco_usuario"));
+				login.setDataNascimento(rs.getDate("data_nascimento"));
+				login.setSenha(rs.getString("senha_usuario"));
+
+				Situacao st = Situacao.valueOf(rs.getString("Status"));
+				user.setSituacao(st);
+
+			}
+			rs.close();
+			stmt.close();
+			return login;
+
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}

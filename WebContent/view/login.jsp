@@ -32,15 +32,15 @@
 </div>
 
 <div id="formulario">				
-<form class="form-inline">
+<form class="form-inline" action="efetuarLogin" method="post">
 <h3>LOGIN:</h3>
 
 <div class="form-group">
-<input type="text" class="form-control" id="cpf" placeholder="Seu CPF">
+<input type="text" class="form-control" id="cpf" name="cpf" placeholder="Seu CPF">
 </div>
 	<br><br>		
 <div class="form-group">
-<input type="password" class="form-control" id="senha" placeholder="Sua Senha">
+<input type="password" class="form-control" id="senha" name="senha" placeholder="Sua Senha">
 </div>
 	<br><br>
 <div class="checkbox">

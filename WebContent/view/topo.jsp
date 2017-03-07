@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -13,6 +14,7 @@
 <body>
 
 <div class="page-header">
+
 <h1>
 Monitoramento de Gastos<br> <small>Governo do Estado de Pernambuco</small>
 </h1>
@@ -24,10 +26,7 @@ Monitoramento de Gastos<br> <small>Governo do Estado de Pernambuco</small>
                 <li><a href="formCadastro">Cadastrar</a></li>
                 <li><a href="listarUsuario">Buscar</a></li>
                
-                    <ul>
-                        <li><a href="#">jQuery</a></li>
-                        <li><a href="#">Angular</a></li>
-                    </ul>
+                    
                 </li>
             </ul>
         </li>
@@ -49,11 +48,12 @@ Monitoramento de Gastos<br> <small>Governo do Estado de Pernambuco</small>
                 <li><a href="listarSugestao">Buscar</a></li>
             </ul>
         </li>
-        <button type="button" class="btn btn-default navbar-btn">Sair</button>
        
     </ul>
+    <form action="logout">
+    <button type="submit" class="btn btn-default navbar-btn">Sair</button>
+    </form>
 </nav>
-
 
 </div>
 		

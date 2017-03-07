@@ -78,7 +78,7 @@ public class SugestaoDiariaController {
 	
 	@RequestMapping("/cadastrarSugestao")
 	public String cadastrarSugestão(@Valid SugestaoDiaria sd , BindingResult rs, Model model ){
-		if(rs.hasFieldErrors("valores")){
+		if(rs.hasFieldErrors()){
 			return "forward:formCadastroSD";
 		}
 		SugestaoDiariaDao dao = new SugestaoDiariaDao();

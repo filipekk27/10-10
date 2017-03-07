@@ -14,8 +14,10 @@ public class SugestaoDiaria {
 	private Integer destino;
 	private Integer origem;
 	
-	@Pattern(regexp="[0-9,]{6,2}")
-	private float valores;
+	
+	@Pattern(regexp="[0-9,]",message="Valor invalido")
+	private String valores;
+	
 	private Integer idSD;
 
 	public Integer getIdSD() {
@@ -66,11 +68,11 @@ public class SugestaoDiaria {
 		this.origem = origem;
 	}
 
-	public float getValores() {
+	public String getValores() {
 		return valores;
 	}
 
-	public void setValores(float valores) {
+	public void setValores(String valores) {
 		this.valores = valores;
 	}
 

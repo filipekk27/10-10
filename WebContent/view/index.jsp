@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estiloIndex.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/estiloIndex.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Monitoria de Gastos</title>
 </head>
 
 <body>
 
-<div class="container-fluid">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="page-header">
@@ -23,32 +25,41 @@
 					</h1>
 				</div>
 				<ul class="nav nav-tabs">
-				<li class="active">
-					<a href="index">Home</a>
-				</li>
+					<li class="active"><a href="index">Home</a></li>
 					<li><a href="#">Serviços</a></li>
 					<li><a href="#">Contato</a></li>
-				    <li><a href="FormLogin">Entrar</a></li>
-					
-					
-				
+					<li><a href="FormLogin">Entrar</a></li>
+
+
+
 				</ul>
-				<br>
-				<br>
+				<br> <br>
 				<div class="jumbotron well">
-					<h2>Seja Bem-Vindo!!</h2>
-					<p>Nosso objetivo é acompanhar as despesas,
-						mantendo uma assídua orientação aos agentes públicos para o
-						equilíbrio das contas, a manutenção dos serviços e das políticas
-						públicas, ressaltando a importância de não elevar as despesas..</p>
+                     <c:choose>
+                     <c:when test="${usuarioLogado.nome!=null}">
+					<h2>
+						<p>Bem vindo, ${usuarioLogado.nome}</p>
+					</h2>
+					</c:when>
+					<c:otherwise>
+					<h2>
+						<p>Bem vindo, visitante</p>
+					</h2>
+					</c:otherwise>
+					</c:choose>
+					 objetivo é acompanhar as despesas, mantendo uma
+						assídua orientação aos agentes públicos para o equilíbrio das
+						contas, a manutenção dos serviços e das políticas públicas,
+						ressaltando a importância de não elevar as despesas..</p>
 					<p></p>
 				</div>
 
-				<br>
-				<br>
+				<br> <br>
 				<div class="row">
 					<div class="col-md-4">
-						<center><h2>Solicitação</h2></center>
+						<center>
+							<h2>Solicitação</h2>
+						</center>
 						<p>Donec id elit non mi porta gravida at eget metus. Fusce
 							dapibus, tellus ac cursus commodo, tortor mauris condimentum
 							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
@@ -56,7 +67,9 @@
 
 					</div>
 					<div class="col-md-4">
-						<center><h2>Consulta</h2></center>
+						<center>
+							<h2>Consulta</h2>
+						</center>
 						<p>Donec id elit non mi porta gravida at eget metus. Fusce
 							dapibus, tellus ac cursus commodo, tortor mauris condimentum
 							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
@@ -64,7 +77,9 @@
 
 					</div>
 					<div class="col-md-4">
-						<center><h2>Análise</h2></center>
+						<center>
+							<h2>Análise</h2>
+						</center>
 						<p>Donec id elit non mi porta gravida at eget metus. Fusce
 							dapibus, tellus ac cursus commodo, tortor mauris condimentum
 							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
@@ -75,6 +90,6 @@
 			</div>
 		</div>
 	</div>
-<c:import url="menu.jsp" />
+	<c:import url="menu.jsp" />
 </body>
 </html>

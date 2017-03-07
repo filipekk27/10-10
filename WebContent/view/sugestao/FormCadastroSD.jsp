@@ -110,8 +110,8 @@
 
 
 			<div class="form-group">
-				<form:errors path="SugestaoDiaria.valores" cssStyle="color:red" />
-				<label for="Nome">Valores</label><br> <input type="number"
+				<form:errors path="sugestaoDiaria.valores" cssStyle="color:red" />
+				<label for="Nome">Valores</label><br> <input type="text"
 					class="form-control" name="valores" size="10" minlength="6"
 					maxlength="15" required="true" placeholder="00,00"><br>
 			</div>
