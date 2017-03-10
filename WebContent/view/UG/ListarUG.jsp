@@ -17,55 +17,63 @@
 </head>
 
 <body>
-	<c:import url="../topo.jsp" />
-	<br>
-	<br>
-	<br>
+	<c:choose>
+		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
-	<br>
-
-	<div id="formulario">
-		<form action="ListarUG" class="form-inline">
-			<h3>Consultar UG</h3>
-			<div class="form-group">
-				<label for="Nome">Nome da UG</label><br> <input type="text"
-					class="form-control" name="nome" placeholder="Nome da UG"><br>
-			</div>
+			<c:import url="../topo.jsp" />
 			<br>
-			<div class="form-group">
-				<label for="Codigo">Código da UG</label><br> <input type="text"
-					class="form-control" name="codigo" placeholder="Código da UG"><br>
+			<br>
+			<br>
+
+			<br>
+
+			<div id="formulario">
+				<form action="ListarUG" class="form-inline">
+					<h3>Consultar UG</h3>
+					<div class="form-group">
+						<label for="Nome">Nome da UG</label><br> <input type="text"
+							class="form-control" name="nome" placeholder="Nome da UG"><br>
+					</div>
+					<br>
+					<div class="form-group">
+						<label for="Codigo">Código da UG</label><br> <input
+							type="text" class="form-control" name="codigo"
+							placeholder="Código da UG"><br> <br>
+					</div>
+					<br>
+					<button type="submit" class="btn btn-primary">Consultar</button>
+				</form>
 				<br>
 			</div>
 			<br>
-			<button type="submit" class="btn btn-primary">Consultar</button>
-		</form>
-		<br>
-	</div>
-	<br>
-	<table id="tabela" class="table table-striped">
-		<tr style='background-color: #E6E6E6; font-weight: bold;'>
+			<table id="tabela" class="table table-striped">
+				<tr style='background-color: #E6E6E6; font-weight: bold;'>
 
-			<td>Codigo</td>
-			<td>Nome</td>
-			<td>Data Cadastro</td>
-			<td>Status</td>
-			<td>Ações</td>
+					<td>Codigo</td>
+					<td>Nome</td>
+					<td>Data Cadastro</td>
+					<td>Status</td>
+					<td>Ações</td>
 
 
-			<c:forEach var="UG" items="${ListarUG}">
-				<tr>
+					<c:forEach var="UG" items="${ListarUG}">
+						<tr>
 
-					<td>${UG.codigo}</td>
-					<td>${UG.nome}</td>
-					<td><fmt:formatDate value="${UG.data}" pattern="dd/MM/yyyy" />
-					</td>
-					<td>${UG.situacao}</td>
-					<td><a href="ExibirAlterarUG?codigo=${UG.codigo}">Alterar</a></td>
+							<td>${UG.codigo}</td>
+							<td>${UG.nome}</td>
+							<td><fmt:formatDate value="${UG.data}" pattern="dd/MM/yyyy" />
+							</td>
+							<td>${UG.situacao}</td>
+							<td><a href="ExibirAlterarUG?codigo=${UG.codigo}">Alterar</a></td>
 
-				</tr>
-			</c:forEach>
-	</table>
-	
+						</tr>
+					</c:forEach>
+			</table>
+		</c:when>
+		<c:otherwise>
+		<jsp:forward page="../index.jsp" />
+		</c:otherwise>
+	</c:choose>
 </body>
+
 </html>

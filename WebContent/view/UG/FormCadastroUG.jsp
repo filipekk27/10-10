@@ -8,45 +8,51 @@
 <head>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estiloCadastrar.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/estiloCadastrar.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro UG</title>
 </head>
 
 <body>
+	<c:choose>
+		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
-	<c:import url="../topo.jsp" />
+			<c:import url="../topo.jsp" />
 
 
 
 
-	<div id="formulario">
-		<h3>Cadastrar UG</h3>
-		<div id="constrain_error">${msgErrorPkUG}</div>
-		<form action="CadastroUG" method="post" class="form-inline">
+			<div id="formulario">
+				<h3>Cadastrar UG</h3>
+				<div id="constrain_error">${msgErrorPkUG}</div>
+				<form action="CadastroUG" method="post" class="form-inline">
 
-			<div class="form-group">
-				<form:errors path="unidadeGestora.nome" cssStyle="color:red" />
-				<br />
-				<!-- bean validation  -->
-				<label for="Nome">Nome da UG</label><br> <input type="text"
-					class="form-control" name="nome" placeholder="Nome da UG"><br>
+					<div class="form-group">
+						<form:errors path="unidadeGestora.nome" cssStyle="color:red" />
+						<br />
+						<!-- bean validation  -->
+						<label for="Nome">Nome da UG</label><br> <input type="text"
+							class="form-control" name="nome" placeholder="Nome da UG"><br>
+					</div>
+					<br>
+					<div class="form-group">
+						<form:errors path="unidadeGestora.codigo" cssStyle="color:red" />
+						<br />
+						<!-- bean validation  -->
+						<label for="Codigo">Código</label><br> <input type="text"
+							class="form-control" name="codigo" placeholder="Código da UG"
+							maxlength="9"><br> <br>
+					</div>
+					<br>
+					<button type="submit" class="btn btn-primary">Cadastrar</button>
+				</form>
 			</div>
-			<br>
-			<div class="form-group">
-				<form:errors path="unidadeGestora.codigo" cssStyle="color:red" />
-				<br />
-				<!-- bean validation  -->
-				<label for="Codigo">Código</label><br> <input type="text"
-					class="form-control" name="codigo" placeholder="Código da UG"
-					maxlength="9"><br>
-				<br>
-			</div>
-			<br>
-			<button type="submit" class="btn btn-primary">Cadastrar</button>
-		</form>
-	</div>
-
+		</c:when>
+		<c:otherwise>
+		]<jsp:forward page="../index.jsp" />
+		</c:otherwise>
+	</c:choose>
 
 </body>
 </html>

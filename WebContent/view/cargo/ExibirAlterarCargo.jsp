@@ -12,59 +12,66 @@
 <title>Alteração de cargo</title>
 </head>
 <body>
-	<c:import url="../topo.jsp" />
-	<br>
-	<br>
-	<br>
-	<div id="formulario">
-		<form class="form-inline" action="alterarCargo" method="post">
+	<c:choose>
+		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
-			<h3>Alterar Cargo</h3>
-			<div class="form-group">
-				<form:errors path="cargo.nome" cssStyle="color:red" />
-				<!-- bean validation  -->
-				<br /> <label for="Nome">Nome</label><br> <input type="text"
-					class="form-control" name="nome" value="${ExibirAlterarCargo.nome}">
-			</div>
-			<br> <br>
-			<div class="form-group">
-				<input type="hidden" class="form-control" name="id"
-					value="${ExibirAlterarCargo.id}" readonly>
-			</div>
+			<c:import url="../topo.jsp" />
+			<br>
+			<br>
+			<br>
+			<div id="formulario">
+				<form class="form-inline" action="alterarCargo" method="post">
 
-			<div class="form-group">
-				<label for="Status">On</label>
-				<c:choose>
-					<c:when test="${ExibirAlterarCargo.situacao=='ATIVO'}">
-						<input type="radio" class="form-control" name="Situacao"
-							value="ATIVO" checked="true">
-						<br>
-					</c:when>
-					<c:otherwise>
-						<input type="radio" class="form-control" name="Situacao"
-							value="ATIVO">
-					</c:otherwise>
-				</c:choose>
-				<label for="Status">Off</label>
-				<c:choose>
-					<c:when test="${ExibirAlterarCargo.situacao=='INATIVO'}">
-						<input type="radio" class="form-control" name="Situacao"
-							value="INATIVO" checked="true">
-						<br>
-					</c:when>
-					<c:otherwise>
-						<input type="radio" class="form-control" name="Situacao"
-							value="INATIVO">
-					</c:otherwise>
-				</c:choose>
+					<h3>Alterar Cargo</h3>
+					<div class="form-group">
+						<form:errors path="cargo.nome" cssStyle="color:red" />
+						<!-- bean validation  -->
+						<br /> <label for="Nome">Nome</label><br> <input type="text"
+							class="form-control" name="nome"
+							value="${ExibirAlterarCargo.nome}">
+					</div>
+					<br> <br>
+					<div class="form-group">
+						<input type="hidden" class="form-control" name="id"
+							value="${ExibirAlterarCargo.id}" readonly>
+					</div>
+
+					<div class="form-group">
+						<label for="Status">On</label>
+						<c:choose>
+							<c:when test="${ExibirAlterarCargo.situacao=='ATIVO'}">
+								<input type="radio" class="form-control" name="Situacao"
+									value="ATIVO" checked="true">
+								<br>
+							</c:when>
+							<c:otherwise>
+								<input type="radio" class="form-control" name="Situacao"
+									value="ATIVO">
+							</c:otherwise>
+						</c:choose>
+						<label for="Status">Off</label>
+						<c:choose>
+							<c:when test="${ExibirAlterarCargo.situacao=='INATIVO'}">
+								<input type="radio" class="form-control" name="Situacao"
+									value="INATIVO" checked="true">
+								<br>
+							</c:when>
+							<c:otherwise>
+								<input type="radio" class="form-control" name="Situacao"
+									value="INATIVO">
+							</c:otherwise>
+						</c:choose>
+					</div>
+					<br>
+					<button type="submit" class="btn btn-primary">Alterar</button>
+				</form>
 			</div>
 			<br>
-			<button type="submit" class="btn btn-primary">Alterar</button>
-		</form>
-	</div>
 
-
-	<br>
-	
+		</c:when>
+		<c:otherwise>
+		<jsp:forward page="../index.jsp" />
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

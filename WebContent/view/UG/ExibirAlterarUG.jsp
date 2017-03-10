@@ -12,58 +12,64 @@
 <title>Alteração de UG</title>
 </head>
 <body>
-	<c:import url="../topo.jsp" />
-	<br>
-	<br>
-	<br>
-	<div id="formulario">
-		<form class="form-inline" action="AlterarUG" method="post">
+	<c:choose>
+		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
-			<h3>Alterar UG</h3>
-			<div class="form-group">
-				<form:errors path="unidadeGestora.nome" cssStyle="color:red" />
-				<!-- bean validation  -->
-				<br /> <label for="Nome">Nome</label><br> <input type="text"
-					class="form-control" name="nome" value="${ExibirAlterarUG.nome}">
-			</div>
-			<br> <br>
-			<div class="form-group">
-				<input type="hidden" class="form-control" name="codigo"
-					value="${ExibirAlterarUG.codigo}" readonly>
-			</div>
-			<div class="form-group">
-				<label for="Status">On</label>
-				<c:choose>
-					<c:when test="${ExibirAlterarUG.situacao=='ATIVO'}">
-						<input type="radio" class="form-control" name="Situacao"
-							value="ATIVO" checked="true">
-						<br>
-					</c:when>
-					<c:otherwise>
-						<input type="radio" class="form-control" name="Situacao"
-							value="ATIVO">
-					</c:otherwise>
-				</c:choose>
-				<label for="Status">Off</label>
-				<c:choose>
-					<c:when test="${ExibirAlterarUG.situacao=='INATIVO'}">
-						<input type="radio" class="form-control" name="Situacao"
-							value="INATIVO" checked="true">
-						<br>
-					</c:when>
-					<c:otherwise>
-						<input type="radio" class="form-control" name="Situacao"
-							value="INATIVO">
-					</c:otherwise>
-				</c:choose>
-			</div>
+			<c:import url="../topo.jsp" />
 			<br>
-			<button type="submit" class="btn btn-primary">Alterar</button>
-		</form>
-	</div>
+			<br>
+			<br>
+			<div id="formulario">
+				<form class="form-inline" action="AlterarUG" method="post">
 
+					<h3>Alterar UG</h3>
+					<div class="form-group">
+						<form:errors path="unidadeGestora.nome" cssStyle="color:red" />
+						<!-- bean validation  -->
+						<br /> <label for="Nome">Nome</label><br> <input type="text"
+							class="form-control" name="nome" value="${ExibirAlterarUG.nome}">
+					</div>
+					<br> <br>
+					<div class="form-group">
+						<input type="hidden" class="form-control" name="codigo"
+							value="${ExibirAlterarUG.codigo}" readonly>
+					</div>
+					<div class="form-group">
+						<label for="Status">On</label>
+						<c:choose>
+							<c:when test="${ExibirAlterarUG.situacao=='ATIVO'}">
+								<input type="radio" class="form-control" name="Situacao"
+									value="ATIVO" checked="true">
+								<br>
+							</c:when>
+							<c:otherwise>
+								<input type="radio" class="form-control" name="Situacao"
+									value="ATIVO">
+							</c:otherwise>
+						</c:choose>
+						<label for="Status">Off</label>
+						<c:choose>
+							<c:when test="${ExibirAlterarUG.situacao=='INATIVO'}">
+								<input type="radio" class="form-control" name="Situacao"
+									value="INATIVO" checked="true">
+								<br>
+							</c:when>
+							<c:otherwise>
+								<input type="radio" class="form-control" name="Situacao"
+									value="INATIVO">
+							</c:otherwise>
+						</c:choose>
+					</div>
+					<br>
+					<button type="submit" class="btn btn-primary">Alterar</button>
+				</form>
+			</div>
 
-	<br>
-
+			<br>
+		</c:when>
+		<c:otherwise>
+		<jsp:forward page="../index.jsp" />
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

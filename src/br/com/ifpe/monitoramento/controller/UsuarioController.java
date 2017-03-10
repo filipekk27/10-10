@@ -19,13 +19,15 @@ public class UsuarioController {
 
 	@RequestMapping("/formCadastro")
 	public String formCadastro(Model model, String nome, String id, String codigo) {
+		
+		
 		CargoDao dao = new CargoDao();
 		model.addAttribute("listarCargoUsuario", dao.listarCargo(nome, id));
 		UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
 		model.addAttribute("listarUGestora", dao2.listarUG(nome, codigo));
 		return "usuario/FormCadastroUsuario";
+	
 	}
-
 	@RequestMapping("/cadastrarUsuario")
 	public String cadastrarUsuario(@Valid Usuario user, BindingResult rs, Model model) {
 		if (rs.hasFieldErrors()) {
@@ -33,7 +35,7 @@ public class UsuarioController {
 		}
 		UsuarioDao dao = new UsuarioDao();
 		try {
-			dao.CadastrarCargo(user);
+			dao.cadastrarUsuario(user);
 			model.addAttribute("msgsucessoUser", "Usuario cadastado com sucesso!! ! ");
 			return "sucesso/sucesso";
 		} catch (KeyDuplicateException e) {
@@ -58,7 +60,7 @@ public class UsuarioController {
 		model.addAttribute("listarCargoUsuario", dao.listarCargo(nome, id));
 		UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
 		model.addAttribute("listarUGestora", dao2.listarUG(nome, codigo));
-		return "usuario/ExibirAlterar";
+		return "usuario/ExibirAlterarUsuario";
 	}
 
 	@RequestMapping("/AlterarUsuario")

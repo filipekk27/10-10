@@ -12,7 +12,7 @@ public class ControleAcesso extends HandlerInterceptorAdapter {
 
 		String uri = request.getRequestURI();
 		if (uri.contains("css") || uri.contains("js") || uri.contains("sql") || uri.contains("fonts")
-				|| uri.endsWith("10-10/") || uri.endsWith("efetuarLogin")) {
+				|| uri.endsWith("10-10/") || uri.endsWith("efetuarLogin") || uri.endsWith("index")) {
 			return true;
 		}
 

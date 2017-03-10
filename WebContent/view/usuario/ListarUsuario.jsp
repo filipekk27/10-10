@@ -13,60 +13,67 @@
 <title>Listar Usuario</title>
 </head>
 <body>
-	<c:import url="../topo.jsp" />
+	<c:choose>
+		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
-	<div id="formulario">
-		<form action="listarCargo" class="form-inline">
-			<h3>Consultar Usuario</h3>
-			<div class="form-group">
-				<label for="Nome">#</label><br> <input type="text"
-					class="form-control" name="nome" placeholder="#"><br>
+			<c:import url="../topo.jsp" />
+
+			<div id="formulario">
+				<form action="listarCargo" class="form-inline">
+					<h3>Consultar Usuario</h3>
+					<div class="form-group">
+						<label for="Nome">#</label><br> <input type="text"
+							class="form-control" name="nome" placeholder="#"><br>
+					</div>
+					<br> <br>
+					<button type="submit" class="btn btn-primary">Consultar</button>
+				</form>
+				<br>
 			</div>
-			<br> <br>
-			<button type="submit" class="btn btn-primary">Consultar</button>
-		</form>
-		<br>
-	</div>
-	<br>
-	<table id="tabela" class="table table-striped">
-		<tr style='background-color: #E6E6E6; font-weight: bold;'>
+			<br>
+			<table id="tabela" class="table table-striped">
+				<tr style='background-color: #E6E6E6; font-weight: bold;'>
 
-			<td>Id</td>
-			<td>Nome</td>
-			<td>Cargo</td>
-			<td>UG</td>
-			<td>Cpf</td>
-			<td>E-mail</td>
-			<td>Endereco</td>
-			<td>Data Cadastro</td>
-			<td>Data Nascimento</td>
-			<td>Status</td>
-			<td>Ações</td>
+					<td>Id</td>
+					<td>Nome</td>
+					<td>Cargo</td>
+					<td>UG</td>
+					<td>Cpf</td>
+					<td>E-mail</td>
+					<td>Endereco</td>
+					<td>Data Cadastro</td>
+					<td>Data Nascimento</td>
+					<td>Status</td>
+					<td>Privilegio</td>
+					<td>Ações</td>
 
 
-			<c:forEach var="user" items="${ListarUsuario}">
-				<tr>
+					<c:forEach var="user" items="${ListarUsuario}">
+						<tr>
 
-					<td>${user.idUser}</td>
-					<td>${user.nome}</td>
-					<td>${user.cargo.nome}</td>
-					<td>${user.uGestora.nome}</td>
-					<td>${user.cpf}</td>
-					<td>${user.email}</td>
-					<td>${user.endereco}</td>
-					<td><fmt:formatDate value="${user.dataCadastro}"
-							pattern="dd/MM/yyyy" /></td>
-					<td><fmt:formatDate value="${user.dataNascimento}"
-							pattern="dd/MM/yyyy" /></td>
-					<td>${user.situacao}</td>
-					<td><a href="exibirUsuario?idUser=${user.idUser}">Alterar</a></td>
+							<td>${user.idUser}</td>
+							<td>${user.nome}</td>
+							<td>${user.cargo.nome}</td>
+							<td>${user.uGestora.nome}</td>
+							<td>${user.cpf}</td>
+							<td>${user.email}</td>
+							<td>${user.endereco}</td>
+							<td><fmt:formatDate value="${user.dataCadastro}"
+									pattern="dd/MM/yyyy" /></td>
+							<td><fmt:formatDate value="${user.dataNascimento}"
+									pattern="dd/MM/yyyy" /></td>
+							<td>${user.situacao}</td>
+							<td>${user.nivel}</td>
+							<td><a href="exibirUsuario?idUser=${user.idUser}">Alterar</a></td>
 
-				</tr>
+						</tr>
 
-			</c:forEach>
-	</table>
-	<center>
-		
-	</center>
+					</c:forEach>
+			</table>
+		</c:when>
+		<c:otherwise>
+		<jsp:forward page="../index.jsp" />
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

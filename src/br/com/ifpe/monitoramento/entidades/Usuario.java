@@ -52,6 +52,7 @@ public class Usuario {
 	private UnidadeGestora uGestora;
 
 	private Situacao situacao;
+	private Nivel nivel;
 
 	public Integer getIdUser() {
 		return idUser;
@@ -139,6 +140,14 @@ public class Usuario {
 
 	public void setuGestora(UnidadeGestora uGestora) {
 		this.uGestora = uGestora;
+	}
+
+	public Nivel getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
 	}
 
 }

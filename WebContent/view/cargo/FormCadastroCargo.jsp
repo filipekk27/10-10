@@ -14,27 +14,34 @@
 <title>Cadastro de Cargos</title>
 </head>
 <body>
-	<c:import url="../topo.jsp" />
+	<c:choose>
+		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
-	<div id="formulario">
-		<h3>Cadastro de Cargos</h3>
-		<div id="constrain_error">${msgErrorPkCargo}</div>
-		<form action="cadastroCargo" method="post" class="form-inline">
+			<c:import url="../topo.jsp" />
 
-			<div class="form-group">
-				<form:errors path="cargo.nome" cssStyle="color:red" />
-				<br />
-				<!-- bean validation  -->
-				<label for="Nome">Nome do Cargo</label><br> <input type="text"
-					class="form-control" name="nome" placeholder="Nome do Cargo"><br>
+			<div id="formulario">
+				<h3>Cadastro de Cargos</h3>
+				<div id="constrain_error">${msgErrorPkCargo}</div>
+				<form action="cadastroCargo" method="post" class="form-inline">
+
+					<div class="form-group">
+						<form:errors path="cargo.nome" cssStyle="color:red" />
+						<br />
+						<!-- bean validation  -->
+						<label for="Nome">Nome do Cargo</label><br> <input
+							type="text" class="form-control" name="nome"
+							placeholder="Nome do Cargo"><br>
+					</div>
+					<br> <br>
+					<button type="submit" class="btn btn-primary">Cadastrar</button>
+				</form>
 			</div>
-			<br>
-			<br>
-			<button type="submit" class="btn btn-primary">Cadastrar</button>
-		</form>
-	</div>
 
-	
+		</c:when>
+		<c:otherwise>
+		<jsp:forward page="../index.jsp" />
+		</c:otherwise>
+	</c:choose>
 
 </body>
 </html>

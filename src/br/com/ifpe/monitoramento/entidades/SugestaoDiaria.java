@@ -15,7 +15,7 @@ public class SugestaoDiaria {
 	private Integer origem;
 	
 	
-	@Pattern(regexp="[0-9,]",message="Valor invalido")
+	@Pattern(regexp="[0-9.]*",message="Valor invalido")
 	private String valores;
 	
 	private Integer idSD;

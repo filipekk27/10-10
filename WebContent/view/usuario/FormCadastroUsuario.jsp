@@ -13,99 +13,115 @@
 <title>Cadastro usuario</title>
 </head>
 <body>
-	<c:import url="../topo.jsp" />
+	<c:choose>
+		<c:when test="${usuarioLogado.nivel=='ADM'}">
+
+			<c:import url="../topo.jsp" />
 
 
-	<div id="formulario">
-		<h3>Cadastro de Usuario</h3>
-		<form action="cadastrarUsuario" method="post" class="form-inline">
+			<div id="formulario">
+				<h3>Cadastro de Usuario</h3>
+				<form action="cadastrarUsuario" method="post" class="form-inline">
 
-			<div class="form-group">
-				<form:errors path="usuario.cpf" cssStyle="color:red" />
+					<div class="form-group">
+						<form:errors path="usuario.cpf" cssStyle="color:red" />
 
-				<div id="constrain_error">${msgErrorPkUser}</div>
-				<label for="Cpf">CPF</label><br> <input type="text"
-					class="form-control" name="cpf" placeholder="Apenas Numeros"
-					size="11" Maxlength="11" Minlength="11" ><br>
-			</div>
+						<div id="constrain_error">${msgErrorPkUser}</div>
+						<label for="Cpf">CPF</label><br> <input type="text"
+							class="form-control" name="cpf" placeholder="Apenas Numeros"
+							size="11" Maxlength="11" Minlength="11"><br>
+					</div>
 
-			<div class="form-group">
-				<form:errors path="usuario.nome" cssStyle="color:red" />
-				<br /> <label for="Nome">Nome</label><br> <input type="text"
-					class="form-control" name="nome" placeholder="Apenas Letras"
-					size="35" Maxlength="60" Minlength="8"><br>
-			</div>
-			<br>
-			<div class="form-group">
-				<form:errors path="usuario.email" cssStyle="color:red" />
-				<br />
-				<div id="constrain_error">${msgErrorPkUser}</div>
-				<label for="Email">E-mail</label><br> <input type="text"
-					class="form-control" name="email" placeholder="exemplo@exemplo.com"
-					size="30" Maxlength="30" Minlength="13"><br>
-			</div>
+					<div class="form-group">
+						<form:errors path="usuario.nome" cssStyle="color:red" />
+						<br /> <label for="Nome">Nome</label><br> <input type="text"
+							class="form-control" name="nome" placeholder="Apenas Letras"
+							size="35" Maxlength="60" Minlength="8"><br>
+					</div>
+					<br>
+					<div class="form-group">
+						<form:errors path="usuario.email" cssStyle="color:red" />
+						<br />
+						<div id="constrain_error">${msgErrorPkUser}</div>
+						<label for="Email">E-mail</label><br> <input type="text"
+							class="form-control" name="email"
+							placeholder="exemplo@exemplo.com" size="30" Maxlength="30"
+							Minlength="13"><br>
+					</div>
 
-			<div class="form-group">
-				<form:errors path="usuario.dataNascimento" cssStyle="color:red" />
-				<br /> <label for="dataNascimento">Data de Nascimento</label><br>
-				<input type="text" class="form-control" name="dataNascimento"
-					placeholder="00/00/0000" size="8" Maxlength="10" Minlength="10"><br>
-			</div>
+					<div class="form-group">
+						<form:errors path="usuario.dataNascimento" cssStyle="color:red" />
+						<br /> <label for="dataNascimento">Data de Nascimento</label><br>
+						<input type="text" class="form-control" name="dataNascimento"
+							placeholder="00/00/0000" size="8" Maxlength="10" Minlength="10"><br>
+					</div>
 
-			<br>
-			<div class="form-group">
-				<form:errors path="usuario.endereco" cssStyle="color:red" />
-				<br /> <label for="Endereco">Endereço</label><br> <input
-					type="text" class="form-control" name="endereco"
-					placeholder="exemplo exemplo exemplo" size="54" Maxlength="60"
-					Minlength="10"><br>
-			</div>
-			<br>
-			<div class="form-group">
-				<form:errors path="usuario.senha" cssStyle="color:red" />
-				<br /> <label for="Senha">Senha</label><br> <input
-					type="password" class="form-control" name="senha"
-					placeholder="senha" Maxlength="15" Minlength="6"><br>
-			</div>
-			<br>
-			<div class="form-group">
-				<form:errors path="usuario.cargo" cssStyle="color:red" />
-				<br /> <label for="Cargo">Cargo</label><br> <select
-					name="cargo" required="true">
-					<option value="">Selecione o cargo</option>
-					<c:forEach items="${listarCargoUsuario}" var="cargo">
-						<c:if test="${cargo.situacao=='ATIVO'}">
-							<option value="${cargo.id}">${cargo.nome}</option>
-						</c:if>
-					</c:forEach>
-				</select>
-			</div>
-			<br>
-			<div class="form-group">
-				<form:errors path="usuario.uGestora" cssStyle="color:red" />
-				<br /> <label for="UG">Unidade Gestora</label><br> <select
-					name="uGestora" required="true">
-					<option value="">Selecione a UG</option>
-					<c:forEach items="${listarUGestora}" var="ug">
-						<c:if test="${ug.situacao=='ATIVO'}">
-							<option value="${ug.codigo}">${ug.nome}</option>
-						</c:if>
-					</c:forEach>
-				</select>
-			</div>
-			<br>
-			<div class="form-group">
-				<form:errors path="usuario.situacao" cssStyle="color:red" />
-				<label for="Status">On</label> <input type="radio"
-					class="form-control" name="Situacao" value="ATIVO"><br>
+					<br>
+					<div class="form-group">
+						<form:errors path="usuario.endereco" cssStyle="color:red" />
+						<br /> <label for="Endereco">Endereço</label><br> <input
+							type="text" class="form-control" name="endereco"
+							placeholder="exemplo exemplo exemplo" size="54" Maxlength="60"
+							Minlength="10"><br>
+					</div>
+					<br>
+					<div class="form-group">
+						<form:errors path="usuario.senha" cssStyle="color:red" />
+						<br /> <label for="Senha">Senha</label><br> <input
+							type="password" class="form-control" name="senha"
+							placeholder="senha" Maxlength="15" Minlength="6"><br>
+					</div>
+					<br>
+					<div class="form-group">
+						<form:errors path="usuario.cargo" cssStyle="color:red" />
+						<br /> <label for="Cargo">Cargo</label><br> <select
+							name="cargo" required="true">
+							<option value="">Selecione o cargo</option>
+							<c:forEach items="${listarCargoUsuario}" var="cargo">
+								<c:if test="${cargo.situacao=='ATIVO'}">
+									<option value="${cargo.id}">${cargo.nome}</option>
+								</c:if>
+							</c:forEach>
+						</select>
+					</div>
+					<br>
+					<div class="form-group">
+						<form:errors path="usuario.uGestora" cssStyle="color:red" />
+						<br /> <label for="UG">Unidade Gestora</label><br> <select
+							name="uGestora" required="true">
+							<option value="">Selecione a UG</option>
+							<c:forEach items="${listarUGestora}" var="ug">
+								<c:if test="${ug.situacao=='ATIVO'}">
+									<option value="${ug.codigo}">${ug.nome}</option>
+								</c:if>
+							</c:forEach>
+						</select>
+					</div>
+					<br>
+					<div class="form-group">
+						<form:errors path="usuario.situacao" cssStyle="color:red" />
+						<label for="Status">Ativo</label> <input type="radio"
+							class="form-control" name="Situacao" value="ATIVO"><br>
 
-				<label for="Status">Off</label> <input type="radio"
-					class="form-control" name="Situacao" value="INATIVO"><br>
+						<label for="Status">Inativo</label> <input type="radio"
+							class="form-control" name="Situacao" value="INATIVO"><br>
+					</div>
+					<br>
+					<div class="form-group">
+						<form:errors path="usuario.nivel" cssStyle="color:red" />
+						<label for="Status">Administrador</label> <input type="radio"
+							class="form-control" name="Nivel" value="ADM"><br> <label
+							for="Status">Usuario comum</label> <input type="radio"
+							class="form-control" name="Nivel" value="USUARIO"><br>
+					</div>
+					<br> <br>
+					<button type="submit" class="btn btn-primary">Cadastrar</button>
+				</form>
 			</div>
-			<br> <br>
-			<button type="submit" class="btn btn-primary">Cadastrar</button>
-		</form>
-	</div>
-	
+		</c:when>
+		<c:otherwise>
+		<jsp:forward page="../index.jsp" />
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

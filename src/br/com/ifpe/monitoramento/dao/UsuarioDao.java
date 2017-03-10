@@ -10,6 +10,7 @@ import java.util.List;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import br.com.ifpe.monitoramento.entidades.Cargo;
+import br.com.ifpe.monitoramento.entidades.Nivel;
 import br.com.ifpe.monitoramento.entidades.Situacao;
 import br.com.ifpe.monitoramento.entidades.UnidadeGestora;
 import br.com.ifpe.monitoramento.entidades.Usuario;
@@ -27,10 +28,10 @@ public class UsuarioDao {
 		}
 	}
 
-	public void CadastrarCargo(Usuario user) throws KeyDuplicateException {
+	public void cadastrarUsuario(Usuario user) throws KeyDuplicateException {
 		try {
-			String sql = "INSERT INTO usuario (cpf_usuario,nome_usuario,email_usuario,endereco_usuario,data_nascimento,senha_usuario,cargo_ocupado,ug_pertence,Status)"
-					+ " VALUES (?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO usuario (cpf_usuario,nome_usuario,email_usuario,endereco_usuario,data_nascimento,senha_usuario,cargo_ocupado,ug_pertence,STATUS,nivel)"
+					+ " VALUES (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, user.getCpf());
 			stmt.setString(2, user.getNome());
@@ -41,6 +42,7 @@ public class UsuarioDao {
 			stmt.setInt(7, user.getCargo().getId());
 			stmt.setInt(8, user.getuGestora().getCodigo());
 			stmt.setString(9, user.getSituacao().name());
+			stmt.setString(10, user.getNivel().name());
 
 			stmt.execute();
 			connection.close();
@@ -83,8 +85,11 @@ public class UsuarioDao {
 				user.setDataNascimento(rs.getDate("data_nascimento"));
 				user.setSenha(rs.getString("senha_usuario"));
 
-				Situacao st = Situacao.valueOf(rs.getString("Status"));
+				Situacao st = Situacao.valueOf(rs.getString("STATUS"));
 				user.setSituacao(st);
+
+				Nivel nv = Nivel.valueOf(rs.getString("nivel"));
+				user.setNivel(nv);
 
 				listar.add(user);
 			}
@@ -122,8 +127,11 @@ public class UsuarioDao {
 				user.setDataNascimento(rs.getDate("data_nascimento"));
 				user.setSenha(rs.getString("senha_usuario"));
 
-				Situacao st = Situacao.valueOf(rs.getString("Status"));
+				Situacao st = Situacao.valueOf(rs.getString("STATUS"));
 				user.setSituacao(st);
+
+				Nivel nv = Nivel.valueOf(rs.getString("nivel"));
+				user.setNivel(nv);
 
 			}
 
@@ -136,7 +144,7 @@ public class UsuarioDao {
 
 	public void AlterarUsuario(Usuario user) {
 		try {
-			String sql = "UPDATE usuario SET nome_usuario = ? , cargo_ocupado = ? , ug_pertence = ? , endereco_usuario = ? ,data_nascimento = ? ,Status = ? WHERE id_usuario = ? ";
+			String sql = "UPDATE usuario SET nome_usuario = ? , cargo_ocupado = ? , ug_pertence = ? , endereco_usuario = ? ,data_nascimento = ? ,STATUS = ? ,nivel = ? WHERE id_usuario = ? ";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, user.getNome());
 			stmt.setInt(2, user.getCargo().getId());
@@ -144,7 +152,8 @@ public class UsuarioDao {
 			stmt.setString(4, user.getEndereco());
 			stmt.setDate(5, new java.sql.Date(user.getDataNascimento().getTime()));
 			stmt.setString(6, user.getSituacao().name());
-			stmt.setInt(7, user.getIdUser());
+			stmt.setString(7, user.getNivel().name());
+			stmt.setInt(8, user.getIdUser());
 			stmt.execute();
 			connection.close();
 		} catch (SQLException e) {
@@ -164,7 +173,7 @@ public class UsuarioDao {
 				login = new Usuario();
 				login.setIdUser(rs.getInt("id_usuario"));
 				login.setNome(rs.getString("nome_usuario"));
-
+				login.setCpf(rs.getString("cpf_usuario"));
 				CargoDao dao = new CargoDao();
 				Cargo cargo = dao.exibirCargo(rs.getInt("cargo_ocupado"));
 				login.setCargo(cargo);
@@ -177,8 +186,11 @@ public class UsuarioDao {
 				login.setDataNascimento(rs.getDate("data_nascimento"));
 				login.setSenha(rs.getString("senha_usuario"));
 
-				Situacao st = Situacao.valueOf(rs.getString("Status"));
-				user.setSituacao(st);
+				Situacao st = Situacao.valueOf(rs.getString("STATUS"));
+				login.setSituacao(st);
+
+				Nivel nv = Nivel.valueOf(rs.getString("nivel"));
+				login.setNivel(nv);
 
 			}
 			rs.close();

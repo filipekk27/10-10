@@ -60,10 +60,13 @@
 						<center>
 							<h2>Solicitação</h2>
 						</center>
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce
-							dapibus, tellus ac cursus commodo, tortor mauris condimentum
-							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-							malesuada magna mollis euismod. Donec sed odio dui.</p>
+						<p>${usuarioLogado.endereco}   // </p>
+						<p>${usuarioLogado.nome} //</p>
+						<p>${usuarioLogado.cpf}//</p>
+						<p>${usuarioLogado.situacao}//</p>
+						<p>${usuarioLogado.nivel}//</p>
+						<p>${usuarioLogado.senha}//</p>
+						
 
 					</div>
 					<div class="col-md-4">

@@ -27,7 +27,7 @@ public class SugestaoDiariaDao {
 
 	public void cadastrarSD(SugestaoDiaria sd) {
 		try {
-			String sql = "INSERT INTO SugestaoValorDiaria (IdCidadeOrigem,IdCidadeDestino,IdUg,Valor,IdCargo)"
+			String sql = "INSERT INTO sugestaovalordiaria (IdCidadeOrigem,IdCidadeDestino,IdUg,Valor,IdCargo)"
 					+ " VALUES (?,?,?,?,?)";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -47,7 +47,7 @@ public class SugestaoDiariaDao {
 		try {
 
 			List<SugestaoDiaria> listar = new ArrayList<SugestaoDiaria>();
-			String sql = "SELECT * FROM SugestaoValorDiaria";
+			String sql = "SELECT * FROM sugestaovalordiaria";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			SugestaoDiaria sd;
 			ResultSet rs = stmt.executeQuery();

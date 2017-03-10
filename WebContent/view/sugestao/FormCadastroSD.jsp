@@ -40,87 +40,95 @@
 
 </head>
 <body>
-	<c:import url="../topo.jsp" />
-	<div id="formulario">
-		<h3>Cadastrar Sugestão diaria</h3>
-		<form action="cadastrarSugestao">
+	<c:choose>
+		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
-			<div class="form-group">
-				<form:errors path="SugestaoDiaria.cargo" cssStyle="color:red" />
-				<label for="Cargo">Cargo</label><br> <select name="cargo"
-					required="true">
-					<option value="">Selecione o cargo</option>
-					<%-- listar cargos no select --%>
-					<c:forEach items="${listarCargoUsuario}" var="cargo">
-						<c:if test="${cargo.situacao=='ATIVO'}">
-							<option value="${cargo.id}">${cargo.nome}</option>
-						</c:if>
-					</c:forEach>
-				</select>
+			<c:import url="../topo.jsp" />
+			<div id="formulario">
+				<h3>Cadastrar Sugestão diaria</h3>
+				<form action="cadastrarSugestao">
+
+					<div class="form-group">
+						<form:errors path="SugestaoDiaria.cargo" cssStyle="color:red" />
+						<label for="Cargo">Cargo</label><br> <select name="cargo"
+							required="true">
+							<option value="">Selecione o cargo</option>
+							<%-- listar cargos no select --%>
+							<c:forEach items="${listarCargoUsuario}" var="cargo">
+								<c:if test="${cargo.situacao=='ATIVO'}">
+									<option value="${cargo.id}">${cargo.nome}</option>
+								</c:if>
+							</c:forEach>
+						</select>
+					</div>
+
+
+					<div class="form-group">
+						<form:errors path="SugestaoDiaria.ug" cssStyle="color:red" />
+						<label for="UG">Unidade Gestora</label><br> <select name="ug"
+							required="true">
+							<%-- listar ug no select --%>
+							<option value="">Selecione a UG</option>
+							<c:forEach items="${listarUGestora}" var="ug">
+								<c:if test="${ug.situacao=='ATIVO' }">
+									<option value="${ug.codigo}">${ug.nome}</option>
+								</c:if>
+							</c:forEach>
+						</select>
+					</div>
+
+
+					<div class="form-group">
+						<label>Origem</label> <br> <select id="estado"
+							required="true">
+							<%--Lista os estados --%>
+							<option value="">Selecione a UF</option>
+							<c:forEach var="uf" items="${ListarEstados}">
+
+								<option value="${uf.codigo}">${uf.UF}</option>
+
+							</c:forEach>
+						</select>
+					</div>
+					<div class="form-group" id="cidade">
+						<%--Listar cidades --%>
+
+					</div>
+
+					<div class="form-group">
+						<%--Lista os estados --%>
+						<label>Destino</label> <br> <select id="estado2"
+							required="true">
+							<option value="">Selecione a UF</option>
+							<c:forEach var="uf" items="${ListarEstados}">
+
+								<option value="${uf.codigo}">${uf.UF}</option>
+
+
+							</c:forEach>
+						</select>
+
+					</div>
+					<%--Listar cidades --%>
+					<div class="form-group" id="cidade2"></div>
+
+
+					<div class="form-group">
+						<form:errors path="sugestaoDiaria.valores" cssStyle="color:red" />
+						<label for="Nome">Valores</label><br> <input type="text"
+							class="form-control" name="valores" size="10" minlength="1"
+							maxlength="10" required="true" placeholder="00.00"><br>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Sugerir</button>
+				</form>
+
 			</div>
 
-
-			<div class="form-group">
-				<form:errors path="SugestaoDiaria.ug" cssStyle="color:red" />
-				<label for="UG">Unidade Gestora</label><br> <select name="ug"
-					required="true">
-					<%-- listar ug no select --%>
-					<option value="">Selecione a UG</option>
-					<c:forEach items="${listarUGestora}" var="ug">
-						<c:if test="${ug.situacao=='ATIVO' }">
-							<option value="${ug.codigo}">${ug.nome}</option>
-						</c:if>
-					</c:forEach>
-				</select>
-			</div>
-
-
-			<div class="form-group">
-				<label>Origem</label> <br> <select id="estado" required="true">
-					<%--Lista os estados --%>
-					<option value="">Selecione a UF</option>
-					<c:forEach var="uf" items="${ListarEstados}">
-
-						<option value="${uf.codigo}">${uf.UF}</option>
-
-					</c:forEach>
-				</select>
-			</div>
-			<div class="form-group" id="cidade">
-				<%--Listar cidades --%>
-
-			</div>
-
-			<div class="form-group">
-				<%--Lista os estados --%>
-				<label>Destino</label> <br> <select id="estado2"
-					required="true">
-					<option value="">Selecione a UF</option>
-					<c:forEach var="uf" items="${ListarEstados}">
-
-						<option value="${uf.codigo}">${uf.UF}</option>
-
-
-					</c:forEach>
-				</select>
-
-			</div>
-			<%--Listar cidades --%>
-			<div class="form-group" id="cidade2"></div>
-
-
-			<div class="form-group">
-				<form:errors path="sugestaoDiaria.valores" cssStyle="color:red" />
-				<label for="Nome">Valores</label><br> <input type="text"
-					class="form-control" name="valores" size="10" minlength="6"
-					maxlength="15" required="true" placeholder="00,00"><br>
-			</div>
-
-			<button type="submit" class="btn btn-primary">Sugerir</button>
-		</form>
-
-	</div>
-
-	
+		</c:when>
+		<c:otherwise>
+		<jsp:forward page="../index.jsp" />
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>
