@@ -28,7 +28,7 @@ public class CargoController {
 		CargoDao dao = new CargoDao();
 		try {
 			dao.CadastrarCargo(cargo);
-			model.addAttribute("msgsucessoCargo", " Cargo inserido com sucesso ! ! !");
+			model.addAttribute("msgSucesso", " Cargo inserido com sucesso ! ! !");
 			return "sucesso/sucesso";
 		} catch (KeyDuplicateException e) {
 			model.addAttribute("msgErrorPkCargo", "Cargo ja existe");
@@ -58,7 +58,7 @@ public class CargoController {
 		}
 		CargoDao dao = new CargoDao();
 		dao.alterarCargo(cargo);
-		model.addAttribute("msgsucessoCargo", "Cargo alterado com sucesso ! ! !");
+		model.addAttribute("msgSucesso", "Cargo alterado com sucesso ! ! !");
 		return "sucesso/sucesso";
 	}
 }

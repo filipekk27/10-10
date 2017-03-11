@@ -36,7 +36,7 @@ public class UsuarioController {
 		UsuarioDao dao = new UsuarioDao();
 		try {
 			dao.cadastrarUsuario(user);
-			model.addAttribute("msgsucessoUser", "Usuario cadastado com sucesso!! ! ");
+			model.addAttribute("msgSucesso", "Usuario cadastado com sucesso!! ! ");
 			return "sucesso/sucesso";
 		} catch (KeyDuplicateException e) {
 			model.addAttribute("msgErrorPkUser", "Cpf ou Email ja existe ! ! !");
@@ -70,7 +70,7 @@ public class UsuarioController {
 		}
 		UsuarioDao dao = new UsuarioDao();
 		dao.AlterarUsuario(user);
-		model.addAttribute("msgSucesso", "Sucesso ! ! ");
+		model.addAttribute("msgSucesso", "Usuario alterado com sucesso ! ! ");
 		return "sucesso/sucesso";
 	}
 
@@ -82,7 +82,7 @@ public class UsuarioController {
 			session.setAttribute("usuarioLogado", login);
 			return "index";
 		}
-		model.addAttribute("falhaLogar", "Não foi encontrado um usuário com o login e senha informados.");
+		model.addAttribute("failLogon", "Usuario nao encontrado.");
 		return "login";
 	}
 

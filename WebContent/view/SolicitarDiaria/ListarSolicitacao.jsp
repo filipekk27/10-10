@@ -17,7 +17,7 @@
 
 			<c:import url="../topo.jsp" />
 			<div id="formulario">
-				<form action="listarCargo" class="form-inline">
+				<form action="#" class="form-inline">
 
 					<div class="form-group">
 						<label for="Nome"> # </label><br> <input type="text"
@@ -33,29 +33,34 @@
 				<tr style='background-color: #E6E6E6; font-weight: bold;'>
 
 					<td>Id</td>
+					<td>Justificativa</td>
 					<td>Origem</td>
 					<td>Destino</td>
-					<td>UG</td>
-					<td>Cargo</td>
-					<td>Valor</td>
-					<td>Ações</td>
-
+					<td>Partida</td>
+					<td>Volta</td>
+                    <td>Tipo diaria</td>
+                    <td>Valor diaria</td>
+                    <td>Ações</td>
+                    
 				</tr>
-				<c:forEach var="sd" items="${listarSD}">
+				<c:forEach var="sd" items="${listarSolicitacao}">
 					<tr>
-						<td>${sd.idSD}</td>
-						<td>${sd.cidade.nome}</td>
-						<td>${sd.destino}</td>
-						<td>${sd.ug.nome}</td>
-						<td>${sd.cargo.nome}</td>
-						<td>${sd.valores}</td>
-						<td><a href="exibirUsuario?idSugestao=${sd.idSD}">Alterar</a></td>
+						<td>${sd.codSD}</td>
+						<td>${sd.justificativa}</td>
+						<td>${sd.cidOrigem}</td>
+						<td>${sd.cidDestino}</td>
+						<td>${sd.dataIda}</td>
+						<td>${sd.dataVolta}</td>
+						<td>${sd.tipoDiaria}</td>
+						<td>${sd.valorDiaria}</td>
+		                <td><a href="#?idSolicitacao=${sd.codSD}">Alterar</a></td>
+
 					</tr>
 				</c:forEach>
 			</table>
 		</c:when>
 		<c:otherwise>
-			<jsp:forward page="../index.jsp" />
+		<jsp:forward page="../index.jsp" />
 		</c:otherwise>
 	</c:choose>
 </body>

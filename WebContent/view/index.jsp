@@ -19,38 +19,28 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="page-header">
-					<h1>
-						Monitoramento de Gastos<br> <small>Governo do Estado
-							de Pernambuco</small>
-					</h1>
+					
 				</div>
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="index">Home</a></li>
-					<li><a href="#">Serviços</a></li>
-					<li><a href="#">Contato</a></li>
-					<li><a href="FormLogin">Entrar</a></li>
-
-
-
-				</ul>
+				<c:import url="topo.jsp" />
 				<br> <br>
 				<div class="jumbotron well">
-                     <c:choose>
-                     <c:when test="${usuarioLogado.nome!=null}">
-					<h2>
-						<p>Bem vindo, ${usuarioLogado.nome}</p>
-					</h2>
-					</c:when>
-					<c:otherwise>
-					<h2>
-						<p>Bem vindo, visitante</p>
-					</h2>
-					</c:otherwise>
+					<c:choose>
+						<c:when test="${usuarioLogado.nome!=null}">
+							<h2>
+								<p>Bem vindo, ${usuarioLogado.nome}</p>
+							</h2>
+						</c:when>
+						<c:otherwise>
+							<h2>
+								<p>Bem vindo, visitante</p>
+							</h2>
+						</c:otherwise>
 					</c:choose>
-					 objetivo é acompanhar as despesas, mantendo uma
-						assídua orientação aos agentes públicos para o equilíbrio das
-						contas, a manutenção dos serviços e das políticas públicas,
-						ressaltando a importância de não elevar as despesas..</p>
+					objetivo é acompanhar as despesas, mantendo uma assídua orientação
+					aos agentes públicos para o equilíbrio das contas, a manutenção dos
+					serviços e das políticas públicas, ressaltando a importância de não
+					elevar as despesas..
+					</p>
 					<p></p>
 				</div>
 
@@ -60,39 +50,26 @@
 						<center>
 							<h2>Solicitação</h2>
 						</center>
-						<p>${usuarioLogado.endereco}   // </p>
-						<p>${usuarioLogado.nome} //</p>
-						<p>${usuarioLogado.cpf}//</p>
-						<p>${usuarioLogado.situacao}//</p>
-						<p>${usuarioLogado.nivel}//</p>
-						<p>${usuarioLogado.senha}//</p>
 						
+
 
 					</div>
 					<div class="col-md-4">
 						<center>
 							<h2>Consulta</h2>
 						</center>
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce
-							dapibus, tellus ac cursus commodo, tortor mauris condimentum
-							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-							malesuada magna mollis euismod. Donec sed odio dui.</p>
-
+						
 					</div>
 					<div class="col-md-4">
 						<center>
 							<h2>Análise</h2>
 						</center>
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce
-							dapibus, tellus ac cursus commodo, tortor mauris condimentum
-							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-							malesuada magna mollis euismod. Donec sed odio dui.</p>
-
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<c:import url="menu.jsp" />
+	
 </body>
 </html>

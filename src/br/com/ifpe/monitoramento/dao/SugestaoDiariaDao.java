@@ -81,4 +81,25 @@ public class SugestaoDiariaDao {
 		}
 	}
 
+	public List<SugestaoDiaria> listarValor(int origem , int destino) {
+		try {
+			List<SugestaoDiaria> listarValor = new ArrayList<SugestaoDiaria>();
+			String sql = "SELECT Valor FROM sugestaovalordiaria WHERE IdCidadeOrigem = ? AND IdCidadeDestino = ? ";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, origem);
+			stmt.setInt(2, destino);
+			SugestaoDiaria SugestaoDiaria;
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				SugestaoDiaria = new SugestaoDiaria();
+				SugestaoDiaria.setValores(rs.getString("Valor"));
+				listarValor.add(SugestaoDiaria);
+			}
+
+			return listarValor;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 }

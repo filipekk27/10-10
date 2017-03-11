@@ -18,9 +18,6 @@
 <br />
 <div id="msg_sucesso">
 <center><h2>
-${msgsucessoUG} <%-- Mensagens de sucesso Cadastrar / Remover / Alterar --%>
-${msgsucessoCargo} <%-- Mensagens de sucesso Cadastrar / Remover / Alterar --%>
-${msgsucessoUser} <%-- Mensagens de sucesso Cadastrar / Remover / Alterar --%>
 ${msgSucesso} <%-- global --%>
 </h2></center>
 </div>

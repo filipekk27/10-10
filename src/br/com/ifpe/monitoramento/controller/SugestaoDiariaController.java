@@ -83,7 +83,7 @@ public class SugestaoDiariaController {
 		}
 		SugestaoDiariaDao dao = new SugestaoDiariaDao();
 		dao.cadastrarSD(sd);
-		model.addAttribute("msgSucesso", "Sucesso ! ! ");
+		model.addAttribute("msgSucesso", "Sugestao cadastrada com sucesso ! ! ");
 		return "sucesso/sucesso";
 	}
 	

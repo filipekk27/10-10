@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,24 +12,8 @@
 <body>
 
 <div class="col-md-12">
-				<div class="page-header">
-					<h1>
-						Monitoramento de Gastos<br> <small>Governo do Estado
-							de Pernambuco</small>
-					</h1>
-				</div>
-				<ul class="nav nav-tabs">
-					<li><a href="index">Home</a></li>
-					<li><a href="#">Serviços</a></li>
-					<li><a href="#">Contato</a></li>
-					<li class="active">
-				    
-					<li class="active">
-					<a href="FormLogin">Entrar</a>
-				</li>
-					
-				
-				</ul>
+			
+			<c:import url="topo.jsp" />
 </div>
 
 <div id="formulario">				
@@ -36,20 +21,14 @@
 <h3>LOGIN:</h3>
 
 <div class="form-group">
-<input type="text" class="form-control" id="cpf" name="cpf" placeholder="Seu CPF">
+<input type="text" class="form-control" id="cpf" name="cpf" placeholder="Seu CPF" maxlength="11" minlength="11" required>
 </div>
-	<br><br>		
+	<br>		<br>
 <div class="form-group">
-<input type="password" class="form-control" id="senha" name="senha" placeholder="Sua Senha">
+<input type="password" class="form-control" id="senha" name="senha" placeholder="Sua Senha" maxlength="8" minlength="6" required>
 </div>
-	<br><br>
-<div class="checkbox">
-<label> <input type="checkbox"> Remember me
-</label>
-
-</div>
+		<br>		<br>
 <button type="submit" class="btn btn-default">Entrar</button>
-
 </form>
 </div>
 

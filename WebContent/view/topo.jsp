@@ -18,6 +18,9 @@
 <h1>
 Monitoramento de Gastos<br> <small>Governo do Estado de Pernambuco</small>
 </h1>
+<c:choose>
+<c:when test="${usuarioLogado.nivel=='ADM'}">
+
 <nav>
     <ul>
         <li><a href="index">Home</a></li>
@@ -48,13 +51,49 @@ Monitoramento de Gastos<br> <small>Governo do Estado de Pernambuco</small>
                 <li><a href="listarSugestao">Buscar</a></li>
             </ul>
         </li>
+         <li><a href="#">Solicitação de Diária</a>
+            <ul>
+                <li><a href="formSolicitarDiaria">Cadastrar</a></li>
+                <li><a href="listarSolicitacao">Buscar</a></li>
+            </ul>
+        </li>
        
     </ul>
     <form action="logout">
     <button type="submit" class="btn btn-default navbar-btn">Sair</button>
     </form>
 </nav>
-
+</c:when>
+<c:when test="${usuarioLogado.nivel=='USUARIO'}">
+<nav>
+    <ul>
+        <li><a href="index">Home</a></li>
+   
+         <li><a href="#">Solicitação de Diária</a>
+            <ul>
+                <li><a href="formSolicitarDiaria">Cadastrar</a></li>
+                <li><a href="acompanharSolicitacao">Acompanhar Solicitação</a></li>
+            </ul>
+        </li>
+       
+    </ul>
+    <form action="logout">
+    <button type="submit" class="btn btn-default navbar-btn">Sair</button>
+    </form>
+    </nav>
+</c:when>
+<c:otherwise>
+<nav>
+    <ul>
+        <li><a href="index">Home</a></li>
+        <li><a href="@">@</a></li>
+        <li><a href="@">@</a></li>
+        <li><a href="FormLogin">Entrar</a></li>
+       
+    </ul>
+    </nav>
+</c:otherwise>
+</c:choose>
 </div>
 		
 </body>

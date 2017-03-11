@@ -29,7 +29,7 @@ public class UnidadeGestoraController {
 		UnidadeGestoraDao dao = new UnidadeGestoraDao();
 		try {
 			dao.cadastrarUG(ug);
-			model.addAttribute("msgsucessoUG", "UG cadastrada com sucesso ! ! !");
+			model.addAttribute("msgSucesso", "UG cadastrada com sucesso ! ! !");
 			return "sucesso/sucesso";
 		} catch (ChaveduplicadaException e) {
 			model.addAttribute("msgErrorPkUG", "O codigo ja existe ! ");
@@ -45,13 +45,6 @@ public class UnidadeGestoraController {
 
 	}
 
-/*	@RequestMapping("RemoverUG")
-	public String removerUG(int id, Model model) {
-		UnidadeGestoraDao dao = new UnidadeGestoraDao();
-		dao.removerUG(id);
-		model.addAttribute("msgsucessoUG", "UG removida com sucesso ! ! !");
-		return "sucesso/sucesso";
-	}*/
 
 	@RequestMapping("/ExibirAlterarUG")
 	public String exibirAlterarUG(int codigo, Model model) {
@@ -69,7 +62,7 @@ public class UnidadeGestoraController {
 
 		UnidadeGestoraDao dao = new UnidadeGestoraDao();
 		dao.alterarUG(ug);
-		model.addAttribute("msgsucessoUG", " UG alterada com sucesso ! ! !");
+		model.addAttribute("msgSucesso", " UG alterada com sucesso ! ! !");
 		return "sucesso/sucesso";
 	}
 

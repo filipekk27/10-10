@@ -65,7 +65,7 @@ public class CargoDao {
 				stmt.setString(2, id);
 
 			} else {
-				sql = "SELECT * FROM cargo ORDER BY id_cargo desc";
+				sql = "SELECT * FROM cargo ORDER BY nome_cargo asc";
 				stmt = this.connection.prepareStatement(sql);
 			}
 			ResultSet rs = stmt.executeQuery();
@@ -88,15 +88,6 @@ public class CargoDao {
 			throw new RuntimeException(e);
 		}
 	}
-
-	/*
-	 * public void removerCargo(int id) { try { String sql =
-	 * "DELETE FROM cargo WHERE id_cargo = ?"; PreparedStatement stmt =
-	 * connection.prepareStatement(sql); stmt.setInt(1, id); stmt.execute();
-	 * connection.close(); stmt.close();
-	 * 
-	 * } catch (SQLException e) { throw new RuntimeException(e); } }
-	 */
 
 	public Cargo exibirCargo(Integer id) {
 		try {

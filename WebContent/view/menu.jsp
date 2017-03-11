@@ -17,7 +17,8 @@
 <a href="formCadastro">Cadastrar Usuario</a> |
 <a href="listarUsuario">Lista / Consultar Usuario</a> <br>
 <a href="formCadastroSD">Cadastrar SD</a> |
-<a href="listarSugestao">Listar / Consultar SD</a>
+<a href="listarSugestao">Listar / Consultar SD</a><br>
+<a href="formSolicitarDiaria">Cadastrar SD</a> |
 </div>
 </body>
 </html>
