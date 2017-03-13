@@ -54,6 +54,7 @@ public class SugestaoDiariaController {
 		response.setStatus(200);
 		return st.toString();
 	}
+
 	@RequestMapping("/exibirCidade2") // Cidade destino ajax
 	public @ResponseBody String exibirCidade2(@RequestParam Integer cod_cidade, HttpServletResponse response) {
 
@@ -75,10 +76,10 @@ public class SugestaoDiariaController {
 		response.setStatus(200);
 		return st.toString();
 	}
-	
+
 	@RequestMapping("/cadastrarSugestao")
-	public String cadastrarSugestão(@Valid SugestaoDiaria sd , BindingResult rs, Model model ){
-		if(rs.hasFieldErrors()){
+	public String cadastrarSugestão(@Valid SugestaoDiaria sd, BindingResult rs, Model model) {
+		if (rs.hasFieldErrors()) {
 			return "forward:formCadastroSD";
 		}
 		SugestaoDiariaDao dao = new SugestaoDiariaDao();
@@ -86,12 +87,30 @@ public class SugestaoDiariaController {
 		model.addAttribute("msgSucesso", "Sugestao cadastrada com sucesso ! ! ");
 		return "sucesso/sucesso";
 	}
-	
+
 	@RequestMapping("/listarSugestao")
-	public String listarSugestao(Model model){
+	public String listarSugestao(Model model, String Valor) {
 		SugestaoDiariaDao dao = new SugestaoDiariaDao();
-		model.addAttribute("listarSD", dao.listar());
+		model.addAttribute("listarSD", dao.listar(Valor));
 		return "sugestao/ListarSD";
 	}
 
+	@RequestMapping("/exibirAlterarSugestao")
+	public String exibirAlterarSugestao(Model model, int IdSugestao, String id, String nome, String codigo) {
+		SugestaoDiariaDao dao = new SugestaoDiariaDao();
+		model.addAttribute("exibirSugestao", dao.exibirSugestao(IdSugestao));
+		CargoDao dao2 = new CargoDao();
+		model.addAttribute("listarCargoUsuario", dao2.listarCargo(nome, id));
+		UnidadeGestoraDao dao3 = new UnidadeGestoraDao();
+		model.addAttribute("listarUGestora", dao3.listarUG(nome, codigo));
+		return "sugestao/exibirAlterarSugestao";
+	}
+
+	@RequestMapping("/alterarSugestao")
+	public String alterarSugestao(SugestaoDiaria SugestaoD, Model model) {
+		SugestaoDiariaDao dao = new SugestaoDiariaDao();
+		dao.alterarSugestao(SugestaoD);
+		model.addAttribute("msgSucesso", "Sugestao alterada com sucesso! !");
+		return "sucesso/sucesso";
+	}
 }

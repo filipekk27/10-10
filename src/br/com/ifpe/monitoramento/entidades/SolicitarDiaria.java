@@ -12,6 +12,11 @@ public class SolicitarDiaria {
 	private TipoDiaria tipoDiaria;
 	private double ValorDiaria;
 	private int codSD;
+	private int IdUsuario;
+	private Deferimento def;
+	private Usuario idGestor;
+	private String justificativaGestor;
+	private UnidadeGestora unidadeGestora;
 
 	public TipoDiaria getTipoDiaria() {
 		return tipoDiaria;
@@ -75,6 +80,46 @@ public class SolicitarDiaria {
 
 	public void setCodSD(int codSD) {
 		this.codSD = codSD;
+	}
+
+	public int getIdUsuario() {
+		return IdUsuario;
+	}
+
+	public void setIdUsuario(int idUsuario) {
+		IdUsuario = idUsuario;
+	}
+
+	public Deferimento getDef() {
+		return def;
+	}
+
+	public void setDef(Deferimento def) {
+		this.def = def;
+	}
+
+	public Usuario getIdGestor() {
+		return idGestor;
+	}
+
+	public void setIdGestor(Usuario idGestor) {
+		this.idGestor = idGestor;
+	}
+
+	public String getJustificativaGestor() {
+		return justificativaGestor;
+	}
+
+	public void setJustificativaGestor(String justificativaGestor) {
+		this.justificativaGestor = justificativaGestor;
+	}
+
+	public UnidadeGestora getUnidadeGestora() {
+		return unidadeGestora;
+	}
+
+	public void setUnidadeGestora(UnidadeGestora unidadeGestora) {
+		this.unidadeGestora = unidadeGestora;
 	}
 
 }

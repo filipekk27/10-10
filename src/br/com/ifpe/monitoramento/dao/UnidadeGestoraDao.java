@@ -52,22 +52,22 @@ public class UnidadeGestoraDao {
 
 			if ((nome != null && !nome.equals("")) && (codigo == null || codigo.equals(""))) {
 
-				sql = "SELECT * FROM unidade_gestora WHERE nome_unidade = ?";
+				sql = "SELECT * FROM unidade_gestora WHERE nome_unidade LIKE ?";
 				stmt = this.connection.prepareStatement(sql);
-				stmt.setString(1, nome);
+				stmt.setString(1, "%"+nome+"%");
 
 			} else if ((nome == null || nome.equals("")) && (codigo != null && !codigo.equals(""))) {
 
-				sql = "SELECT * FROM unidade_gestora WHERE codigo_unidade=?";
+				sql = "SELECT * FROM unidade_gestora WHERE codigo_unidade LIKE ?";
 				stmt = this.connection.prepareStatement(sql);
-				stmt.setString(1, codigo);
+				stmt.setString(1, "%"+codigo+"%");
 
 			} else if ((nome != null && !nome.equals("")) && (codigo != null && !codigo.equals(""))) {
 
-				sql = "SELECT * FROM unidade_gestora WHERE nome_unidade = ? AND codigo_unidade = ?";
+				sql = "SELECT * FROM unidade_gestora WHERE nome_unidade LIKE ? AND codigo_unidade LIKE ?";
 				stmt = this.connection.prepareStatement(sql);
-				stmt.setString(1, nome);
-				stmt.setString(2, codigo);
+				stmt.setString(1, "%"+nome+"%");
+				stmt.setString(2, "%"+codigo+"%");
 
 			} else {
 

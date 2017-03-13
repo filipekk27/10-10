@@ -49,20 +49,20 @@ public class CargoDao {
 			List<Cargo> listarCargo = new ArrayList<Cargo>();
 
 			if (nome != null && !nome.equals("") && (id == null || id.equals(""))) {
-				sql = "SELECT * FROM cargo WHERE nome_cargo = ?";
+				sql = "SELECT * FROM cargo WHERE nome_cargo LIKE ?";
 				stmt = this.connection.prepareStatement(sql);
-				stmt.setString(1, nome);
+				stmt.setString(1, "%"+nome+"%");
 
 			} else if (id != null && !id.equals("") && (nome == null || nome.equals(""))) {
-				sql = "SELECT * FROM cargo WHERE id_cargo = ?";
+				sql = "SELECT * FROM cargo WHERE id_cargo LIKE = ?";
 				stmt = this.connection.prepareStatement(sql);
-				stmt.setString(1, id);
+				stmt.setString(1, "%"+id+"%");
 
 			} else if (nome != null && !nome.equals("") && (id != null && !id.equals(""))) {
-				sql = "SELECT * FROM cargo WHERE nome_cargo = ? AND id_cargo = ?";
+				sql = "SELECT * FROM cargo WHERE nome_cargo LIKE ? AND id_cargo LIKE ?";
 				stmt = this.connection.prepareStatement(sql);
-				stmt.setString(1, nome);
-				stmt.setString(2, id);
+				stmt.setString(1, "%"+nome+"%");
+				stmt.setString(2, "%"+id+"%");
 
 			} else {
 				sql = "SELECT * FROM cargo ORDER BY nome_cargo asc";

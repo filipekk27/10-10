@@ -55,15 +55,33 @@ public class UsuarioDao {
 		}
 	}
 
-	public List<Usuario> listarUsuario() {
+	public List<Usuario> listarUsuario(String nomeUser, String cpfUser) {
 		try {
 			List<Usuario> listar = new ArrayList<Usuario>();
 			Usuario user = null;
 			String sql;
 			PreparedStatement stmt = null;
 
-			sql = "SELECT * FROM usuario";
-			stmt = this.connection.prepareStatement(sql);
+			if (nomeUser != null && !nomeUser.equals("") && (cpfUser == null || cpfUser.equals(""))) {
+				sql = "SELECT * FROM usuario WHERE nome_usuario LIKE ?";
+				stmt = this.connection.prepareStatement(sql);
+				stmt.setString(1, "%" + nomeUser + "%");
+
+			} else if (cpfUser != null && !cpfUser.equals("") && (nomeUser == null || nomeUser.equals(""))) {
+				sql = "SELECT * FROM usuario WHERE cpf_usuario LIKE ?";
+				stmt = this.connection.prepareStatement(sql);
+				stmt.setString(1, "%" + cpfUser + "%");
+
+			} else if (nomeUser != null && !nomeUser.equals("") && (cpfUser != null && !cpfUser.equals(""))) {
+				sql = "SELECT * FROM usuario WHERE nome_usuario LIKE ? AND cpf_usuario LIKE ?";
+				stmt = this.connection.prepareStatement(sql);
+				stmt.setString(1, "%" + nomeUser + "%");
+				stmt.setString(2, "%" + cpfUser + "%");
+
+			} else {
+				sql = "SELECT * FROM usuario";
+				stmt = this.connection.prepareStatement(sql);
+			}
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				user = new Usuario();

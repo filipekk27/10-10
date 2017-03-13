@@ -2,6 +2,7 @@ package br.com.ifpe.monitoramento.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
@@ -13,18 +14,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import br.com.ifpe.monitoramento.dao.CidadeDao;
 import br.com.ifpe.monitoramento.dao.SolicitarDiariaDao;
 import br.com.ifpe.monitoramento.dao.SugestaoDiariaDao;
+import br.com.ifpe.monitoramento.dao.UnidadeGestoraDao;
 import br.com.ifpe.monitoramento.entidades.Cidade;
 import br.com.ifpe.monitoramento.entidades.SolicitarDiaria;
 import br.com.ifpe.monitoramento.entidades.SugestaoDiaria;
+import br.com.ifpe.monitoramento.entidades.Usuario;
 
 @Controller
 public class SolicitarDiariaController {
 
 	@RequestMapping("/formSolicitarDiaria")
-	public String formSolicitarDiaria(Model model) {
+	public String formSolicitarDiaria(Model model , String nome , String codigo) {
 		CidadeDao dao = new CidadeDao();
 		model.addAttribute("ListarEstados", dao.listar());
-
+		UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
+        model.addAttribute("buscarUnidadeGestora", dao2.listarUG(nome, codigo));
 		return "SolicitarDiaria/FormCadastroSolicitarDiaria";
 	}
 
@@ -91,8 +95,7 @@ public class SolicitarDiariaController {
 				st.append("<input type='text' name='ValorDiaria' readonly id='ValorDiaria' readonly='true' value="
 						+ valor.getValores() + ">");
 			} else {
-				st.append(
-						"<input type='text' readonly readonly='true' value='Nenhuma sugestao para o local informado'>");
+				st.append("<input type='text' readonly value='Nenhuma sugestao para o local informado'>");
 			}
 		}
 
@@ -108,19 +111,44 @@ public class SolicitarDiariaController {
 		return "sucesso/sucesso";
 	}
 
-	@RequestMapping("/listarSolicitacao")
-	public String listarSolicitacao(Model model) {
+	@RequestMapping("/listarSolicitacao") // listar Solicitacao p/ ADM
+	public String listarSolicitacao(Model model, String TDiaria) {
 		SolicitarDiariaDao dao = new SolicitarDiariaDao();
-		model.addAttribute("listarSolicitacao", dao.listarSolicitacao());
-		model.addAttribute("acompanharSolicitacao", dao.listarSolicitacao());
+		model.addAttribute("listarSolicitacao", dao.listarSolicitacaoADM(TDiaria));
 		return "SolicitarDiaria/ListarSolicitacao";
 	}
 
-	@RequestMapping("/acompanharSolicitacao")
-	public String acompanharSolicitacao(Model model) {
+	@RequestMapping("/acompanharSolicitacao") // listar Solicitacao p/ USUARIO
+	public String acompanharSolicitacao(Model model, HttpServletRequest request) {
+		Usuario us = (Usuario) request.getSession().getAttribute("usuarioLogado");
+		int IdUsuario = us.getIdUser();
 		SolicitarDiariaDao dao = new SolicitarDiariaDao();
-		model.addAttribute("acompanharSolicitacao", dao.listarAcompanhamento());
+		model.addAttribute("acompanharSolicitacao", dao.listarSolicitacaoUsuario(IdUsuario));
 		return "SolicitarDiaria/acompanharDiaria";
 	}
 
+	@RequestMapping("/acompanharSolicitacaoGestor") // listar Solicitacao p/
+													// Gestor UG
+	public String acompanharSolicitacaoGestor(Model model, HttpServletRequest request) {
+		Usuario us = (Usuario) request.getSession().getAttribute("usuarioLogado");
+		int UnidadeGestora = us.getuGestora().getCodigo();
+		SolicitarDiariaDao dao = new SolicitarDiariaDao();
+		model.addAttribute("ListarSolicitacaoGestor", dao.listarSolicitacaoUsuarioUG(UnidadeGestora));
+		return "SolicitarDiaria/acompanharDiaria";
+	}
+
+	@RequestMapping("/ExibiralterarSolicitacao")
+	public String ExibiralterarSolicitacao(int idSolicitacao, Model model) {
+		SolicitarDiariaDao dao = new SolicitarDiariaDao();
+		model.addAttribute("exibirSolicitacao", dao.exibirSolicitacao(idSolicitacao));
+		return "SolicitarDiaria/exibirSolicitacao";
+	}
+
+	@RequestMapping("/alterarSolicitacao")
+	public String alterarSolicitacao(SolicitarDiaria solicitarDiaria, Model model) {
+		SolicitarDiariaDao dao = new SolicitarDiariaDao();
+		dao.alterarSolicitacao(solicitarDiaria);
+		model.addAttribute("msgSucesso", "Alterado com sucesso ! !");
+		return "sucesso/sucesso";
+	}
 }

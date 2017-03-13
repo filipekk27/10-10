@@ -113,7 +113,7 @@
 							</c:choose>
 							<label for="Status">Usuario comum</label>
 							<c:choose>
-								<c:when test="${exibirUsuario.situacao=='INATIVO'}">
+								<c:when test="${exibirUsuario.nivel=='USUARIO'}">
 									<input type="radio" class="form-control" name="Nivel"
 										value="USUARIO" checked="true">
 									<br>
@@ -121,6 +121,18 @@
 								<c:otherwise>
 									<input type="radio" class="form-control" name="Nivel"
 										value="USUARIO">
+								</c:otherwise>
+							</c:choose>
+							<label for="Status">Unidade Gestora</label>
+							<c:choose>
+								<c:when test="${exibirUsuario.nivel=='GESTORUG'}">
+									<input type="radio" class="form-control" name="Nivel"
+										value="GESTORUG" checked="true">
+									<br>
+								</c:when>
+								<c:otherwise>
+									<input type="radio" class="form-control" name="Nivel"
+										value="GESTORUG">
 								</c:otherwise>
 							</c:choose>
 						</div>

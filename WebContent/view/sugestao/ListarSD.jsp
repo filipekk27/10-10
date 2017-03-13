@@ -16,19 +16,19 @@
 		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
 			<c:import url="../topo.jsp" />
-			<div id="formulario">
-				<form action="listarCargo" class="form-inline">
-
+		<div id="formulario">
+				<form action="listarSugestao" class="form-inline">
+					<h3>listar Sugestao</h3>
 					<div class="form-group">
-						<label for="Nome"> # </label><br> <input type="text"
-							class="form-control" name="id" placeholder="#"><br>
+						<label for="Nome">Valor diaria</label><br> <input type="text"
+							class="form-control" name="Valordiaria" placeholder="00.00" maxlength="15"><br>
 					</div>
-					<br> <br>
+					<br>
 					<button type="submit" class="btn btn-primary">Consultar</button>
 				</form>
 				<br>
 			</div>
-
+			<br>
 			<table id="tabela" class="table table-striped">
 				<tr style='background-color: #E6E6E6; font-weight: bold;'>
 
@@ -49,7 +49,7 @@
 						<td>${sd.ug.nome}</td>
 						<td>${sd.cargo.nome}</td>
 						<td>${sd.valores}</td>
-						<td><a href="exibirUsuario?idSugestao=${sd.idSD}">Alterar</a></td>
+						<td><a href="exibirAlterarSugestao?IdSugestao=${sd.idSD}">Alterar</a></td>
 					</tr>
 				</c:forEach>
 			</table>

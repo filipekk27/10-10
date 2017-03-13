@@ -12,6 +12,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro usuario</title>
 </head>
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script>
+	$(document).ready(function() { // jQuery  p/ verificar senhas
+
+		$("#confirmaSenha").focusout(function() {
+			var s = $('#senha').val();
+			var cs = $('#confirmaSenha').val();
+			if (s != cs) {
+				$('#result').text("as senhas nao sao iguais")
+			}
+			else{
+				$('#result').remove();
+			}
+
+		});
+	});
+</script>
 <body>
 	<c:choose>
 		<c:when test="${usuarioLogado.nivel=='ADM'}">
@@ -24,57 +41,75 @@
 				<form action="cadastrarUsuario" method="post" class="form-inline">
 
 					<div class="form-group">
-						<form:errors path="usuario.cpf" cssStyle="color:red" />
+
 
 						<div id="constrain_error">${msgErrorPkUser}</div>
-						<label for="Cpf">CPF</label><br> <input type="text"
+						<label for="Cpf">CPF*</label><br> <input type="text"
 							class="form-control" name="cpf" placeholder="Apenas Numeros"
-							size="11" Maxlength="11" Minlength="11"><br>
+							size="11" Maxlength="11" Minlength="11" required><br>
+						<form:errors path="usuario.cpf" cssStyle="color:red" />
+						<br>
 					</div>
 
 					<div class="form-group">
+
+						<br /> <label for="Nome">Nome*</label><br> <input
+							type="text" class="form-control" name="nome"
+							placeholder="Apenas Letras" size="35" Maxlength="60"
+							Minlength="8" required><br>
 						<form:errors path="usuario.nome" cssStyle="color:red" />
-						<br /> <label for="Nome">Nome</label><br> <input type="text"
-							class="form-control" name="nome" placeholder="Apenas Letras"
-							size="35" Maxlength="60" Minlength="8"><br>
+						<br>
 					</div>
 					<br>
 					<div class="form-group">
-						<form:errors path="usuario.email" cssStyle="color:red" />
+
 						<br />
 						<div id="constrain_error">${msgErrorPkUser}</div>
-						<label for="Email">E-mail</label><br> <input type="text"
+						<label for="Email">E-mail*</label><br> <input type="text"
 							class="form-control" name="email"
 							placeholder="exemplo@exemplo.com" size="30" Maxlength="30"
-							Minlength="13"><br>
+							Minlength="13" required><br>
+						<form:errors path="usuario.email" cssStyle="color:red" />
+						<br>
 					</div>
 
 					<div class="form-group">
-						<form:errors path="usuario.dataNascimento" cssStyle="color:red" />
-						<br /> <label for="dataNascimento">Data de Nascimento</label><br>
+
+						<br /> <label for="dataNascimento">Data de Nascimento*</label><br>
 						<input type="text" class="form-control" name="dataNascimento"
-							placeholder="00/00/0000" size="8" Maxlength="10" Minlength="10"><br>
+							placeholder="00/00/0000" size="8" Maxlength="10" Minlength="10"
+							required><br>
+						<form:errors path="usuario.dataNascimento" cssStyle="color:red" />
+						<br>
 					</div>
 
 					<br>
 					<div class="form-group">
-						<form:errors path="usuario.endereco" cssStyle="color:red" />
+
 						<br /> <label for="Endereco">Endereço</label><br> <input
 							type="text" class="form-control" name="endereco"
 							placeholder="exemplo exemplo exemplo" size="54" Maxlength="60"
-							Minlength="10"><br>
+							Minlength="10"><br> <br>
 					</div>
 					<br>
 					<div class="form-group">
+
+						<br /> <label for="Senha">Senha*:</label><br>
+						<p id="result" cssStyle="color:red" ></p>
+						<input type="password" class="form-control" name="senha"
+							id="senha" placeholder="senha" Maxlength="15" Minlength="6"
+							required><br>
 						<form:errors path="usuario.senha" cssStyle="color:red" />
-						<br /> <label for="Senha">Senha</label><br> <input
-							type="password" class="form-control" name="senha"
-							placeholder="senha" Maxlength="15" Minlength="6"><br>
+						<br> <br /> <label for="Senha">Confirmar Senha*:</label><br>
+						<input type="password" class="form-control" id="confirmaSenha"
+							placeholder="senha" Maxlength="15" Minlength="6" required><br>
+						<form:errors path="usuario.senha" cssStyle="color:red" />
+						<br>
 					</div>
 					<br>
 					<div class="form-group">
-						<form:errors path="usuario.cargo" cssStyle="color:red" />
-						<br /> <label for="Cargo">Cargo</label><br> <select
+
+						<br /> <label for="Cargo">Cargo*</label><br> <select
 							name="cargo" required="true">
 							<option value="">Selecione o cargo</option>
 							<c:forEach items="${listarCargoUsuario}" var="cargo">
@@ -83,11 +118,12 @@
 								</c:if>
 							</c:forEach>
 						</select>
+						<form:errors path="usuario.cargo" cssStyle="color:red" />
 					</div>
 					<br>
 					<div class="form-group">
-						<form:errors path="usuario.uGestora" cssStyle="color:red" />
-						<br /> <label for="UG">Unidade Gestora</label><br> <select
+
+						<br /> <label for="UG">Unidade Gestora*</label><br> <select
 							name="uGestora" required="true">
 							<option value="">Selecione a UG</option>
 							<c:forEach items="${listarUGestora}" var="ug">
@@ -96,23 +132,33 @@
 								</c:if>
 							</c:forEach>
 						</select>
+						<form:errors path="usuario.uGestora" cssStyle="color:red" />
 					</div>
 					<br>
+					<br>
 					<div class="form-group">
+						<label for="Status">Situação de Usuario*:</label><br> <input
+							type="radio" class="form-control" name="Situacao" value="ATIVO"
+							required>
 						<form:errors path="usuario.situacao" cssStyle="color:red" />
-						<label for="Status">Ativo</label> <input type="radio"
-							class="form-control" name="Situacao" value="ATIVO"><br>
 
-						<label for="Status">Inativo</label> <input type="radio"
-							class="form-control" name="Situacao" value="INATIVO"><br>
+						<label for="Status">Ativo</label> <input type="radio"
+							class="form-control" name="Situacao" value="INATIVO" required>
+						<label for="Status">Inativo</label>
 					</div>
 					<br>
 					<div class="form-group">
-						<form:errors path="usuario.nivel" cssStyle="color:red" />
-						<label for="Status">Administrador</label> <input type="radio"
-							class="form-control" name="Nivel" value="ADM"><br> <label
-							for="Status">Usuario comum</label> <input type="radio"
-							class="form-control" name="Nivel" value="USUARIO"><br>
+
+
+						<label for="Status">Tipo de Usuario*:</label><br> <input
+							type="radio" class="form-control" name="Nivel" value="ADM"
+							required> <label for="Status">Administrador</label> <input
+							type="radio" class="form-control" name="Nivel" value="USUARIO"
+							required> <label for="Status">Usuario comum*</label> <br>
+
+						<input type="radio" class="form-control" name="Nivel"
+							value="GESTORUG" required> <label for="Status">Gestor
+							UG*</label> <br>
 					</div>
 					<br> <br>
 					<button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -120,7 +166,7 @@
 			</div>
 		</c:when>
 		<c:otherwise>
-		<jsp:forward page="../index.jsp" />
+			<jsp:forward page="../index.jsp" />
 		</c:otherwise>
 	</c:choose>
 </body>

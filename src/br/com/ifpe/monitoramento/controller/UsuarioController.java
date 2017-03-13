@@ -46,9 +46,9 @@ public class UsuarioController {
 	}
 
 	@RequestMapping("/listarUsuario")
-	public String exibirIncluirCargo(Usuario user, Model model) {
+	public String exibirIncluirCargo(Usuario user, Model model, String nomeUser,String cpfUser) {
 		UsuarioDao dao = new UsuarioDao();
-		model.addAttribute("ListarUsuario", dao.listarUsuario());
+		model.addAttribute("ListarUsuario", dao.listarUsuario(nomeUser,cpfUser));
 		return "usuario/ListarUsuario";
 	}
 

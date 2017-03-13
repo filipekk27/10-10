@@ -20,8 +20,8 @@
 				<form action="#" class="form-inline">
 
 					<div class="form-group">
-						<label for="Nome"> # </label><br> <input type="text"
-							class="form-control" name="id" placeholder="#"><br>
+						<label for="Nome"> TipoDiaria </label><br> <input type="text"
+							class="form-control" name="TipoDiaria" placeholder="P ou I" maxlength="1"><br>
 					</div>
 					<br> <br>
 					<button type="submit" class="btn btn-primary">Consultar</button>
@@ -40,6 +40,10 @@
 					<td>Volta</td>
                     <td>Tipo diaria</td>
                     <td>Valor diaria</td>
+                    <td>IdUsuario</td>
+                    <td>IdGestor</td>
+                    <td>UnidadeGestora</td>
+                    <td>Status</td>
                     <td>Ações</td>
                     
 				</tr>
@@ -53,6 +57,10 @@
 						<td>${sd.dataVolta}</td>
 						<td>${sd.tipoDiaria}</td>
 						<td>${sd.valorDiaria}</td>
+						<td>${sd.idUsuario}</td>
+						<td>${sd.idGestor.nome}</td>
+						<td>${sd.unidadeGestora.nome}</td>
+						<td>${sd.def}</td>
 		                <td><a href="#?idSolicitacao=${sd.codSD}">Alterar</a></td>
 
 					</tr>

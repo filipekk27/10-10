@@ -16,7 +16,7 @@ public class Cargo {
 
 	@NotBlank(message = "O campo nao pode ser vazio")
 	@Size(min = 3, max = 60, message = "o nome deve ter de : {min} a  {max}")
-	@Pattern(regexp = "[a-zA-Z ]*", message = "Nome tem apenas letras sem acento ou caracteres !")
+	@Pattern(regexp = "^([A-Z,a-zã,á,à,â,ê,í,ú,õ,é,ü])*", message = "Nome invalido")
 	private String nome;
 
 	private Integer id;

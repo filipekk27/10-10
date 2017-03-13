@@ -19,13 +19,18 @@
 			<c:import url="../topo.jsp" />
 
 			<div id="formulario">
-				<form action="listarCargo" class="form-inline">
+				<form action="listarUsuario" class="form-inline">
 					<h3>Consultar Usuario</h3>
 					<div class="form-group">
-						<label for="Nome">#</label><br> <input type="text"
-							class="form-control" name="nome" placeholder="#"><br>
+						<label for="Nome">Nome Usuario</label><br> <input type="text"
+							class="form-control" name="nomeUser" placeholder="Nome Usuario"><br>
 					</div>
-					<br> <br>
+					<br>
+					<div class="form-group">
+						<label for="Nome">CPF Usuario</label><br> <input type="text"
+							class="form-control" name="cpfUser" placeholder="CPF Usuario"><br>
+					</div>
+					<br>
 					<button type="submit" class="btn btn-primary">Consultar</button>
 				</form>
 				<br>

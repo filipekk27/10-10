@@ -41,12 +41,14 @@
 </script>
 <script>
 	$(document).ready(function() {
-		
+
 		$("#gerarValor").click(function() {
 			var origem = $('#CidOrigem').val();
 			var destino = $('#CidDestino').val();
-			$.get("exibirValor", {'origem' : origem ,'destino' : destino}, 
-			function(dados) {
+			$.get("exibirValor", {
+				'origem' : origem,
+				'destino' : destino
+			}, function(dados) {
 				$('#valor').html(dados);
 			});
 		});
@@ -57,7 +59,8 @@
 	<div id="formulario">
 		<form action="cadastarSolicitacao" method="post">
 			<%--Listar cidades --%>
-
+			<input type="hidden" name="IdUsuario" value="${usuarioLogado.idUser}">
+			<input type="hidden" name="unidadeGestora" value="${usuarioLogado.uGestora}">
 			<div class="form-group">
 				<label for="DataIda">Data Partida</label><br> <input
 					type="text" class="form-control" name="DataIda"> <label
@@ -86,9 +89,7 @@
 					</c:forEach>
 				</select>
 			</div>
-			<div class="form-group" id="cidade">
-				
-			</div>
+			<div class="form-group" id="cidade"></div>
 			<div class="form-group">
 				<%--Lista os estados --%>
 				<label>Destino</label> <br> <select id="estado2"
@@ -101,7 +102,7 @@
 					</c:forEach>
 				</select>
 				<div class="form-group" id="cidade2"></div>
-				
+
 				<button type="button" id="gerarValor">Consultar Diaria</button>
 			</div>
 			<div class="form-group" id="valor"></div>

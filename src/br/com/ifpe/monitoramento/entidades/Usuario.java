@@ -18,19 +18,19 @@ public class Usuario {
 
 	private Integer idUser;
 
-	@NotBlank(message = "O campo nao pode ser vazio")
+	
 	@Pattern(regexp = "[0-9]{11}", message = "Cpf invalido")
 	private String cpf;
 
-	@NotBlank(message = "O campo nao pode ser vazio")
-	@Pattern(regexp = "[a-zA-Z ]*", message = "Nome tem apenas letras sem acento ou caracteres !")
+	
+	//@Pattern(regexp = "/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/*", message = " Nome invalido")
 	private String nome;
 
 	@NotNull
 	@Pattern(regexp = "^[\\w\\-]+(\\.[\\w\\-]+)*@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$", message = "E-mail invalido.")
 	private String email;
 
-	@NotBlank(message = "O campo nao pode ser vazio")
+
 	@Pattern(regexp = "[a-zA-Z ,]*", message = " Endereco tem apenas letras sem acento caracteres !")
 	private String endereco;
 
@@ -39,8 +39,8 @@ public class Usuario {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataNascimento;
 
-	@NotBlank(message = "O campo nao pode ser vazio")
-	@Pattern(regexp = "[a-zA-Z_0-9]*", message = "Senha tem apenas letras e numeros")
+	
+	//@Pattern(regexp = "[a-zA-Z_0-9]*", message = "A Senha teve ter apenas letras e numeros")
 	private String senha;
 
 	private Date dataCadastro;
