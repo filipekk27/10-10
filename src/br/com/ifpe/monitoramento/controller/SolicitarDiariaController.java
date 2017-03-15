@@ -145,9 +145,9 @@ public class SolicitarDiariaController {
 	}
 
 	@RequestMapping("/alterarSolicitacao")
-	public String alterarSolicitacao(SolicitarDiaria solicitarDiaria, Model model) {
+	public String alterarSolicitacao(int codSD, int idGestor ,String justificativaGestor ,String def , Model model) {
 		SolicitarDiariaDao dao = new SolicitarDiariaDao();
-		dao.alterarSolicitacao(solicitarDiaria);
+		dao.alterarSolicitacao(codSD,idGestor,justificativaGestor,def);
 		model.addAttribute("msgSucesso", "Alterado com sucesso ! !");
 		return "sucesso/sucesso";
 	}

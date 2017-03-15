@@ -60,7 +60,7 @@
 		<form action="cadastarSolicitacao" method="post">
 			<%--Listar cidades --%>
 			<input type="hidden" name="IdUsuario" value="${usuarioLogado.idUser}">
-			<input type="hidden" name="unidadeGestora" value="${usuarioLogado.uGestora}">
+			<input type="hidden" name="unidadeGestora" value="${usuarioLogado.uGestora.codigo}">
 			<div class="form-group">
 				<label for="DataIda">Data Partida</label><br> <input
 					type="text" class="form-control" name="DataIda"> <label

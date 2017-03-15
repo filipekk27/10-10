@@ -222,15 +222,15 @@ public class SolicitarDiariaDao {
 		}
 	}
 
-	public void alterarSolicitacao(SolicitarDiaria solicitarDiaria) {
+	public void alterarSolicitacao(int codSD, int idGestor ,String justificativaGestor ,String def) {
 		try {
 
 			String sql = "UPDATE solicitardiaria SET Deferimento = ? , IdUsuarioGestor = ? , JustificativaADM = ? WHERE CodSD = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setString(1, solicitarDiaria.getDef().name());
-			stmt.setInt(2, solicitarDiaria.getIdGestor().getIdUser());
-			stmt.setString(3, solicitarDiaria.getJustificativaGestor());
-			stmt.setInt(4, solicitarDiaria.getCodSD());
+			stmt.setString(1, def);
+			stmt.setInt(2, idGestor);
+			stmt.setString(3, justificativaGestor);
+			stmt.setInt(4, codSD);
 
 			stmt.execute();
 			connection.close();

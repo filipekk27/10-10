@@ -17,9 +17,9 @@
 			<br>			<br>
 				<h3>Alterar Solicitacao</h3>
 				<div id="formulario">
-					<form class="form-inline" action="alterarSolicitacao" method="post">
+					<form class="form-inline" action="alterarSolicitacao" method="get">
 
-						<input type="hidden" class="form-control" name="CodSD"
+						<input type="hidden" class="form-control" name="codSD"
 							value="${exibirSolicitacao.codSD}">
 						<%-- id solicitacão --%>
 
@@ -29,16 +29,16 @@
 
 						<div class="form-group">
 
-							<label for="Cargo">Justificativa</label><br> 
-							<textarea rows="3" cols="5" name="justificativaGestor"></textarea>
+							<label for="JustificativaGestor">Justificativa</label><br> 
+							<textarea name="justificativaGestor"></textarea>
 								
 						</div>
 						<br>
 						<div class="form-group">
 						<label for="Deferimento">Aceitar</label>
-							<input type="radio" name="def" value="Aceitado">
+							<input type="radio" name="def" id="def" value="Aceitado">
 							<label for="Deferimento">Recusar</label>
-							<input type="radio" name="def" value="Recusado">
+							<input type="radio" name="def" id="def" value="Recusado">
 						</div>
 
 						<br>
