@@ -6,7 +6,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -23,7 +22,7 @@ public class Usuario {
 	private String cpf;
 
 	
-	//@Pattern(regexp = "/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/*", message = " Nome invalido")
+	@Pattern(regexp = "^([A-Z,a-zã,á,à,â,ê,í,ú,õ,é,ü, ])*", message = " Nome invalido")
 	private String nome;
 
 	@NotNull
@@ -34,13 +33,13 @@ public class Usuario {
 	@Pattern(regexp = "[a-zA-Z ,]*", message = " Endereco tem apenas letras sem acento caracteres !")
 	private String endereco;
 
-	@Past(message = "Voce nasceu nem nasceu ainda  ! ")
+	@Past(message = "Voce nem nasceu ainda  ! ")
 	@NotNull(message = "Data invalida")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataNascimento;
 
 	
-	//@Pattern(regexp = "[a-zA-Z_0-9]*", message = "A Senha teve ter apenas letras e numeros")
+	@Pattern(regexp = "[a-zA-Z_0-9]*", message = "A Senha deve ter letras e numeros")
 	private String senha;
 
 	private Date dataCadastro;

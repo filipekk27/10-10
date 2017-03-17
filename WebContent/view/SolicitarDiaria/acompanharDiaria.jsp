@@ -16,6 +16,8 @@
 
 
 	<c:import url="../topo.jsp" />
+	<br>
+	<c:import url="../usuarioLogado.jsp" />
 	<c:choose>
 		<c:when test="${usuarioLogado.nivel=='GESTORUG'}">
 			<table id="tabela" class="table table-striped">
@@ -51,11 +53,19 @@
 						<td>${sd.unidadeGestora.nome}</td>
 						<td>${sd.justificativaGestor}</td>
 						<td>${sd.idGestor.nome}</td>
-						<td>${sd.def}</td>
-					
-							<td><a
-								href="ExibiralterarSolicitacao?idSolicitacao=${sd.codSD}">Alterar</a></td>
-						
+						<c:choose>
+							<c:when test="${sd.def=='Aceitado'}">
+								<td bgcolor="green">${sd.def}</td>
+							</c:when>
+							<c:when test="${sd.def=='Recusado'}">
+								<td bgcolor="red">${sd.def}</td>
+							</c:when>
+							<c:otherwise>
+								<td bgcolor="yellow">${sd.def}</td>
+							</c:otherwise>
+						</c:choose>
+						<td><a
+							href="ExibiralterarSolicitacao?idSolicitacao=${sd.codSD}">Alterar</a></td>
 				</c:forEach>
 			</table>
 		</c:when>
@@ -90,7 +100,17 @@
 						<td>${sd.valorDiaria}</td>
 						<td>${sd.justificativaGestor}</td>
 						<td>${sd.idGestor.nome}</td>
-						<td>${sd.def}</td>
+						<c:choose>
+							<c:when test="${sd.def=='Aceitado'}">
+								<td bgcolor="green">${sd.def}</td>
+							</c:when>
+							<c:when test="${sd.def=='Recusado'}">
+								<td bgcolor="red">${sd.def}</td>
+							</c:when>
+							<c:otherwise>
+								<td bgcolor="yellow">${sd.def}</td>
+							</c:otherwise>
+						</c:choose>
 				</c:forEach>
 			</table>
 		</c:otherwise>

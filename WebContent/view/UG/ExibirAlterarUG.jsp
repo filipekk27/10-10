@@ -17,8 +17,7 @@
 
 			<c:import url="../topo.jsp" />
 			<br>
-			<br>
-			<br>
+			<c:import url="../usuarioLogado.jsp" />
 			<div id="formulario">
 				<form class="form-inline" action="AlterarUG" method="post">
 
@@ -27,7 +26,8 @@
 						<form:errors path="unidadeGestora.nome" cssStyle="color:red" />
 						<!-- bean validation  -->
 						<br /> <label for="Nome">Nome</label><br> <input type="text"
-							class="form-control" name="nome" value="${ExibirAlterarUG.nome}">
+							class="form-control" name="nome" maxlength="30" minlength="10"
+							required="true" value="${ExibirAlterarUG.nome}">
 					</div>
 					<br> <br>
 					<div class="form-group">
@@ -68,7 +68,7 @@
 			<br>
 		</c:when>
 		<c:otherwise>
-		<jsp:forward page="../index.jsp" />
+			<jsp:forward page="../index.jsp" />
 		</c:otherwise>
 	</c:choose>
 </body>

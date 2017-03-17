@@ -38,7 +38,7 @@ public class SolicitarDiariaDao {
 			stmt.setDate(4, new java.sql.Date(s.getDataIda().getTime()));
 			stmt.setDate(5, new java.sql.Date(s.getDataVolta().getTime()));
 			stmt.setString(6, s.getTipoDiaria().name());
-			stmt.setDouble(7, s.getValorDiaria());
+			stmt.setString(7, s.getValorDiaria());
 			stmt.setInt(8, s.getIdUsuario());
 			stmt.setInt(9, s.getUnidadeGestora().getCodigo());
 
@@ -81,7 +81,7 @@ public class SolicitarDiariaDao {
 				TipoDiaria tp = TipoDiaria.valueOf(rs.getString("TipoDiaria"));
 				sd.setTipoDiaria(tp);
 
-				sd.setValorDiaria(rs.getDouble("ValorDiaria"));
+				sd.setValorDiaria(rs.getString("ValorDiaria"));
 
 				Deferimento df = Deferimento.valueOf(rs.getString("Deferimento"));
 				sd.setDef(df);
@@ -127,7 +127,7 @@ public class SolicitarDiariaDao {
 				TipoDiaria tp = TipoDiaria.valueOf(rs.getString("TipoDiaria"));
 				sd.setTipoDiaria(tp);
 
-				sd.setValorDiaria(rs.getDouble("ValorDiaria"));
+				sd.setValorDiaria(rs.getString("ValorDiaria"));
 
 				Deferimento df = Deferimento.valueOf(rs.getString("Deferimento"));
 				sd.setDef(df);
@@ -174,7 +174,7 @@ public class SolicitarDiariaDao {
 				TipoDiaria tp = TipoDiaria.valueOf(rs.getString("TipoDiaria"));
 				sd.setTipoDiaria(tp);
 
-				sd.setValorDiaria(rs.getDouble("ValorDiaria"));
+				sd.setValorDiaria(rs.getString("ValorDiaria"));
 
 				Deferimento df = Deferimento.valueOf(rs.getString("Deferimento"));
 				sd.setDef(df);

@@ -21,8 +21,7 @@
 			var cs = $('#confirmaSenha').val();
 			if (s != cs) {
 				$('#result').text("as senhas nao sao iguais")
-			}
-			else{
+			} else {
 				$('#result').remove();
 			}
 
@@ -34,7 +33,8 @@
 		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
 			<c:import url="../topo.jsp" />
-
+			<br>
+			<c:import url="../usuarioLogado.jsp" />
 
 			<div id="formulario">
 				<h3>Cadastro de Usuario</h3>
@@ -67,7 +67,7 @@
 						<div id="constrain_error">${msgErrorPkUser}</div>
 						<label for="Email">E-mail*</label><br> <input type="text"
 							class="form-control" name="email"
-							placeholder="exemplo@exemplo.com" size="30" Maxlength="30"
+							placeholder="exemplo@exemplo.com" size="30" Maxlength="60"
 							Minlength="13" required><br>
 						<form:errors path="usuario.email" cssStyle="color:red" />
 						<br>
@@ -88,21 +88,21 @@
 
 						<br /> <label for="Endereco">Endereço</label><br> <input
 							type="text" class="form-control" name="endereco"
-							placeholder="exemplo exemplo exemplo" size="54" Maxlength="60"
-							Minlength="10"><br> <br>
+							placeholder="exemplo exemplo exemplo" size="54"><br>
+						<br>
 					</div>
 					<br>
 					<div class="form-group">
 
 						<br /> <label for="Senha">Senha*:</label><br>
-						<p id="result" cssStyle="color:red" ></p>
+						<p id="result" cssStyle="color:red"></p>
 						<input type="password" class="form-control" name="senha"
-							id="senha" placeholder="senha" Maxlength="15" Minlength="6"
+							id="senha" placeholder="senha" Maxlength="8" Minlength="6"
 							required><br>
 						<form:errors path="usuario.senha" cssStyle="color:red" />
 						<br> <br /> <label for="Senha">Confirmar Senha*:</label><br>
 						<input type="password" class="form-control" id="confirmaSenha"
-							placeholder="senha" Maxlength="15" Minlength="6" required><br>
+							placeholder="senha" Maxlength="8" Minlength="6" required><br>
 						<form:errors path="usuario.senha" cssStyle="color:red" />
 						<br>
 					</div>
@@ -134,8 +134,7 @@
 						</select>
 						<form:errors path="usuario.uGestora" cssStyle="color:red" />
 					</div>
-					<br>
-					<br>
+					<br> <br>
 					<div class="form-group">
 						<label for="Status">Situação de Usuario*:</label><br> <input
 							type="radio" class="form-control" name="Situacao" value="ATIVO"

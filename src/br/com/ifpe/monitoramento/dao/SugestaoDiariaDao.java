@@ -118,12 +118,12 @@ public class SugestaoDiariaDao {
 		}
 	}
 
-	public SugestaoDiaria exibirSugestao(int IdSugestao) {
+	public SugestaoDiaria exibirSugestao(int idSugestao) {
 		try {
 			String sql = "SELECT * FROM sugestaovalordiaria WHERE IdSugestao = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			SugestaoDiaria sugestao = null;
-			stmt.setInt(1, IdSugestao);
+			stmt.setInt(1, idSugestao);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				sugestao = new SugestaoDiaria();
@@ -147,15 +147,15 @@ public class SugestaoDiariaDao {
 		}
 	}
 
-	public void alterarSugestao(SugestaoDiaria SugestaoD) {
+	public void alterarSugestao(SugestaoDiaria sugestaoD) {
 		try {
 
 			String sql = "UPDATE sugestaovalordiaria SET IdCargo = ? , IdUg = ? , Valor = ? WHERE IdSugestao = ?";
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setInt(1, SugestaoD.getCargo().getId());
-			stmt.setInt(2, SugestaoD.getUg().getCodigo());
-			stmt.setString(3, SugestaoD.getValores());
-			stmt.setInt(4, SugestaoD.getIdSD());
+			stmt.setInt(1, sugestaoD.getCargo().getId());
+			stmt.setInt(2, sugestaoD.getUg().getCodigo());
+			stmt.setString(3, sugestaoD.getValores());
+			stmt.setInt(4, sugestaoD.getIdSD());
 			stmt.execute();
 			connection.close();
 		} catch (SQLException e) {

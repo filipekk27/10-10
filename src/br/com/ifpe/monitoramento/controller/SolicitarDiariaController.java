@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,11 +26,11 @@ import br.com.ifpe.monitoramento.entidades.Usuario;
 public class SolicitarDiariaController {
 
 	@RequestMapping("/formSolicitarDiaria")
-	public String formSolicitarDiaria(Model model , String nome , String codigo) {
+	public String formSolicitarDiaria(Model model, String nome, String codigo) {
 		CidadeDao dao = new CidadeDao();
 		model.addAttribute("ListarEstados", dao.listar());
 		UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
-        model.addAttribute("buscarUnidadeGestora", dao2.listarUG(nome, codigo));
+		model.addAttribute("buscarUnidadeGestora", dao2.listarUG(nome, codigo));
 		return "SolicitarDiaria/FormCadastroSolicitarDiaria";
 	}
 
@@ -77,8 +79,8 @@ public class SolicitarDiariaController {
 	}
 
 	@RequestMapping("/exibirValor") // Valor ajax
-	public @ResponseBody String exibirValor(@RequestParam Integer origem, Integer destino, HttpServletResponse response,
-			String teste) {
+	public @ResponseBody String exibirValor(@RequestParam Integer origem, Integer destino,
+			HttpServletResponse response) {
 
 		SugestaoDiariaDao dao = new SugestaoDiariaDao();
 		List<SugestaoDiaria> listarValor = dao.listarValor(origem, destino);
@@ -90,12 +92,14 @@ public class SolicitarDiariaController {
 		st.append("<br>");
 
 		for (SugestaoDiaria valor : listarValor) {
-			teste = valor.getValores();
-			if (teste != null && !teste.equals("")) {
-				st.append("<input type='text' name='ValorDiaria' readonly id='ValorDiaria' readonly='true' value="
-						+ valor.getValores() + ">");
+
+			if (valor != null) {
+				st.append(
+						"<input type='text' name='ValorDiaria' id='ValorDiaria' required='true' maxlength='8' minlength='2' value="
+								+ valor.getValores() + ">");
 			} else {
-				st.append("<input type='text' readonly value='Nenhuma sugestao para o local informado'>");
+				st.append(
+						"<input type='text' name='ValorDiaria' id='ValorDiaria' required='true' maxlength='8' minlength='2  placeholder='00.00' >");
 			}
 		}
 
@@ -103,8 +107,11 @@ public class SolicitarDiariaController {
 		return st.toString();
 	}
 
-	@RequestMapping("cadastarSolicitacao")
-	public String cadastarSolicitacao(SolicitarDiaria s, Model model) {
+	@RequestMapping("/cadastarSolicitacao")
+	public String cadastarSolicitacao(@Valid SolicitarDiaria s, BindingResult rs, Model model) {
+		if (rs.hasFieldErrors()) {
+			return "forward:formSolicitarDiaria";
+		}
 		SolicitarDiariaDao dao = new SolicitarDiariaDao();
 		dao.cadastrarSolicitarDiaria(s);
 		model.addAttribute("msgSucesso", "Solicitação feita com sucesso! ! ");
@@ -145,9 +152,10 @@ public class SolicitarDiariaController {
 	}
 
 	@RequestMapping("/alterarSolicitacao")
-	public String alterarSolicitacao(int codSD, int idGestor ,String justificativaGestor ,String def , Model model) {
+	public String alterarSolicitacao(int codSD, int idGestor, String justificativaGestor, String def, Model model) {
+
 		SolicitarDiariaDao dao = new SolicitarDiariaDao();
-		dao.alterarSolicitacao(codSD,idGestor,justificativaGestor,def);
+		dao.alterarSolicitacao(codSD, idGestor, justificativaGestor, def);
 		model.addAttribute("msgSucesso", "Alterado com sucesso ! !");
 		return "sucesso/sucesso";
 	}

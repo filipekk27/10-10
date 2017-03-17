@@ -44,9 +44,11 @@
 		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
 			<c:import url="../topo.jsp" />
+						<br>
+			<c:import url="../usuarioLogado.jsp" />
 			<div id="formulario">
 				<h3>Cadastrar Sugestão diaria</h3>
-				<form action="cadastrarSugestao">
+				<form action="cadastrarSugestao" method="post">
 
 					<div class="form-group">
 						<form:errors path="SugestaoDiaria.cargo" cssStyle="color:red" />
@@ -116,8 +118,8 @@
 					<div class="form-group">
 						<form:errors path="sugestaoDiaria.valores" cssStyle="color:red" />
 						<label for="Nome">Valores</label><br> <input type="text"
-							class="form-control" name="valores" size="10" minlength="1"
-							maxlength="10" required="true" placeholder="00.00"><br>
+							class="form-control" name="valores" size="10" minlength="2"
+							maxlength="8" required="true" placeholder="00.00" required="true"><br>
 					</div>
 
 					<button type="submit" class="btn btn-primary">Sugerir</button>

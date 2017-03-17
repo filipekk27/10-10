@@ -18,6 +18,8 @@
 		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
 			<c:import url="../topo.jsp" />
+			<br>
+			<c:import url="../usuarioLogado.jsp" />
 
 			<div id="formulario">
 				<h3>Cadastro de Cargos</h3>
@@ -30,7 +32,7 @@
 						<!-- bean validation  -->
 						<label for="Nome">Nome do Cargo</label><br> <input
 							type="text" class="form-control" name="nome"
-							placeholder="Nome do Cargo"><br>
+							placeholder="Nome do Cargo" maxlength="20" minlength="5" required="true"><br>
 					</div>
 					<br> <br>
 					<button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -39,7 +41,7 @@
 
 		</c:when>
 		<c:otherwise>
-		<jsp:forward page="../index.jsp" />
+			<jsp:forward page="../index.jsp" />
 		</c:otherwise>
 	</c:choose>
 

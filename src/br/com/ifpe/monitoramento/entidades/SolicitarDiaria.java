@@ -2,20 +2,45 @@ package br.com.ifpe.monitoramento.entidades;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class SolicitarDiaria {
 
+	//@Pattern(regexp = "[a-zA-Z]*", message = "Apenas letras")
 	private String Justificativa;
+
 	private int CidOrigem;
 	private int CidDestino;
+
+	@Past(message = "Voce nem nasceu ainda  ! ")
+	@NotNull(message = "Data invalida")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date DataIda;
+
+	@Past(message = "Voce nem nasceu ainda  ! ")
+	@NotNull(message = "Data invalida")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date DataVolta;
+
 	private TipoDiaria tipoDiaria;
-	private double ValorDiaria;
+	
+	//@NotBlank
+	@Pattern(regexp = "[0-9.]*", message="valor invalido")
+	private String ValorDiaria;
+	
 	private int codSD;
 	private int IdUsuario;
 	private Deferimento def;
 	private Usuario idGestor;
+	
+	@Pattern(regexp = "[a-zA-Z]*", message = "Apenas letras")
 	private String justificativaGestor;
+	
 	private UnidadeGestora unidadeGestora;
 
 	public TipoDiaria getTipoDiaria() {
@@ -66,11 +91,11 @@ public class SolicitarDiaria {
 		DataVolta = dataVolta;
 	}
 
-	public double getValorDiaria() {
+	public String getValorDiaria() {
 		return ValorDiaria;
 	}
 
-	public void setValorDiaria(double valorDiaria) {
+	public void setValorDiaria(String valorDiaria) {
 		ValorDiaria = valorDiaria;
 	}
 

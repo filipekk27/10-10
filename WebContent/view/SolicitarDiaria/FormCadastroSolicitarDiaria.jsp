@@ -56,26 +56,39 @@
 </script>
 <body>
 	<c:import url="../topo.jsp" />
+	<br>
+	<c:import url="../usuarioLogado.jsp" />
 	<div id="formulario">
 		<form action="cadastarSolicitacao" method="post">
 			<%--Listar cidades --%>
 			<input type="hidden" name="IdUsuario" value="${usuarioLogado.idUser}">
-			<input type="hidden" name="unidadeGestora" value="${usuarioLogado.uGestora.codigo}">
+			<input type="hidden" name="unidadeGestora"
+				value="${usuarioLogado.uGestora.codigo}">
 			<div class="form-group">
+
 				<label for="DataIda">Data Partida</label><br> <input
-					type="text" class="form-control" name="DataIda"> <label
-					for="DataVolta">Data Volta</label><br> <input type="text"
-					class="form-control" name="DataVolta">
+					type="text" class="form-control" name="DataIda" required="true"
+					maxlength="10" minlength="10">
+				<form:errors path="solicitarDiaria.DataIda" cssStyle="color:red" />
+				<br> <label for="DataVolta">Data Volta</label><br> <input
+					type="text" class="form-control" name="DataVolta" required="true"
+					maxlength="10" minlength="10">
+				<form:errors path="solicitarDiaria.DataVolta" cssStyle="color:red" />
 			</div>
 
 			<div class="form-group">
-				<input type="radio" name="tipoDiaria" value="P"> <label
-					for="Nome">Parcial</label> <input type="radio" name="tipoDiaria"
-					value="I"> <label for="Nome">Integral</label>
+				<input type="radio" name="tipoDiaria" value="P" required="true">
+				<label for="Nome">Parcial</label> <input type="radio"
+					name="tipoDiaria" required="true" value="I"> <label
+					for="Nome">Integral</label>
 			</div>
 			<div class="form-group">
 				<label for="Justificativa">Justificativa</label><br>
-				<textarea name="Justificativa"> </textarea>
+				<textarea name="Justificativa" required="true" maxlength="40"
+					minlenght="20"> </textarea>
+				<br>
+				<form:errors path="solicitarDiaria.Justificativa"
+					cssStyle="color:red" />
 
 			</div>
 			<div class="form-group">

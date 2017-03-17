@@ -19,7 +19,8 @@
 		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
 			<c:import url="../topo.jsp" />
-
+			<br>
+			<c:import url="../usuarioLogado.jsp" />
 
 
 
@@ -33,7 +34,7 @@
 						<br />
 						<!-- bean validation  -->
 						<label for="Nome">Nome da UG</label><br> <input type="text"
-							class="form-control" name="nome" placeholder="Nome da UG"><br>
+							class="form-control" name="nome" placeholder="Nome da UG" maxlength="30" minlength="10"><br>
 					</div>
 					<br>
 					<div class="form-group">
@@ -42,7 +43,7 @@
 						<!-- bean validation  -->
 						<label for="Codigo">Código</label><br> <input type="text"
 							class="form-control" name="codigo" placeholder="Código da UG"
-							maxlength="9"><br> <br>
+							maxlength="9" minlength="1" required="true"><br> <br>
 					</div>
 					<br>
 					<button type="submit" class="btn btn-primary">Cadastrar</button>

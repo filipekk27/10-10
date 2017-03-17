@@ -16,6 +16,8 @@
 		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
 			<c:import url="../topo.jsp" />
+						<br>
+			<c:import url="../usuarioLogado.jsp" />
 		<div id="formulario">
 				<form action="listarSugestao" class="form-inline">
 					<h3>listar Sugestao</h3>
@@ -49,7 +51,7 @@
 						<td>${sd.ug.nome}</td>
 						<td>${sd.cargo.nome}</td>
 						<td>${sd.valores}</td>
-						<td><a href="exibirAlterarSugestao?IdSugestao=${sd.idSD}">Alterar</a></td>
+						<td><a href="exibirAlterarSugestao?idSugestao=${sd.idSD}">Alterar</a></td>
 					</tr>
 				</c:forEach>
 			</table>

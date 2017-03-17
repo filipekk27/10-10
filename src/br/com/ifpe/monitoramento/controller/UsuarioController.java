@@ -78,7 +78,7 @@ public class UsuarioController {
 	public String efetuarLogin(Usuario user, HttpSession session, Model model) {
 		UsuarioDao dao = new UsuarioDao();
 		Usuario login = dao.login(user);
-		if (login != null) {
+		if (login != null && login.getSituacao().name()=="ATIVO") {
 			session.setAttribute("usuarioLogado", login);
 			return "index";
 		}

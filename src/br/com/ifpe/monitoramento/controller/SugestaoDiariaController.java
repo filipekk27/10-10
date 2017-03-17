@@ -96,9 +96,9 @@ public class SugestaoDiariaController {
 	}
 
 	@RequestMapping("/exibirAlterarSugestao")
-	public String exibirAlterarSugestao(Model model, int IdSugestao, String id, String nome, String codigo) {
+	public String exibirAlterarSugestao(Model model, Integer idSugestao, String id, String nome, String codigo) {
 		SugestaoDiariaDao dao = new SugestaoDiariaDao();
-		model.addAttribute("exibirSugestao", dao.exibirSugestao(IdSugestao));
+		model.addAttribute("exibirSugestao", dao.exibirSugestao(idSugestao));
 		CargoDao dao2 = new CargoDao();
 		model.addAttribute("listarCargoUsuario", dao2.listarCargo(nome, id));
 		UnidadeGestoraDao dao3 = new UnidadeGestoraDao();
@@ -107,9 +107,12 @@ public class SugestaoDiariaController {
 	}
 
 	@RequestMapping("/alterarSugestao")
-	public String alterarSugestao(SugestaoDiaria SugestaoD, Model model) {
+	public String alterarSugestao(@Valid SugestaoDiaria sugestaoD, BindingResult rs, Model model) {
+		if (rs.hasFieldErrors("valores")) {
+			return "forward:exibirAlterarSugestao";
+		}
 		SugestaoDiariaDao dao = new SugestaoDiariaDao();
-		dao.alterarSugestao(SugestaoD);
+		dao.alterarSugestao(sugestaoD);
 		model.addAttribute("msgSucesso", "Sugestao alterada com sucesso! !");
 		return "sucesso/sucesso";
 	}

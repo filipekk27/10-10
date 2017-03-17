@@ -12,9 +12,11 @@
 	<c:choose>
 		<c:when test="${usuarioLogado.nivel=='GESTORUG'}">
 			<c:import url="../topo.jsp" />
+						<br>
+			<c:import url="../usuarioLogado.jsp" />
 
 			<center>
-			<br>			<br>
+				<br> <br>
 				<h3>Alterar Solicitacao</h3>
 				<div id="formulario">
 					<form class="form-inline" action="alterarSolicitacao" method="get">
@@ -29,20 +31,23 @@
 
 						<div class="form-group">
 
-							<label for="JustificativaGestor">Justificativa</label><br> 
-							<textarea name="justificativaGestor"></textarea>
-								
+							<label for="justificativaGestor">Justificativa</label><br>
+							<textarea name="justificativaGestor" required="true" maxlength="40"
+								minlenght="20"> </textarea>
+							<br>
+							<form:errors path="solicitarDiaria.justificativaGestor"
+								cssStyle="color:red" />
+
 						</div>
 						<br>
 						<div class="form-group">
-						<label for="Deferimento">Aceitar</label>
-							<input type="radio" name="def" id="def" value="Aceitado">
-							<label for="Deferimento">Recusar</label>
-							<input type="radio" name="def" id="def" value="Recusado">
+							<label for="Deferimento">Aceitar</label> <input type="radio"
+								name="def" id="def" value="Aceitado" required="true"> <label
+								for="Deferimento">Recusar</label> <input type="radio" name="def"
+								id="def" value="Recusado" required="true">
 						</div>
 
-						<br>
-						<br>
+						<br> <br>
 						<button type="submit" class="btn btn-primary">Alterar</button>
 					</form>
 				</div>

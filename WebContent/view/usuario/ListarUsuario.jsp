@@ -17,7 +17,8 @@
 		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
 			<c:import url="../topo.jsp" />
-
+			<br>
+			<c:import url="../usuarioLogado.jsp" />
 			<div id="formulario">
 				<form action="listarUsuario" class="form-inline">
 					<h3>Consultar Usuario</h3>
@@ -77,7 +78,7 @@
 			</table>
 		</c:when>
 		<c:otherwise>
-		<jsp:forward page="../index.jsp" />
+			<jsp:forward page="../index.jsp" />
 		</c:otherwise>
 	</c:choose>
 </body>

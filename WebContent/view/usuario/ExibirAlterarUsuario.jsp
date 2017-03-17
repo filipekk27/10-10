@@ -12,7 +12,8 @@
 	<c:choose>
 		<c:when test="${usuarioLogado.nivel=='ADM'}">
 			<c:import url="../topo.jsp" />
-
+            			<br>
+			<c:import url="../usuarioLogado.jsp" />
 			<center>
 				<div id="formulario">
 					<form class="form-inline" action="AlterarUsuario" method="post">
