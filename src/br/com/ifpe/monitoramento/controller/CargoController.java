@@ -58,6 +58,7 @@ public class CargoController {
 		}
 		CargoDao dao = new CargoDao();
 		dao.alterarCargo(cargo);
+		dao.historicoAlteracaoCargo(cargo);
 		model.addAttribute("msgSucesso", "Cargo alterado com sucesso ! ! !");
 		return "sucesso/sucesso";
 	}

@@ -7,7 +7,9 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/estiloAlterar.css">
+	href="${pageContext.request.contextPath}/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/estiloCadastrar.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Alteração de cargo</title>
 </head>
@@ -25,18 +27,20 @@
 					<div class="form-group">
 						<form:errors path="cargo.nome" cssStyle="color:red" />
 						<!-- bean validation  -->
-						<br /> <label for="Nome">Nome</label><br> <input type="text"
-							class="form-control" name="nome" required="true" maxlength="20"
-							minlength="5" value="${ExibirAlterarCargo.nome}">
+						<br /> <label for="Nome">Nome:</label><br> <input
+							type="text" class="form-control" name="nome" required="true"
+							maxlength="20" minlength="5" value="${ExibirAlterarCargo.nome}">
 					</div>
 					<br> <br>
 					<div class="form-group">
 						<input type="hidden" class="form-control" name="id"
 							value="${ExibirAlterarCargo.id}" readonly>
+
 					</div>
 
 					<div class="form-group">
-						<label for="Status">On</label>
+						<label for="Status">Situação do Cargo:</label><br> <label
+							for="Status">Ativado</label>
 						<c:choose>
 							<c:when test="${ExibirAlterarCargo.situacao=='ATIVO'}">
 								<input type="radio" class="form-control" name="Situacao"
@@ -48,7 +52,7 @@
 									value="ATIVO">
 							</c:otherwise>
 						</c:choose>
-						<label for="Status">Off</label>
+						<label for="Status">Desativado</label>
 						<c:choose>
 							<c:when test="${ExibirAlterarCargo.situacao=='INATIVO'}">
 								<input type="radio" class="form-control" name="Situacao"

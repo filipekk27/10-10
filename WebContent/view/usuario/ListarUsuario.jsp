@@ -21,17 +21,17 @@
 			<c:import url="../usuarioLogado.jsp" />
 			<div id="formulario">
 				<form action="listarUsuario" class="form-inline">
-					<h3>Consultar Usuario</h3>
+					<h3>Consultar Usuário</h3><br>
 					<div class="form-group">
-						<label for="Nome">Nome Usuario</label><br> <input type="text"
+						<label for="Nome">Nome do Usuário</label><br> <input type="text"
 							class="form-control" name="nomeUser" placeholder="Nome Usuario"><br>
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="Nome">CPF Usuario</label><br> <input type="text"
+						<label for="Nome">CPF do Usuário</label><br> <input type="text"
 							class="form-control" name="cpfUser" placeholder="CPF Usuario"><br>
 					</div>
-					<br>
+					<br><br>
 					<button type="submit" class="btn btn-primary">Consultar</button>
 				</form>
 				<br>

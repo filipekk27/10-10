@@ -69,7 +69,8 @@ public class UsuarioController {
 			return "forward:exibirUsuario";
 		}
 		UsuarioDao dao = new UsuarioDao();
-		dao.AlterarUsuario(user);
+		dao.alterarUsuario(user);
+		dao.historicoAlteracaoUsuario(user);
 		model.addAttribute("msgSucesso", "Usuario alterado com sucesso ! ! ");
 		return "sucesso/sucesso";
 	}

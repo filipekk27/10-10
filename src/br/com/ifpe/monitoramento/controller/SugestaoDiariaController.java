@@ -113,6 +113,7 @@ public class SugestaoDiariaController {
 		}
 		SugestaoDiariaDao dao = new SugestaoDiariaDao();
 		dao.alterarSugestao(sugestaoD);
+		dao.historicoAlteracaoSugestao(sugestaoD);
 		model.addAttribute("msgSucesso", "Sugestao alterada com sucesso! !");
 		return "sucesso/sucesso";
 	}

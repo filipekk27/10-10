@@ -20,7 +20,7 @@ public class UnidadeGestora {
 
 	@NotBlank
 	@Size(min = 8, max = 30, message = "O nome deve ter de : {min} a {max} Letras")
-	@Pattern(regexp = "^([A-Z,a-zã,á,à,â,ê,í,ú,õ,é,ü, ])*", message = "Nome invalido !")
+	@Pattern(regexp = "^([A-Z,a-zã,á,à,â,ê,í,ú,õ,ó,é,ü, ])*", message = "Nome invalido !")
 	private String nome;
 
 	@NotNull
@@ -28,9 +28,22 @@ public class UnidadeGestora {
 	@Max(value = 999999999, message = "O codigo max e 999 Milhoes")
 	@NumberFormat(pattern = "#########")
 	private Integer codigo;
-
+	private int UsuarioId;
+	private String campo;
 	private Date data;
 	private Situacao situacao;
+
+	public String toString(){
+		return "O usuario : " + this.UsuarioId + " alterou a unidade para : " +this.nome+" a situacao para : "+this.situacao.name()+" da ug com o codigo : " + this.codigo;
+	}
+
+	public String getCampo() {
+		return campo;
+	}
+
+	public void setCampo(String campo) {
+		this.campo = campo;
+	}
 
 	public String getNome() {
 		return nome;
@@ -62,6 +75,14 @@ public class UnidadeGestora {
 
 	public void setSituacao(Situacao situacao) {
 		this.situacao = situacao;
+	}
+
+	public int getUsuarioId() {
+		return UsuarioId;
+	}
+
+	public void setUsuarioId(int usuarioId) {
+		UsuarioId = usuarioId;
 	}
 
 }

@@ -11,23 +11,27 @@
 	href="${pageContext.request.contextPath}/css/estiloCadastrar.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro usuario</title>
-</head>
-<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
-<script>
-	$(document).ready(function() { // jQuery  p/ verificar senhas
+<script type="text/javascript"
+	src="js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript"
+	src="js/jquery.validate.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#formulario').validate({
+			rules : {
 
-		$("#confirmaSenha").focusout(function() {
-			var s = $('#senha').val();
-			var cs = $('#confirmaSenha').val();
-			if (s != cs) {
-				$('#result').text("as senhas nao sao iguais")
-			} else {
-				$('#result').remove();
-			}
+				senha : {
 
+				},
+				senha2 : {
+					equalTo : "#senha"
+				}
+			},
+			messages : {}
 		});
 	});
 </script>
+</head>
 <body>
 	<c:choose>
 		<c:when test="${usuarioLogado.nivel=='ADM'}">
@@ -36,9 +40,10 @@
 			<br>
 			<c:import url="../usuarioLogado.jsp" />
 
-			<div id="formulario">
-				<h3>Cadastro de Usuario</h3>
-				<form action="cadastrarUsuario" method="post" class="form-inline">
+			<div id="formUsuario">
+				<h3>Cadastro de Usuário</h3>
+				<form action="cadastrarUsuario" method="post" id="formulario"
+					class="form-inline">
 
 					<div class="form-group">
 
@@ -48,7 +53,7 @@
 							class="form-control" name="cpf" placeholder="Apenas Numeros"
 							size="11" Maxlength="11" Minlength="11" required><br>
 						<form:errors path="usuario.cpf" cssStyle="color:red" />
-						<br>
+
 					</div>
 
 					<div class="form-group">
@@ -67,7 +72,7 @@
 						<div id="constrain_error">${msgErrorPkUser}</div>
 						<label for="Email">E-mail*</label><br> <input type="text"
 							class="form-control" name="email"
-							placeholder="exemplo@exemplo.com" size="30" Maxlength="60"
+							placeholder="exemplo@exemplo.com" size="38" Maxlength="100"
 							Minlength="13" required><br>
 						<form:errors path="usuario.email" cssStyle="color:red" />
 						<br>
@@ -88,29 +93,38 @@
 
 						<br /> <label for="Endereco">Endereço</label><br> <input
 							type="text" class="form-control" name="endereco"
-							placeholder="exemplo exemplo exemplo" size="54"><br>
+							placeholder="exemplo exemplo exemplo" size="51"><br>
 						<br>
 					</div>
 					<br>
+					<p id="result" cssStyle="color:red"></p>
 					<div class="form-group">
 
-						<br /> <label for="Senha">Senha*:</label><br>
-						<p id="result" cssStyle="color:red"></p>
-						<input type="password" class="form-control" name="senha"
-							id="senha" placeholder="senha" Maxlength="8" Minlength="6"
-							required><br>
+						<label for="Senha">Senha*</label><br> <input type="password"
+							class="form-control" name="senha" id="senha" placeholder="senha"
+							Maxlength="8" Minlength="6" required size="23"><br>
+
 						<form:errors path="usuario.senha" cssStyle="color:red" />
-						<br> <br /> <label for="Senha">Confirmar Senha*:</label><br>
-						<input type="password" class="form-control" id="confirmaSenha"
-							placeholder="senha" Maxlength="8" Minlength="6" required><br>
+
+					</div>
+
+					<div class="form-group">
+
+						<br> <label for="Senha">Confirmar Senha*</label><br> <input
+							type="password" class="form-control" name="senha2"
+							placeholder="senha" Maxlength="8" Minlength="6" required
+							size="23"><br>
 						<form:errors path="usuario.senha" cssStyle="color:red" />
+
 						<br>
 					</div>
+
+
 					<br>
 					<div class="form-group">
 
 						<br /> <label for="Cargo">Cargo*</label><br> <select
-							name="cargo" required="true">
+							name="cargo" required="true" class="form-control">
 							<option value="">Selecione o cargo</option>
 							<c:forEach items="${listarCargoUsuario}" var="cargo">
 								<c:if test="${cargo.situacao=='ATIVO'}">
@@ -120,11 +134,11 @@
 						</select>
 						<form:errors path="usuario.cargo" cssStyle="color:red" />
 					</div>
-					<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="form-group">
 
 						<br /> <label for="UG">Unidade Gestora*</label><br> <select
-							name="uGestora" required="true">
+							name="uGestora" required="true" class="form-control">
 							<option value="">Selecione a UG</option>
 							<c:forEach items="${listarUGestora}" var="ug">
 								<c:if test="${ug.situacao=='ATIVO'}">
@@ -134,8 +148,9 @@
 						</select>
 						<form:errors path="usuario.uGestora" cssStyle="color:red" />
 					</div>
-					<br> <br>
+					<br>
 					<div class="form-group">
+
 						<label for="Status">Situação de Usuario*:</label><br> <input
 							type="radio" class="form-control" name="Situacao" value="ATIVO"
 							required>
@@ -144,13 +159,13 @@
 						<label for="Status">Ativo</label> <input type="radio"
 							class="form-control" name="Situacao" value="INATIVO" required>
 						<label for="Status">Inativo</label>
+
 					</div>
-					<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="form-group">
 
-
-						<label for="Status">Tipo de Usuario*:</label><br> <input
-							type="radio" class="form-control" name="Nivel" value="ADM"
+						<br> <br> <label for="Status">Tipo de Usuario*:</label><br>
+						<input type="radio" class="form-control" name="Nivel" value="ADM"
 							required> <label for="Status">Administrador</label> <input
 							type="radio" class="form-control" name="Nivel" value="USUARIO"
 							required> <label for="Status">Usuario comum*</label> <br>
@@ -159,7 +174,7 @@
 							value="GESTORUG" required> <label for="Status">Gestor
 							UG*</label> <br>
 					</div>
-					<br> <br>
+					<br>
 					<button type="submit" class="btn btn-primary">Cadastrar</button>
 				</form>
 			</div>
@@ -170,3 +185,4 @@
 	</c:choose>
 </body>
 </html>
+

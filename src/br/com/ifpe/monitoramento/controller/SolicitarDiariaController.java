@@ -156,6 +156,7 @@ public class SolicitarDiariaController {
 
 		SolicitarDiariaDao dao = new SolicitarDiariaDao();
 		dao.alterarSolicitacao(codSD, idGestor, justificativaGestor, def);
+
 		model.addAttribute("msgSucesso", "Alterado com sucesso ! !");
 		return "sucesso/sucesso";
 	}

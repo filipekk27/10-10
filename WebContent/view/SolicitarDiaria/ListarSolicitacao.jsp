@@ -16,14 +16,15 @@
 		<c:when test="${usuarioLogado.nivel=='ADM'}">
 
 			<c:import url="../topo.jsp" />
-						<br>
+			<br>
 			<c:import url="../usuarioLogado.jsp" />
 			<div id="formulario">
 				<form action="#" class="form-inline">
 
 					<div class="form-group">
-						<label for="Nome"> TipoDiaria </label><br> <input type="text"
-							class="form-control" name="TipoDiaria" placeholder="P ou I" maxlength="1"><br>
+						<h3>Tipo de Diaria</h3>
+						<br> <input type="text" class="form-control"
+							name="TipoDiaria" placeholder="P ou I" maxlength="1"><br>
 					</div>
 					<br> <br>
 					<button type="submit" class="btn btn-primary">Consultar</button>
@@ -40,14 +41,14 @@
 					<td>Destino</td>
 					<td>Partida</td>
 					<td>Volta</td>
-                    <td>Tipo diaria</td>
-                    <td>Valor diaria</td>
-                    <td>IdUsuario</td>
-                    <td>IdGestor</td>
-                    <td>UnidadeGestora</td>
-                    <td>Status</td>
-                    <td>Ações</td>
-                    
+					<td>Tipo diaria</td>
+					<td>Valor diaria</td>
+					<td>IdUsuario</td>
+					<td>UnidadeGestora</td>
+					<td>IdGestor</td>
+					<td>Status</td>
+
+
 				</tr>
 				<c:forEach var="sd" items="${listarSolicitacao}">
 					<tr>
@@ -59,18 +60,17 @@
 						<td>${sd.dataVolta}</td>
 						<td>${sd.tipoDiaria}</td>
 						<td>${sd.valorDiaria}</td>
-						<td>${sd.idUsuario}</td>
-						<td>${sd.idGestor.nome}</td>
+						<td>${sd.idUsuario.nome}</td>
 						<td>${sd.unidadeGestora.nome}</td>
+						<td>${sd.idGestor.nome}</td>
 						<td>${sd.def}</td>
-		                <td><a href="#?idSolicitacao=${sd.codSD}">Alterar</a></td>
 
 					</tr>
 				</c:forEach>
 			</table>
 		</c:when>
 		<c:otherwise>
-		<jsp:forward page="../index.jsp" />
+			<jsp:forward page="../index.jsp" />
 		</c:otherwise>
 	</c:choose>
 </body>

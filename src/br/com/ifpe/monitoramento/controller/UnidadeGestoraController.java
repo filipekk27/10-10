@@ -45,7 +45,6 @@ public class UnidadeGestoraController {
 
 	}
 
-
 	@RequestMapping("/ExibirAlterarUG")
 	public String exibirAlterarUG(int codigo, Model model) {
 		UnidadeGestoraDao dao = new UnidadeGestoraDao();
@@ -62,6 +61,7 @@ public class UnidadeGestoraController {
 
 		UnidadeGestoraDao dao = new UnidadeGestoraDao();
 		dao.alterarUG(ug);
+		dao.historicoalteracaoUG(ug);
 		model.addAttribute("msgSucesso", " UG alterada com sucesso ! ! !");
 		return "sucesso/sucesso";
 	}

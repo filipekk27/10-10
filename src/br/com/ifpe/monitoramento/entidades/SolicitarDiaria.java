@@ -6,12 +6,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class SolicitarDiaria {
 
-	//@Pattern(regexp = "[a-zA-Z]*", message = "Apenas letras")
+	// @Pattern(regexp = "[a-zA-Z]*", message = "Apenas letras")
 	private String Justificativa;
 
 	private int CidOrigem;
@@ -28,20 +27,28 @@ public class SolicitarDiaria {
 	private Date DataVolta;
 
 	private TipoDiaria tipoDiaria;
-	
-	//@NotBlank
-	@Pattern(regexp = "[0-9.]*", message="valor invalido")
+
+	// @NotBlank
+	@Pattern(regexp = "[0-9.]*", message = "valor invalido")
 	private String ValorDiaria;
-	
+
 	private int codSD;
-	private int IdUsuario;
+	private Usuario IdUsuario; // Lista dados do usuario solicitante
+	private int usuarioId; // cadastrando usuario solicitante
 	private Deferimento def;
 	private Usuario idGestor;
-	
+
 	@Pattern(regexp = "[a-zA-Z]*", message = "Apenas letras")
 	private String justificativaGestor;
-	
+
 	private UnidadeGestora unidadeGestora;
+
+	private String campo;
+
+	public String toString() {
+		return "SOLICITAR DIARIA  ID : "+this.codSD+" JustificativaGestor alterada para : " + this.justificativaGestor
+				+ " Defererimento alterado para: " + this.def.name();
+	}
 
 	public TipoDiaria getTipoDiaria() {
 		return tipoDiaria;
@@ -107,11 +114,11 @@ public class SolicitarDiaria {
 		this.codSD = codSD;
 	}
 
-	public int getIdUsuario() {
+	public Usuario getIdUsuario() {
 		return IdUsuario;
 	}
 
-	public void setIdUsuario(int idUsuario) {
+	public void setIdUsuario(Usuario idUsuario) {
 		IdUsuario = idUsuario;
 	}
 
@@ -145,6 +152,22 @@ public class SolicitarDiaria {
 
 	public void setUnidadeGestora(UnidadeGestora unidadeGestora) {
 		this.unidadeGestora = unidadeGestora;
+	}
+
+	public int getUsuarioId() {
+		return usuarioId;
+	}
+
+	public void setUsuarioId(int usuarioId) {
+		this.usuarioId = usuarioId;
+	}
+
+	public String getCampo() {
+		return campo;
+	}
+
+	public void setCampo(String campo) {
+		this.campo = campo;
 	}
 
 }

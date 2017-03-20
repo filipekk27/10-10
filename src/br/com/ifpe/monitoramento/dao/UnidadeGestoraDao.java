@@ -54,20 +54,20 @@ public class UnidadeGestoraDao {
 
 				sql = "SELECT * FROM unidade_gestora WHERE nome_unidade LIKE ?";
 				stmt = this.connection.prepareStatement(sql);
-				stmt.setString(1, "%"+nome+"%");
+				stmt.setString(1, "%" + nome + "%");
 
 			} else if ((nome == null || nome.equals("")) && (codigo != null && !codigo.equals(""))) {
 
 				sql = "SELECT * FROM unidade_gestora WHERE codigo_unidade LIKE ?";
 				stmt = this.connection.prepareStatement(sql);
-				stmt.setString(1, "%"+codigo+"%");
+				stmt.setString(1, "%" + codigo + "%");
 
 			} else if ((nome != null && !nome.equals("")) && (codigo != null && !codigo.equals(""))) {
 
 				sql = "SELECT * FROM unidade_gestora WHERE nome_unidade LIKE ? AND codigo_unidade LIKE ?";
 				stmt = this.connection.prepareStatement(sql);
-				stmt.setString(1, "%"+nome+"%");
-				stmt.setString(2, "%"+codigo+"%");
+				stmt.setString(1, "%" + nome + "%");
+				stmt.setString(2, "%" + codigo + "%");
 
 			} else {
 
@@ -136,6 +136,22 @@ public class UnidadeGestoraDao {
 			stmt.setString(1, ug.getNome());
 			stmt.setString(2, ug.getSituacao().name());
 			stmt.setInt(3, ug.getCodigo());
+			stmt.execute();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void historicoalteracaoUG(UnidadeGestora ug) {
+
+		try {
+
+			String sql = "INSERT INTO historico (IdUsuarioAutor , Campo) VALUES (?,?)";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, ug.getUsuarioId());
+			ug.setCampo(ug.toString());
+			stmt.setString(2, ug.getCampo());
 			stmt.execute();
 			connection.close();
 

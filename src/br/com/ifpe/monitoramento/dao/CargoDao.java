@@ -51,18 +51,18 @@ public class CargoDao {
 			if (nome != null && !nome.equals("") && (id == null || id.equals(""))) {
 				sql = "SELECT * FROM cargo WHERE nome_cargo LIKE ?";
 				stmt = this.connection.prepareStatement(sql);
-				stmt.setString(1, "%"+nome+"%");
+				stmt.setString(1, "%" + nome + "%");
 
 			} else if (id != null && !id.equals("") && (nome == null || nome.equals(""))) {
 				sql = "SELECT * FROM cargo WHERE id_cargo LIKE = ?";
 				stmt = this.connection.prepareStatement(sql);
-				stmt.setString(1, "%"+id+"%");
+				stmt.setString(1, "%" + id + "%");
 
 			} else if (nome != null && !nome.equals("") && (id != null && !id.equals(""))) {
 				sql = "SELECT * FROM cargo WHERE nome_cargo LIKE ? AND id_cargo LIKE ?";
 				stmt = this.connection.prepareStatement(sql);
-				stmt.setString(1, "%"+nome+"%");
-				stmt.setString(2, "%"+id+"%");
+				stmt.setString(1, "%" + nome + "%");
+				stmt.setString(2, "%" + id + "%");
 
 			} else {
 				sql = "SELECT * FROM cargo ORDER BY nome_cargo asc";
@@ -122,6 +122,22 @@ public class CargoDao {
 			stmt.setString(1, cargo.getNome());
 			stmt.setString(2, cargo.getSituacao().name());
 			stmt.setInt(3, cargo.getId());
+			stmt.execute();
+			
+			stmt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void historicoAlteracaoCargo(Cargo cargo) {
+		try {
+			String sql = "INSERT INTO historico (IdUsuarioAutor,Campo) VALUES(?,?)";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, cargo.getId());
+			cargo.setCampo(cargo.toString());
+			stmt.setString(2, cargo.getCampo());
 			stmt.execute();
 			connection.close();
 			stmt.close();

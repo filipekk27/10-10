@@ -17,12 +17,12 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12">
+		<div class="jumbotron well">
 				<div class="page-header">
-					
+					<c:import url="topo2.jsp" />
 				</div>
-				<c:import url="topo.jsp" />
-				<br> <br>
+				
+				
 				<div class="jumbotron well">
 					<c:choose>
 						<c:when test="${usuarioLogado.nome!=null}">
@@ -32,11 +32,11 @@
 						</c:when>
 						<c:otherwise>
 							<h2>
-								<p>Bem vindo, visitante</p>
+								<p>Bem vindo, Visitante</p>
 							</h2>
 						</c:otherwise>
 					</c:choose>
-					objetivo é acompanhar as despesas, mantendo uma assídua orientação
+					Objetivo é acompanhar as despesas, mantendo uma assídua orientação
 					aos agentes públicos para o equilíbrio das contas, a manutenção dos
 					serviços e das políticas públicas, ressaltando a importância de não
 					elevar as despesas..
@@ -44,7 +44,7 @@
 					<p></p>
 				</div>
 
-				<br> <br>
+				
 				<div class="row">
 					<div class="col-md-4">
 						<center>

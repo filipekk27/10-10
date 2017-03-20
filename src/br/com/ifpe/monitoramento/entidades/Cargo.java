@@ -22,6 +22,12 @@ public class Cargo {
 	private Integer id;
 	private Date data_cadastro;
 	private Situacao situacao;
+	private String campo;
+
+	public String toString() {
+		return "o Usuario  : " + this.id + " alterou o nome do cargo para : " + this.nome + " e a situacao para : "
+				+ this.situacao.name();
+	}
 
 	public String getNome() {
 		return nome;
@@ -53,6 +59,14 @@ public class Cargo {
 
 	public void setSituacao(Situacao situacao) {
 		this.situacao = situacao;
+	}
+
+	public String getCampo() {
+		return campo;
+	}
+
+	public void setCampo(String campo) {
+		this.campo = campo;
 	}
 
 }

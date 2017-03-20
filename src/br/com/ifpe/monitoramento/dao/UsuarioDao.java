@@ -140,7 +140,7 @@ public class UsuarioDao {
 				UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
 				UnidadeGestora ug = dao2.exibirUG(rs.getInt("ug_pertence"));
 				user.setuGestora(ug);
-
+				user.setEmail(rs.getString("email_usuario"));
 				user.setEndereco(rs.getString("endereco_usuario"));
 				user.setDataNascimento(rs.getDate("data_nascimento"));
 				user.setSenha(rs.getString("senha_usuario"));
@@ -160,9 +160,9 @@ public class UsuarioDao {
 		}
 	}
 
-	public void AlterarUsuario(Usuario user) {
+	public void alterarUsuario(Usuario user) {
 		try {
-			String sql = "UPDATE usuario SET nome_usuario = ? , cargo_ocupado = ? , ug_pertence = ? , endereco_usuario = ? ,data_nascimento = ? ,STATUS = ? ,nivel = ? WHERE id_usuario = ? ";
+			String sql = "UPDATE usuario SET nome_usuario = ? , cargo_ocupado = ? , ug_pertence = ? , endereco_usuario = ? ,data_nascimento = ? ,STATUS = ? ,nivel = ?, email_usuario = ? WHERE id_usuario = ? ";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, user.getNome());
 			stmt.setInt(2, user.getCargo().getId());
@@ -171,7 +171,22 @@ public class UsuarioDao {
 			stmt.setDate(5, new java.sql.Date(user.getDataNascimento().getTime()));
 			stmt.setString(6, user.getSituacao().name());
 			stmt.setString(7, user.getNivel().name());
-			stmt.setInt(8, user.getIdUser());
+			stmt.setString(8, user.getEmail());
+			stmt.setInt(9, user.getIdUser());
+			stmt.execute();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void historicoAlteracaoUsuario(Usuario user) {
+		try {
+			String sql = "INSERT INTO historico (IdUsuarioAutor,Campo) VALUES (?,?)";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, user.getUsuarioLogado());
+			user.setCampo(user.toString());
+			stmt.setString(2, user.getCampo());
 			stmt.execute();
 			connection.close();
 		} catch (SQLException e) {

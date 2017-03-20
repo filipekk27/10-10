@@ -20,12 +20,12 @@
 			<c:import url="../usuarioLogado.jsp" />
 		<div id="formulario">
 				<form action="listarSugestao" class="form-inline">
-					<h3>listar Sugestao</h3>
+					<h3>Listar Sugestão</h3>
 					<div class="form-group">
 						<label for="Nome">Valor diaria</label><br> <input type="text"
 							class="form-control" name="Valordiaria" placeholder="00.00" maxlength="15"><br>
 					</div>
-					<br>
+					<br><br>
 					<button type="submit" class="btn btn-primary">Consultar</button>
 				</form>
 				<br>

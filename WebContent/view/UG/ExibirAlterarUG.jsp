@@ -7,7 +7,9 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/estiloAlterar.css">
+	href="${pageContext.request.contextPath}/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/estiloCadastrar.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Alteração de UG</title>
 </head>
@@ -21,21 +23,22 @@
 			<div id="formulario">
 				<form class="form-inline" action="AlterarUG" method="post">
 
-					<h3>Alterar UG</h3>
+					<h3>Alterar Unidade Gestora</h3>
 					<div class="form-group">
 						<form:errors path="unidadeGestora.nome" cssStyle="color:red" />
-						<!-- bean validation  -->
-						<br /> <label for="Nome">Nome</label><br> <input type="text"
-							class="form-control" name="nome" maxlength="30" minlength="10"
-							required="true" value="${ExibirAlterarUG.nome}">
+						
+						<br /> <label for="Nome">Nome:</label><br> <input
+							type="text" class="form-control" name="nome" maxlength="30"
+							minlength="10" required="true" value="${ExibirAlterarUG.nome}">
 					</div>
-					<br> <br>
+					<br> <br> <input type="hidden" name="UsuarioId"
+						value="${usuarioLogado.idUser }" readonly> <input
+						type="hidden" name="codigo" value="${ExibirAlterarUG.codigo}"
+						readonly>
+
 					<div class="form-group">
-						<input type="hidden" class="form-control" name="codigo"
-							value="${ExibirAlterarUG.codigo}" readonly>
-					</div>
-					<div class="form-group">
-						<label for="Status">On</label>
+						<label for="Status">Situação da UG:</label><br> <label
+							for="Status">Ativado</label>
 						<c:choose>
 							<c:when test="${ExibirAlterarUG.situacao=='ATIVO'}">
 								<input type="radio" class="form-control" name="Situacao"
@@ -47,7 +50,7 @@
 									value="ATIVO">
 							</c:otherwise>
 						</c:choose>
-						<label for="Status">Off</label>
+						<label for="Status">Desativado</label>
 						<c:choose>
 							<c:when test="${ExibirAlterarUG.situacao=='INATIVO'}">
 								<input type="radio" class="form-control" name="Situacao"

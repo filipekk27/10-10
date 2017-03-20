@@ -157,10 +157,24 @@ public class SugestaoDiariaDao {
 			stmt.setString(3, sugestaoD.getValores());
 			stmt.setInt(4, sugestaoD.getIdSD());
 			stmt.execute();
-			connection.close();
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
+	public void historicoAlteracaoSugestao(SugestaoDiaria sugestaoD) {
+		try {
+
+			String sql = "INSERT INTO historico (IdUsuarioAutor , Campo) VALUES (?,?)";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, sugestaoD.getIdUsuario());
+			sugestaoD.setCampo(sugestaoD.toString());
+			stmt.setString(2, sugestaoD.getCampo());
+			stmt.execute();
+			connection.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

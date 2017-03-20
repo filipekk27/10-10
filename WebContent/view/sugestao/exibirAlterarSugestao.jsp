@@ -5,6 +5,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/estiloCadastrar.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Alterar Sugestao</title>
 </head>
@@ -15,19 +19,21 @@
 						<br>
 			<c:import url="../usuarioLogado.jsp" />
 
-			<center>
-				<h3>Alterar Sugestao</h3>
+			
+			
 				<div id="formulario">
+					<h3>Alterar Sugestão de Diaria</h3>
 					<form class="form-inline" action="alterarSugestao" method="post">
-						<div class="form-group">
-							<input type="hidden" class="form-control" name="idSD"
+					          
+					          <input type="hidden" name="idUsuario" value="${usuarioLogado.idUser}">
+							<input type="hidden"  name="idSD"
 								value="${exibirSugestao.idSD}">
-						</div>
+						
 						<br>
 						<div class="form-group">
 
 							<br /> <label for="Cargo">Cargo</label><br> <select
-								name="cargo" required="true">
+								name="cargo" required="true" class="form-control">
 								<option value="${exibirSugestao.cargo.id}">${exibirSugestao.cargo.nome}</option>
 								<c:forEach items="${listarCargoUsuario}" var="cargo">
 									<option value="${cargo.id}">${cargo.nome}</option>
@@ -38,7 +44,7 @@
 						<div class="form-group">
 
 							<br /> <label for="UG">Unidade Gestora</label><br> <select
-								name="ug" required="true">
+								name="ug" required="true" class="form-control">
 								<option value="${exibirSugestao.ug.codigo}">${exibirSugestao.ug.nome}</option>
 								<c:forEach items="${listarUGestora}" var="ug">
 									<option value="${ug.codigo}">${ug.nome}</option>
@@ -46,7 +52,7 @@
 							</select>
 						</div>
 						<br>
-
+<br>
 						<div class="form-group">
 							<form:errors path="sugestaoDiaria.valores" cssStyle="color:red" />
 							<label for="Nome">Valores</label><br> <input type="text"
@@ -58,8 +64,7 @@
 						<br> <br>
 						<button type="submit" class="btn btn-primary">Alterar</button>
 					</form>
-				</div>
-			</center>
+		
 
 			<br>
 			<center></center>

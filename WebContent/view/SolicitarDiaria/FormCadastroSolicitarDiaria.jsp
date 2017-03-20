@@ -9,7 +9,7 @@
 <title>Solicitar Diaria</title>
 </head>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/estiloAlterar.css">
+	href="${pageContext.request.contextPath}/css/estiloCadastrar.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro Sugestão</title>
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
@@ -59,19 +59,20 @@
 	<br>
 	<c:import url="../usuarioLogado.jsp" />
 	<div id="formulario">
+	<h3>Cadastrar Solicitação Diaria</h3><br>
 		<form action="cadastarSolicitacao" method="post">
 			<%--Listar cidades --%>
-			<input type="hidden" name="IdUsuario" value="${usuarioLogado.idUser}">
+			<input type="hidden" name="usuarioId" value="${usuarioLogado.idUser}">
 			<input type="hidden" name="unidadeGestora"
 				value="${usuarioLogado.uGestora.codigo}">
 			<div class="form-group">
 
 				<label for="DataIda">Data Partida</label><br> <input
-					type="text" class="form-control" name="DataIda" required="true"
-					maxlength="10" minlength="10">
+					type="text"  name="DataIda" required="true"
+					maxlength="10" minlength="10" >
 				<form:errors path="solicitarDiaria.DataIda" cssStyle="color:red" />
 				<br> <label for="DataVolta">Data Volta</label><br> <input
-					type="text" class="form-control" name="DataVolta" required="true"
+					type="text"  name="DataVolta" required="true"
 					maxlength="10" minlength="10">
 				<form:errors path="solicitarDiaria.DataVolta" cssStyle="color:red" />
 			</div>
@@ -84,8 +85,8 @@
 			</div>
 			<div class="form-group">
 				<label for="Justificativa">Justificativa</label><br>
-				<textarea name="Justificativa" required="true" maxlength="40"
-					minlenght="20"> </textarea>
+				<textarea name="Justificativa" required="true" maxlength="30"
+					minlength="10"> </textarea>
 				<br>
 				<form:errors path="solicitarDiaria.Justificativa"
 					cssStyle="color:red" />

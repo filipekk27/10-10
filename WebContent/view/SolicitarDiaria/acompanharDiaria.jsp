@@ -31,7 +31,7 @@
 					<td>Volta</td>
 					<td>Tipo diaria</td>
 					<td>Valor diaria</td>
-					<td>UnidadeGestora</td>
+					<td>Nome Usuario</td>
 					<td>Justificativa Gestor</td>
 					<td>Nome Gestor</td>
 					<td>Status</td>
@@ -50,7 +50,7 @@
 								pattern="dd/MM/yyyy" /></td>
 						<td>${sd.tipoDiaria}</td>
 						<td>${sd.valorDiaria}</td>
-						<td>${sd.unidadeGestora.nome}</td>
+						<td>${sd.idUsuario.nome}</td>
 						<td>${sd.justificativaGestor}</td>
 						<td>${sd.idGestor.nome}</td>
 						<c:choose>

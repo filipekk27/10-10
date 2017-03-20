@@ -16,19 +16,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Usuario {
 
 	private Integer idUser;
+	private int UsuarioLogado;
+	private String campo;
 
-	
 	@Pattern(regexp = "[0-9]{11}", message = "Cpf invalido")
 	private String cpf;
 
-	
 	@Pattern(regexp = "^([A-Z,a-zã,á,à,â,ê,í,ú,õ,é,ü, ])*", message = " Nome invalido")
 	private String nome;
 
 	@NotNull
 	@Pattern(regexp = "^[\\w\\-]+(\\.[\\w\\-]+)*@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$", message = "E-mail invalido.")
 	private String email;
-
 
 	@Pattern(regexp = "[a-zA-Z ,]*", message = " Endereco tem apenas letras sem acento caracteres !")
 	private String endereco;
@@ -38,7 +37,6 @@ public class Usuario {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataNascimento;
 
-	
 	@Pattern(regexp = "[a-zA-Z_0-9]*", message = "A Senha deve ter letras e numeros")
 	private String senha;
 
@@ -52,6 +50,30 @@ public class Usuario {
 
 	private Situacao situacao;
 	private Nivel nivel;
+
+	public String toString() {
+		return "O usuario : " + this.UsuarioLogado + " alterou o nome do usuario : " + this.nome + "o endereco para : "
+				+ this.endereco + " o email para : " + this.email + " a data nascimento para : " + this.dataNascimento
+				+ " o cargo para : " + this.cargo.getId() + " a unidade para : " + this.uGestora.getCodigo()
+				+ " a situacao para : " + this.situacao.name() + " o Nivel para : " + this.nivel
+				+ " Codigo do Usuario : " + this.idUser;
+	}
+
+	public int getUsuarioLogado() {
+		return UsuarioLogado;
+	}
+
+	public void setUsuarioLogado(int usuarioLogado) {
+		UsuarioLogado = usuarioLogado;
+	}
+
+	public String getCampo() {
+		return campo;
+	}
+
+	public void setCampo(String campo) {
+		this.campo = campo;
+	}
 
 	public Integer getIdUser() {
 		return idUser;

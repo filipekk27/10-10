@@ -7,7 +7,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/estiloAlterar.css">
+	href="${pageContext.request.contextPath}/css/estiloCadastrar.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro Sugestão</title>
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
@@ -47,13 +47,13 @@
 						<br>
 			<c:import url="../usuarioLogado.jsp" />
 			<div id="formulario">
-				<h3>Cadastrar Sugestão diaria</h3>
-				<form action="cadastrarSugestao" method="post">
+				<h3>Cadastrar Sugestão de Diaria</h3><br>
+				<form action="cadastrarSugestao" method="post" class="form-inline">
 
 					<div class="form-group">
 						<form:errors path="SugestaoDiaria.cargo" cssStyle="color:red" />
-						<label for="Cargo">Cargo</label><br> <select name="cargo"
-							required="true">
+						<label for="Cargo">Cargo:</label><br> <select name="cargo"
+							required="true" class="form-control">
 							<option value="">Selecione o cargo</option>
 							<%-- listar cargos no select --%>
 							<c:forEach items="${listarCargoUsuario}" var="cargo">
@@ -68,7 +68,7 @@
 					<div class="form-group">
 						<form:errors path="SugestaoDiaria.ug" cssStyle="color:red" />
 						<label for="UG">Unidade Gestora</label><br> <select name="ug"
-							required="true">
+							required="true" class="form-control">
 							<%-- listar ug no select --%>
 							<option value="">Selecione a UG</option>
 							<c:forEach items="${listarUGestora}" var="ug">
@@ -78,11 +78,11 @@
 							</c:forEach>
 						</select>
 					</div>
-
+<br><br>
 
 					<div class="form-group">
 						<label>Origem</label> <br> <select id="estado"
-							required="true">
+							required="true" class="form-control">
 							<%--Lista os estados --%>
 							<option value="">Selecione a UF</option>
 							<c:forEach var="uf" items="${ListarEstados}">
@@ -91,16 +91,16 @@
 
 							</c:forEach>
 						</select>
-					</div>
+					</div><br>
 					<div class="form-group" id="cidade">
 						<%--Listar cidades --%>
 
 					</div>
-
+<br>
 					<div class="form-group">
-						<%--Lista os estados --%>
+						<%--Lista os estados --%><br>
 						<label>Destino</label> <br> <select id="estado2"
-							required="true">
+							required="true" class="form-control" >
 							<option value="">Selecione a UF</option>
 							<c:forEach var="uf" items="${ListarEstados}">
 
@@ -111,17 +111,18 @@
 						</select>
 
 					</div>
+					<br>
 					<%--Listar cidades --%>
 					<div class="form-group" id="cidade2"></div>
 
-
+<br><br>
 					<div class="form-group">
 						<form:errors path="sugestaoDiaria.valores" cssStyle="color:red" />
 						<label for="Nome">Valores</label><br> <input type="text"
 							class="form-control" name="valores" size="10" minlength="2"
 							maxlength="8" required="true" placeholder="00.00" required="true"><br>
 					</div>
-
+<br> <br>
 					<button type="submit" class="btn btn-primary">Sugerir</button>
 				</form>
 

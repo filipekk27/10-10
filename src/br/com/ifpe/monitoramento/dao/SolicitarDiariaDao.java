@@ -39,7 +39,7 @@ public class SolicitarDiariaDao {
 			stmt.setDate(5, new java.sql.Date(s.getDataVolta().getTime()));
 			stmt.setString(6, s.getTipoDiaria().name());
 			stmt.setString(7, s.getValorDiaria());
-			stmt.setInt(8, s.getIdUsuario());
+			stmt.setInt(8, s.getUsuarioId());
 			stmt.setInt(9, s.getUnidadeGestora().getCodigo());
 
 			stmt.execute();
@@ -77,7 +77,11 @@ public class SolicitarDiariaDao {
 				sd.setCidDestino(rs.getInt("CidDestino"));
 				sd.setDataIda(rs.getDate("DataIda"));
 				sd.setDataVolta(rs.getDate("DataVolta"));
-				sd.setIdUsuario(rs.getInt("IdUsuario"));
+
+				UsuarioDao dao = new UsuarioDao();
+				Usuario us = dao.exibir(rs.getInt("IdUsuario"));
+				sd.setIdUsuario(us);
+
 				TipoDiaria tp = TipoDiaria.valueOf(rs.getString("TipoDiaria"));
 				sd.setTipoDiaria(tp);
 
@@ -86,13 +90,13 @@ public class SolicitarDiariaDao {
 				Deferimento df = Deferimento.valueOf(rs.getString("Deferimento"));
 				sd.setDef(df);
 
-				UsuarioDao dao = new UsuarioDao();
-				Usuario us = dao.exibir(rs.getInt("IdUsuarioGestor"));
-				sd.setIdGestor(us);
+				UsuarioDao dao2 = new UsuarioDao();
+				Usuario us2 = dao2.exibir(rs.getInt("IdUsuarioGestor"));
+				sd.setIdGestor(us2);
 				sd.setJustificativaGestor(rs.getString("JustificativaADM"));
 
-				UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
-				UnidadeGestora ug = dao2.exibirUG(rs.getInt("uGestora"));
+				UnidadeGestoraDao dao3 = new UnidadeGestoraDao();
+				UnidadeGestora ug = dao3.exibirUG(rs.getInt("uGestora"));
 				sd.setUnidadeGestora(ug);
 
 				listar.add(sd);
@@ -131,11 +135,11 @@ public class SolicitarDiariaDao {
 
 				Deferimento df = Deferimento.valueOf(rs.getString("Deferimento"));
 				sd.setDef(df);
-                 
+
 				UsuarioDao dao = new UsuarioDao();
 				Usuario us = dao.exibir(rs.getInt("IdUsuarioGestor"));
 				sd.setIdGestor(us);
-				
+
 				sd.setJustificativaGestor(rs.getString("JustificativaADM"));
 
 				UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
@@ -179,10 +183,14 @@ public class SolicitarDiariaDao {
 				Deferimento df = Deferimento.valueOf(rs.getString("Deferimento"));
 				sd.setDef(df);
 
+				UsuarioDao dao0 = new UsuarioDao();
+				Usuario us0 = dao0.exibir(rs.getInt("IdUsuario"));
+				sd.setIdUsuario(us0);
+
 				UsuarioDao dao = new UsuarioDao();
 				Usuario us = dao.exibir(rs.getInt("IdUsuarioGestor"));
 				sd.setIdGestor(us);
-				
+
 				sd.setJustificativaGestor(rs.getString("JustificativaADM"));
 
 				UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
@@ -222,7 +230,7 @@ public class SolicitarDiariaDao {
 		}
 	}
 
-	public void alterarSolicitacao(int codSD, int idGestor ,String justificativaGestor ,String def) {
+	public void alterarSolicitacao(int codSD, int idGestor, String justificativaGestor, String def) {
 		try {
 
 			String sql = "UPDATE solicitardiaria SET Deferimento = ? , IdUsuarioGestor = ? , JustificativaADM = ? WHERE CodSD = ?";
@@ -231,6 +239,22 @@ public class SolicitarDiariaDao {
 			stmt.setInt(2, idGestor);
 			stmt.setString(3, justificativaGestor);
 			stmt.setInt(4, codSD);
+
+			stmt.execute();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void historicoAlteracaoSolicitacao(SolicitarDiaria diaria) {
+		try {
+
+			String sql = "INSERT INTO historico (IdUsuarioAutor,Campo) VALUES(?,?)";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, diaria.getIdGestor().getIdUser());
+			diaria.setCampo(diaria.toString());
+			stmt.setString(2, diaria.getCampo());
 
 			stmt.execute();
 			connection.close();

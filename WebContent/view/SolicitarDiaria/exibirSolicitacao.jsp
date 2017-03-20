@@ -19,7 +19,7 @@
 				<br> <br>
 				<h3>Alterar Solicitacao</h3>
 				<div id="formulario">
-					<form class="form-inline" action="alterarSolicitacao" method="get">
+					<form class="form-inline" action="alterarSolicitacao" method="post">
 
 						<input type="hidden" class="form-control" name="codSD"
 							value="${exibirSolicitacao.codSD}">
@@ -33,7 +33,7 @@
 
 							<label for="justificativaGestor">Justificativa</label><br>
 							<textarea name="justificativaGestor" required="true" maxlength="40"
-								minlenght="20"> </textarea>
+								minlength="10"> </textarea>
 							<br>
 							<form:errors path="solicitarDiaria.justificativaGestor"
 								cssStyle="color:red" />

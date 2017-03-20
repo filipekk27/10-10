@@ -10,15 +10,20 @@
 <title>Monitoria-Login</title>
 </head>
 <body>
-
-<div class="col-md-12">
-			
-			<c:import url="topo.jsp" />
-
-</div>
+<div class="container-fluid">
+		<div class="row">
+		
+		
+		<div class="jumbotron well">
+		<div class="page-header">
+					<c:import url="topo2.jsp" />
+		</div>
+		</div>
+				
 
 <div id="formulario">				
 <form class="form-inline" action="efetuarLogin" method="post">
+<br><br>
 <h3>LOGIN:</h3>
 
 <div class="form-group">
@@ -32,6 +37,10 @@
 <button type="submit" class="btn btn-default">Entrar</button>
 </form>
 </div>
+
+</div>
+</div>
+
 
 </body>
 </html>

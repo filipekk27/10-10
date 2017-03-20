@@ -13,11 +13,35 @@ public class SugestaoDiaria {
 	private Cidade cidade;
 	private Integer destino;
 	private Integer origem;
-	
-	@Pattern(regexp="[0-9.]*",message="Valor invalido")
+	private int idUsuario;
+	private String campo;
+
+	@Pattern(regexp = "[0-9.]*", message = "Valor invalido")
 	private String valores;
-	
+
 	private Integer idSD;
+
+	public String toString() {
+		return "O usuario : " + this.idUsuario + " alterou o cargo da sugestao para : " + this.cargo.getId()
+				+ " a unidade : " + this.ug.getCodigo() + " o valor para : " + this.valores + " Id da Sugestao :"
+				+ this.idSD;
+	}
+
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public String getCampo() {
+		return campo;
+	}
+
+	public void setCampo(String campo) {
+		this.campo = campo;
+	}
 
 	public Integer getIdSD() {
 		return idSD;

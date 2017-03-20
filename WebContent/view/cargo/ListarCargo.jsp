@@ -22,7 +22,7 @@
 
 			<div id="formulario">
 				<form action="listarCargo" class="form-inline">
-					<h3>Consultar Cargo</h3>
+					<h3>Consultar Cargo</h3><br>
 					<div class="form-group">
 						<label for="Nome">Nome do Cargo</label><br> <input
 							type="text" class="form-control" name="nome"
