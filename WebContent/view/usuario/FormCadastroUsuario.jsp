@@ -11,10 +11,10 @@
 	href="${pageContext.request.contextPath}/css/estiloCadastrar.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro usuario</title>
-<script type="text/javascript"
-	src="js/jquery-3.1.0.min.js"></script>
-<script type="text/javascript"
-	src="js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+<script src="js/jquery.maskedinput.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#formulario').validate({
@@ -50,8 +50,9 @@
 
 						<div id="constrain_error">${msgErrorPkUser}</div>
 						<label for="Cpf">CPF*</label><br> <input type="text"
-							class="form-control" name="cpf" placeholder="Apenas Numeros"
-							size="11" Maxlength="11" Minlength="11" required><br>
+							class="form-control" name="cpf" id="cpf"
+							placeholder="Apenas Numeros" size="11" Maxlength="11"
+							Minlength="11" required><br>
 						<form:errors path="usuario.cpf" cssStyle="color:red" />
 
 					</div>
@@ -82,8 +83,8 @@
 
 						<br /> <label for="dataNascimento">Data de Nascimento*</label><br>
 						<input type="text" class="form-control" name="dataNascimento"
-							placeholder="00/00/0000" size="8" Maxlength="10" Minlength="10"
-							required><br>
+							id="datanascimento" placeholder="00/00/0000" size="8"
+							Maxlength="10" Minlength="10" required><br>
 						<form:errors path="usuario.dataNascimento" cssStyle="color:red" />
 						<br>
 					</div>
@@ -183,6 +184,13 @@
 			<jsp:forward page="../index.jsp" />
 		</c:otherwise>
 	</c:choose>
+	<script type="text/javascript">
+		jQuery(function($) {
+			$("#cpf").mask("999.999.999-99");
+			$("#datanascimento").mask("99/99/9999");
+
+		})
+	</script>
 </body>
 </html>
 

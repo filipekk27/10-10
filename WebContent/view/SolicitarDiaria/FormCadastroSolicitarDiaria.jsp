@@ -13,6 +13,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro Sugestão</title>
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+<script src="js/jquery.maskedinput.js"></script>
 <script>
 	$(document).ready(function() {
 
@@ -68,11 +70,11 @@
 			<div class="form-group">
 
 				<label for="DataIda">Data Partida</label><br> <input
-					type="text"  name="DataIda" required="true"
+					type="text"  name="DataIda" id="dataIda" required="true"
 					maxlength="10" minlength="10" >
 				<form:errors path="solicitarDiaria.DataIda" cssStyle="color:red" />
 				<br> <label for="DataVolta">Data Volta</label><br> <input
-					type="text"  name="DataVolta" required="true"
+					type="text"  name="DataVolta" id="dataVolta" required="true"
 					maxlength="10" minlength="10">
 				<form:errors path="solicitarDiaria.DataVolta" cssStyle="color:red" />
 			</div>
@@ -124,5 +126,12 @@
 		</form>
 
 	</div>
+		<script type="text/javascript">
+		jQuery(function($) {
+			$("#dataVolta").mask("99/99/9999");
+			$("#dataIda").mask("99/99/9999");
+
+		})
+	</script>
 </body>
 </html>
