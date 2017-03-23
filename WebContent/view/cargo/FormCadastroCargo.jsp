@@ -32,7 +32,7 @@
 						<!-- bean validation  -->
 						<label for="Nome">Nome do Cargo</label><br> <input
 							type="text" class="form-control" name="nome"
-							placeholder="Nome do Cargo" maxlength="20" minlength="5" required="true"><br>
+							placeholder="Nome do Cargo" maxlength="40" minlength="5" required="true"><br>
 					</div>
 					<br> <br>
 					<button type="submit" class="btn btn-primary">Cadastrar</button>

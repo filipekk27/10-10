@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.ifpe.monitoramento.dao.HistoricoDao;
+import br.com.ifpe.monitoramento.dao.UnidadeGestoraDao;
 
 @Controller
 public class MenuController {
@@ -20,9 +21,12 @@ public class MenuController {
 	}
 
 	@RequestMapping("/listarHistorico")
-	public String listarHistorico(String idUsuarioAutor, String DataCadastro, Model model) {
+	public String listarHistorico(String cpf, String nomeU, String data1, String data2, String objetoAlterado,
+			Integer uGestora, String nome, String codigo, Model model) {
 		HistoricoDao dao = new HistoricoDao();
-		model.addAttribute("historico", dao.listarHistorico(idUsuarioAutor, DataCadastro));
+		model.addAttribute("historico", dao.listarHistorico(cpf, nomeU, data1, data2, objetoAlterado, uGestora));
+		UnidadeGestoraDao dao2 = new UnidadeGestoraDao();
+		model.addAttribute("listarUGestora", dao2.listarUG(nome, codigo));
 		return "historico/listarHistorico";
 	}
 }

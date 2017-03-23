@@ -87,7 +87,7 @@
 			</div>
 			<div class="form-group">
 				<label for="Justificativa">Justificativa</label><br>
-				<textarea name="Justificativa" required="true" maxlength="30"
+				<textarea name="Justificativa" required="true" maxlength="50"
 					minlength="10"> </textarea>
 				<br>
 				<form:errors path="solicitarDiaria.Justificativa"

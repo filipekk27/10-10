@@ -16,17 +16,18 @@ public class Cargo {
 
 	@NotBlank
 	@Size(min = 3, max = 60, message = "o nome deve ter de : {min} a  {max}")
-	@Pattern(regexp = "^([A-Z,a-zã,á,à,â,ê,í,ú,õ,é,ü, ])*", message = "Nome invalido")
+	@Pattern(regexp = "^([A-Z,a-zã,Ã,á,Á,à,À,â,Â,ê,Ê,í,Í,ú,Ú,õ,Õ,ó,Ó,é,É,ü,Ü,ç,Ç, ])*", message = "Nome invalido")
 	private String nome;
 
 	private Integer id;
 	private Date data_cadastro;
 	private Situacao situacao;
 	private String campo;
+	private Integer idUsuario;
 
 	public String toString() {
-		return "o Usuario  : " + this.id + " alterou o nome do cargo para : " + this.nome + " e a situacao para : "
-				+ this.situacao.name();
+		return "o Usuario  : " + this.idUsuario + " alterou o nome do cargo para : " + this.nome
+				+ " e a situacao para : " + this.situacao.name();
 	}
 
 	public String getNome() {
@@ -67,6 +68,14 @@ public class Cargo {
 
 	public void setCampo(String campo) {
 		this.campo = campo;
+	}
+
+	public Integer getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(Integer idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 }

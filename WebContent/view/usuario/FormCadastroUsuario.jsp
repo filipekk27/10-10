@@ -11,10 +11,12 @@
 	href="${pageContext.request.contextPath}/css/estiloCadastrar.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro usuario</title>
+
+
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 <script src="js/jquery.maskedinput.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#formulario').validate({
@@ -103,7 +105,7 @@
 
 						<label for="Senha">Senha*</label><br> <input type="password"
 							class="form-control" name="senha" id="senha" placeholder="senha"
-							Maxlength="8" Minlength="6" required size="23"><br>
+							Maxlength="20" Minlength="6" required size="23"><br>
 
 						<form:errors path="usuario.senha" cssStyle="color:red" />
 
@@ -113,7 +115,7 @@
 
 						<br> <label for="Senha">Confirmar Senha*</label><br> <input
 							type="password" class="form-control" name="senha2"
-							placeholder="senha" Maxlength="8" Minlength="6" required
+							placeholder="senha" Maxlength="20" Minlength="6" required
 							size="23"><br>
 						<form:errors path="usuario.senha" cssStyle="color:red" />
 
@@ -186,7 +188,7 @@
 	</c:choose>
 	<script type="text/javascript">
 		jQuery(function($) {
-			$("#cpf").mask("999.999.999-99");
+			
 			$("#datanascimento").mask("99/99/9999");
 
 		})

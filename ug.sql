@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.52, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: ug
 -- ------------------------------------------------------
--- Server version	5.7.17-0ubuntu0.16.04.1
+-- Server version	5.5.52-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -29,7 +29,7 @@ CREATE TABLE `cargo` (
   `STATUS` enum('ATIVO','INATIVO') DEFAULT 'ATIVO',
   PRIMARY KEY (`id_cargo`),
   UNIQUE KEY `nome_cargo` (`nome_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `cargo` (
 
 LOCK TABLES `cargo` WRITE;
 /*!40000 ALTER TABLE `cargo` DISABLE KEYS */;
-INSERT INTO `cargo` VALUES (4,'Pedreiro','2017-03-19 19:11:09','ATIVO');
+INSERT INTO `cargo` VALUES (5,'ADMINISTRADOR','2017-03-22 17:50:41','ATIVO'),(6,'advogado','2017-03-22 18:07:09','ATIVO'),(9,'ANALISTA','2017-03-22 18:16:36','ATIVO'),(11,'SECRETARIA','2017-03-22 18:17:09','ATIVO'),(13,'PROFESSOR','2017-03-22 18:17:37','ATIVO'),(14,'MEDICO','2017-03-22 18:17:56','ATIVO');
 /*!40000 ALTER TABLE `cargo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,7 +108,7 @@ CREATE TABLE `historico` (
   PRIMARY KEY (`Id`),
   KEY `IdUsuarioAutor` (`IdUsuarioAutor`),
   CONSTRAINT `historico_ibfk_1` FOREIGN KEY (`IdUsuarioAutor`) REFERENCES `usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +117,7 @@ CREATE TABLE `historico` (
 
 LOCK TABLES `historico` WRITE;
 /*!40000 ALTER TABLE `historico` DISABLE KEYS */;
-INSERT INTO `historico` VALUES (1,4,'o Usuario com o id : 4 alterou o nome do cargo para : Pedreiro e a situacao para : ATIVO','2017-03-19 22:19:22'),(2,4,'o Usuario com o id : 4 alterou o nome do cargo para : Engenheiro e a situacao para : ATIVO','2017-03-19 22:22:30'),(3,4,'o Usuario  : 4 alterou o nome do cargo para : Pedreiro e a situacao para : INATIVO','2017-03-19 22:34:43'),(4,4,'O usuario : 4alterou a unidade para : IFPE JABOATAO a situacao para :ATIVO da ug com o codigo1234','2017-03-20 00:53:30'),(5,4,'o Usuario  : 4 alterou o nome do cargo para : Pedreiro e a situacao para : ATIVO','2017-03-20 00:57:31'),(6,4,'O usuario : 4 alterou o cargo da sugestao para : 4 a unidade : 123456 o valor para : 500.00 Id da Sugestao :1','2017-03-20 01:16:55'),(7,4,'br.com.ifpe.monitoramento.entidades.Usuario@45e32f9b','2017-03-20 01:48:57'),(8,4,'br.com.ifpe.monitoramento.entidades.Usuario@3507cd8d','2017-03-20 01:51:48'),(9,4,'O usuario : 4 alterou o nome do usuario : gestor de unidadeo endereco para : dsaddsdasdasdasdasdsa o email para : gestor@hotmail.com a data nascimento para : Mon Sep 06 00:00:00 BRT 1479 o cargo para : 4 a unidade para : 123456 a situacao para : ATIVO o Nivel para : GESTORUG Codigo do Usuario : 5','2017-03-20 02:01:40');
+INSERT INTO `historico` VALUES (22,8,'O usuario : 8 alterou a unidade para : LABORATORIO CENTRAL DE SAUDE P a situacao para : ATIVO da ug com o codigo : 530402','2017-03-22 18:22:43'),(26,8,'O usuario : 8 alterou a unidade para : CONTROLADORIA GERAL DO ESTADO a situacao para : ATIVO da ug com o codigo : 10001','2017-03-22 18:34:23'),(27,8,'o Usuario  : 5 alterou o nome do cargo para : ADMINISTRADOR e a situacao para : ATIVO','2017-03-22 18:39:37');
 /*!40000 ALTER TABLE `historico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,7 +163,6 @@ CREATE TABLE `solicitardiaria` (
 
 LOCK TABLES `solicitardiaria` WRITE;
 /*!40000 ALTER TABLE `solicitardiaria` DISABLE KEYS */;
-INSERT INTO `solicitardiaria` VALUES (2,'ADSDAD',118,2575,'1997-09-06','1790-09-07','P',NULL,' ta','Aceitado',4,5,1234,'2017-03-19 19:39:14'),(3,' sei la',80,892,'2011-09-06','2012-09-07','P',NULL,NULL,'Pendente',6,NULL,1234,'2017-03-19 19:36:17'),(4,' dsdsdsdsdsadsdsdsadsadsadsad',2573,1499,'1997-09-06','1790-09-07','P',NULL,'dsadsaddsaddsadsadsadsadsa','Aceitado',7,5,123456,'2017-03-20 00:13:39');
 /*!40000 ALTER TABLE `solicitardiaria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,7 +198,6 @@ CREATE TABLE `sugestaovalordiaria` (
 
 LOCK TABLES `sugestaovalordiaria` WRITE;
 /*!40000 ALTER TABLE `sugestaovalordiaria` DISABLE KEYS */;
-INSERT INTO `sugestaovalordiaria` VALUES (1,79,101,123456,500.00,4);
 /*!40000 ALTER TABLE `sugestaovalordiaria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,7 +223,7 @@ CREATE TABLE `unidade_gestora` (
 
 LOCK TABLES `unidade_gestora` WRITE;
 /*!40000 ALTER TABLE `unidade_gestora` DISABLE KEYS */;
-INSERT INTO `unidade_gestora` VALUES (1234,'IFPE JABOATAO','2017-03-19 19:09:18','ATIVO'),(123456,'unidade federativa','2017-03-19 19:51:09','ATIVO');
+INSERT INTO `unidade_gestora` VALUES (10001,'CONTROLADORIA GERAL DO ESTADO','2017-03-22 17:51:04','ATIVO'),(110401,'SECRETARIA DA CASA MILITAR','2017-03-22 18:14:53','ATIVO'),(140101,'SECRETARIA DE EDUCACAO','2017-03-22 18:11:27','ATIVO'),(320101,'PROCURADORIA GERAL DA JUSTICA','2017-03-22 18:10:34','ATIVO'),(530402,'LABORATORIO CENTRAL DE SAUDE P','2017-03-22 18:13:51','ATIVO');
 /*!40000 ALTER TABLE `unidade_gestora` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,7 +254,7 @@ CREATE TABLE `usuario` (
   KEY `ugporra` (`ug_pertence`),
   CONSTRAINT `ugporra` FOREIGN KEY (`ug_pertence`) REFERENCES `unidade_gestora` (`codigo_unidade`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`cargo_ocupado`) REFERENCES `cargo` (`id_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -265,7 +263,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (4,'02627332422','hugo oliveira','hugo@hotmail.com','','1997-09-06','123456','2017-03-19 19:17:35',4,1234,'ATIVO','ADM'),(5,'12257104480','gestor de unidade','gestor@hotmail.com','dsaddsdasdasdasdasdsa','1479-09-06','123456','2017-03-19 19:34:34',4,123456,'ATIVO','GESTORUG'),(6,'12345678910','usuario normal','usuarioteste@gmail.com','qualquer coisa','1997-09-06','123456','2017-03-19 19:35:49',4,1234,'ATIVO','USUARIO'),(7,'00000000000','usuario dois de teste','usuario2@hotmail.com','endereco novo aq','1997-09-06','123456','2017-03-19 19:50:52',4,123456,'ATIVO','USUARIO');
+INSERT INTO `usuario` VALUES (8,'11111111111','Administrador','administrador@gmail.com','Rua dos Programadores','1990-10-10','adm123','2017-03-22 18:04:28',5,10001,'ATIVO','ADM'),(10,'10245678922','Clara Miranda','claramiranda@gmail.com','Rua do futebol','1985-02-01','123456','2017-03-22 18:45:36',5,140101,'ATIVO','GESTORUG'),(12,'10300000000','JORGE HILDO','jorge@gmail.com','Rua da Paz','1984-01-04','123456','2017-03-22 18:47:59',9,530402,'ATIVO','GESTORUG');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -278,4 +276,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-20  0:11:03
+-- Dump completed on 2017-03-22 15:52:51

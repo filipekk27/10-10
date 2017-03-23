@@ -28,7 +28,7 @@
 						<form:errors path="unidadeGestora.nome" cssStyle="color:red" />
 						
 						<br /> <label for="Nome">Nome:</label><br> <input
-							type="text" class="form-control" name="nome" maxlength="30"
+							type="text" class="form-control" name="nome" maxlength="40"
 							minlength="10" required="true" value="${ExibirAlterarUG.nome}">
 					</div>
 					<br> <br> <input type="hidden" name="UsuarioId"

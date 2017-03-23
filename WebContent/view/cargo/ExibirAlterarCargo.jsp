@@ -29,14 +29,16 @@
 						<!-- bean validation  -->
 						<br /> <label for="Nome">Nome:</label><br> <input
 							type="text" class="form-control" name="nome" required="true"
-							maxlength="20" minlength="5" value="${ExibirAlterarCargo.nome}">
+							maxlength="40" minlength="5" value="${ExibirAlterarCargo.nome}">
 					</div>
 					<br> <br>
-					<div class="form-group">
-						<input type="hidden" class="form-control" name="id"
+					
+						<input type="hidden"  name="id"
 							value="${ExibirAlterarCargo.id}" readonly>
+							<input type="hidden"  name="idUsuario"
+							value="${usuarioLogado.idUser}" readonly>
 
-					</div>
+					
 
 					<div class="form-group">
 						<label for="Status">Situação do Cargo:</label><br> <label

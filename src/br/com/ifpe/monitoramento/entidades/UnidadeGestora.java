@@ -20,7 +20,7 @@ public class UnidadeGestora {
 
 	@NotBlank
 	@Size(min = 8, max = 30, message = "O nome deve ter de : {min} a {max} Letras")
-	@Pattern(regexp = "^([A-Z,a-zã,á,à,â,ê,í,ú,õ,ó,é,ü, ])*", message = "Nome invalido !")
+	@Pattern(regexp = "^([A-Z,a-zã,Ã,á,Á,à,À,â,Â,ê,Ê,í,Í,ú,Ú,õ,Õ,ó,Ó,é,É,ü,Ü,ç,Ç, ])*", message = "Nome invalido !")
 	private String nome;
 
 	@NotNull

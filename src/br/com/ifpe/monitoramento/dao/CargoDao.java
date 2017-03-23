@@ -135,7 +135,7 @@ public class CargoDao {
 		try {
 			String sql = "INSERT INTO historico (IdUsuarioAutor,Campo) VALUES(?,?)";
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setInt(1, cargo.getId());
+			stmt.setInt(1, cargo.getIdUsuario());
 			cargo.setCampo(cargo.toString());
 			stmt.setString(2, cargo.getCampo());
 			stmt.execute();

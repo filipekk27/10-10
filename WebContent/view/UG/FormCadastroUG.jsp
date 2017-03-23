@@ -34,7 +34,7 @@
 						<br />
 						<!-- bean validation  -->
 						<label for="Nome">Nome da UG</label><br> <input type="text"
-							class="form-control" name="nome" placeholder="Nome da UG" maxlength="30" minlength="10"><br>
+							class="form-control" name="nome" placeholder="Nome da UG" maxlength="40" minlength="10"><br>
 					</div>
 					<br>
 					<div class="form-group">

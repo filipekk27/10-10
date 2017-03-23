@@ -22,14 +22,14 @@ public class Usuario {
 	@Pattern(regexp = "[0-9]{11}", message = "Cpf invalido")
 	private String cpf;
 
-	@Pattern(regexp = "^([A-Z,a-zã,á,à,â,ê,í,ú,õ,é,ü, ])*", message = " Nome invalido")
+	@Pattern(regexp = "^([A-Z,a-zã,Ã,á,Á,à,À,â,Â,ê,Ê,í,Í,ú,Ú,õ,Õ,ó,Ó,é,É,ü,Ü,ç,Ç, ])*", message = " Nome invalido")
 	private String nome;
 
 	@NotNull
 	@Pattern(regexp = "^[\\w\\-]+(\\.[\\w\\-]+)*@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$", message = "E-mail invalido.")
 	private String email;
 
-	@Pattern(regexp = "[a-zA-Z ,]*", message = " Endereco tem apenas letras sem acento caracteres !")
+	//@Pattern(regexp = "[a-zA-Z ,]*", message = " Endereco tem apenas letras sem acento caracteres !")
 	private String endereco;
 
 	@Past(message = "Voce nem nasceu ainda  ! ")

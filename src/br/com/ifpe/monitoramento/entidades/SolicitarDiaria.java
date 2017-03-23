@@ -10,7 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class SolicitarDiaria {
 
-	// @Pattern(regexp = "[a-zA-Z]*", message = "Apenas letras")
+	@Pattern(regexp = "^([A-Z,a-zã,Ã,á,Á,à,À,â,Â,ê,Ê,í,Í,ú,Ú,õ,Õ,ó,Ó,é,É,ü,Ü,ç,Ç, ])*", message = "Apenas letras")
 	private String Justificativa;
 
 	private int CidOrigem;
@@ -34,7 +34,7 @@ public class SolicitarDiaria {
 
 	private int codSD;
 	private Usuario IdUsuario; // Lista dados do usuario solicitante
-	private int usuarioId; // cadastrando usuario solicitante
+	private int usuarioId; // cadastrando usuario solicitante auditoria
 	private Deferimento def;
 	private Usuario idGestor;
 
